@@ -27,11 +27,12 @@
         .header {
             text-align: center;
             margin-bottom: 40px;
-            background: rgba(255, 255, 255, 0.95);
+            background: rgba(255, 255, 255, 0.95) !important;
             backdrop-filter: blur(10px);
             border-radius: 20px;
             padding: 40px;
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            color: #333 !important;
         }
 
         .profile-image {
@@ -114,12 +115,13 @@
         }
 
         .section {
-            background: rgba(255, 255, 255, 0.95);
+            background: rgba(255, 255, 255, 0.95) !important;
             backdrop-filter: blur(10px);
             border-radius: 20px;
             padding: 30px;
             margin-bottom: 30px;
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            color: #333 !important;
         }
 
         .section h2 {
@@ -252,7 +254,64 @@
             opacity: 0.8;
         }
 
-        @media (max-width: 768px) {
+        .language-toggle-container {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .language-toggle {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            border-radius: 50px;
+            padding: 10px 20px;
+        }
+
+        .lang-label {
+            font-size: 1rem;
+            font-weight: 600;
+            color: rgba(255, 255, 255, 0.7);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .lang-label.active {
+            color: white;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .toggle-switch {
+            width: 60px;
+            height: 30px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 15px;
+            position: relative;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .toggle-switch:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        .toggle-slider {
+            width: 26px;
+            height: 26px;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            border-radius: 50%;
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            transition: transform 0.3s ease;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .toggle-slider.french {
+            transform: translateX(30px);
+        }
             .header h1 {
                 font-size: 2rem;
             }
@@ -294,170 +353,349 @@
             </div>
         </div>
 
+        <div class="language-toggle-container">
+            <div class="language-toggle">
+                <span class="lang-label active" id="lang-en">🇬🇧 English</span>
+                <div class="toggle-switch" onclick="toggleLanguage()">
+                    <div class="toggle-slider" id="toggle-slider"></div>
+                </div>
+                <span class="lang-label" id="lang-fr">🇫🇷 Français</span>
+            </div>
+        </div>
+
         <div class="tab-navigation">
             <button class="tab-btn active" onclick="switchTab('engineering')">Engineering Portfolio</button>
             <button class="tab-btn" onclick="switchTab('art')">Art Portfolio</button>
         </div>
 
         <div id="engineering" class="tab-content active">
-            <div class="section">
-                <h2><span class="icon">👤</span>Profile</h2>
-                <p class="profile-text">
-                    Rigorous, motivated, and autonomous engineer who learns quickly and has a strong logical mind. 
-                    Persevering and punctual while being imaginative and capable of great sensitivity. Currently pursuing 
-                    a Master's degree in Robotics at EPFL with extensive experience in computational motor control, 
-                    neuroengineering, and rehabilitation technologies.
-                </p>
+            <!-- English Content -->
+            <div class="content-lang" id="content-en">
+                <div class="section">
+                    <h2><span class="icon">👤</span>Profile</h2>
+                    <p class="profile-text">
+                        Rigorous, motivated, and autonomous engineer who learns quickly and has a strong logical mind. 
+                        Persevering and punctual while being imaginative and capable of great sensitivity. Currently pursuing 
+                        a Master's degree in Robotics at EPFL with extensive experience in computational motor control, 
+                        neuroengineering, and rehabilitation technologies.
+                    </p>
+                </div>
+
+                <div class="section">
+                    <h2><span class="icon">🎓</span>Education</h2>
+                    <div class="education-item">
+                        <h3>Master's in Robotics</h3>
+                        <p><strong>École Polytechnique Fédérale de Lausanne (EPFL)</strong></p>
+                        <p>September 2022 - Present</p>
+                    </div>
+                    <div class="education-item">
+                        <h3>Bachelor's in Microengineering</h3>
+                        <p><strong>École Polytechnique Fédérale de Lausanne (EPFL)</strong></p>
+                        <p>September 2018 - June 2022</p>
+                    </div>
+                    <div class="education-item">
+                        <h3>Exchange Program (Erasmus)</h3>
+                        <p><strong>Linköping University, Faculty of Science and Engineering</strong></p>
+                        <p>August 2021 - June 2022</p>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <h2><span class="icon">🔬</span>Research Projects</h2>
+                    <div class="project-grid">
+                        <div class="project-card">
+                            <h3>🧠 Neuroscience Research</h3>
+                            <p><strong>Summer 2024 • Neuroengineering Laboratory</strong></p>
+                            <p>Investigation of the roles of sensory neurons, interneurons, and descending neurons in triggering similar grooming behavior in Drosophila Melanogaster.</p>
+                        </div>
+                        <div class="project-card">
+                            <h3>🚶 Gait Analysis Algorithm</h3>
+                            <p><strong>Fall 2023 • REHAssist Laboratory</strong></p>
+                            <p>Design of a gait phases identification algorithm using IMUs for application in rehabilitation technologies.</p>
+                        </div>
+                        <div class="project-card">
+                            <h3>🐕 Legged Robot Control</h3>
+                            <p><strong>Fall 2023 • Course Project</strong></p>
+                            <p>Implementation of gait patterns using CPGs for a dog-like simulated robot and design of a Markov Decision Process with deep reinforcement learning to teach target following.</p>
+                        </div>
+                        <div class="project-card">
+                            <h3>🐟 Zebrafish Simulation</h3>
+                            <p><strong>Summer 2023 • BioRob Laboratory</strong></p>
+                            <p>Optimization of parameters for zebrafish simulation to match realistic swimming gait and investigate proprioceptive sensory feedback roles.</p>
+                        </div>
+                        <div class="project-card">
+                            <h3>🕹️ Haptic Control Interface</h3>
+                            <p><strong>Spring 2023 • Course Project</strong></p>
+                            <p>Design of a control algorithm for haptic paddle control using muscle contractions detected by electromyography (EMG).</p>
+                        </div>
+                        <div class="project-card">
+                            <h3>🦎 Salamander Robot Control</h3>
+                            <p><strong>Spring 2023 • Course Project</strong></p>
+                            <p>Implementation of CPG-based controller for salamander-like robot using Python and MuJoCo for swimming and walking behaviors in open and closed loop scenarios.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <h2><span class="icon">💼</span>Experience</h2>
+                    <div class="experience-item">
+                        <h3>Engineering Team Intern</h3>
+                        <p><strong>Logitech</strong> • Fall 2024 - Present</p>
+                    </div>
+                    <div class="experience-item">
+                        <h3>Teaching Assistant</h3>
+                        <p><strong>EPFL</strong></p>
+                        <ul style="margin-top: 10px; padding-left: 20px;">
+                            <li>Electronics II (for MT) • Spring 2024</li>
+                            <li>Electrical Systems & Electronics I (for SV) • Fall 2022</li>
+                            <li>Analysis A (for MAN) • Since Spring 2023</li>
+                            <li>Linear Algebra (for MAN and MT) • Since Spring 2021</li>
+                        </ul>
+                    </div>
+                    <div class="experience-item">
+                        <h3>Data Entry Assistant</h3>
+                        <p><strong>Teaching Support Center (CAPE), EPFL</strong> • Fall 2023 - Present</p>
+                    </div>
+                    <div class="experience-item">
+                        <h3>Community Manager</h3>
+                        <p><strong>Brass Band</strong> • Spring 2023 - Present</p>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <h2><span class="icon">💻</span>Technical Skills</h2>
+                    <div class="skills-grid">
+                        <div class="skill-category">
+                            <h3>Programming Languages</h3>
+                            <div class="skill-item">
+                                <span>Python</span>
+                                <span class="skill-level">Advanced</span>
+                            </div>
+                            <div class="skill-item">
+                                <span>C/C++</span>
+                                <span class="skill-level">Advanced</span>
+                            </div>
+                            <div class="skill-item">
+                                <span>Matlab</span>
+                                <span class="skill-level">Advanced</span>
+                            </div>
+                        </div>
+                        <div class="skill-category">
+                            <h3>Design & CAD Software</h3>
+                            <div class="skill-item">
+                                <span>Fusion360</span>
+                                <span class="skill-level">Advanced</span>
+                            </div>
+                            <div class="skill-item">
+                                <span>CATIA</span>
+                                <span class="skill-level">Intermediate</span>
+                            </div>
+                            <div class="skill-item">
+                                <span>Blender</span>
+                                <span class="skill-level">Intermediate</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <h2><span class="icon">🌐</span>Languages & Interests</h2>
+                    <div class="languages-interests">
+                        <div>
+                            <h3 style="color: #667eea; margin-bottom: 15px;">Languages</h3>
+                            <div class="skill-item">
+                                <span>🇫🇷 French</span>
+                                <span class="skill-level">Native</span>
+                            </div>
+                            <div class="skill-item">
+                                <span>🇬🇧 English</span>
+                                <span class="skill-level">C1</span>
+                            </div>
+                            <div class="skill-item">
+                                <span>🇩🇪 German</span>
+                                <span class="skill-level">Academic</span>
+                            </div>
+                        </div>
+                        <div>
+                            <h3 style="color: #764ba2; margin-bottom: 15px;">Interests</h3>
+                            <div class="skill-item">
+                                <span>🎺 Classical Music</span>
+                                <p style="font-size: 0.9rem; color: #666; margin-left: 0; margin-top: 5px;">
+                                    Sib cornet player in brass band since 2009
+                                </p>
+                            </div>
+                            <div class="skill-item">
+                                <span>🎨 Drawing & Illustration</span>
+                            </div>
+                            <div class="skill-item">
+                                <span>🎮 Video Games</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
 
-            <div class="section">
-                <h2><span class="icon">🎓</span>Education</h2>
-                <div class="education-item">
-                    <h3>Master's in Robotics</h3>
-                    <p><strong>École Polytechnique Fédérale de Lausanne (EPFL)</strong></p>
-                    <p>September 2022 - Present</p>
+            <!-- French Content -->
+            <div class="content-lang" id="content-fr" style="display: none;">
+                <div class="section">
+                    <h2><span class="icon">👤</span>Profil</h2>
+                    <p class="profile-text">
+                        Ingénieure rigoureuse, motivée et autonome qui apprend rapidement et possède un esprit logique développé. 
+                        Persévérante et ponctuelle tout en étant imaginative et capable d'une grande sensibilité. Actuellement 
+                        en Master en Robotique à l'EPFL avec une expérience approfondie en contrôle moteur computationnel, 
+                        neuro-ingénierie et technologies de réhabilitation.
+                    </p>
                 </div>
-                <div class="education-item">
-                    <h3>Bachelor's in Microengineering</h3>
-                    <p><strong>École Polytechnique Fédérale de Lausanne (EPFL)</strong></p>
-                    <p>September 2018 - June 2022</p>
-                </div>
-                <div class="education-item">
-                    <h3>Exchange Program (Erasmus)</h3>
-                    <p><strong>Linköping University, Faculty of Science and Engineering</strong></p>
-                    <p>August 2021 - June 2022</p>
-                </div>
-            </div>
 
-            <div class="section">
-                <h2><span class="icon">🔬</span>Research Projects</h2>
-                <div class="project-grid">
-                    <div class="project-card">
-                        <h3>🧠 Neuroscience Research</h3>
-                        <p><strong>Summer 2024 • Neuroengineering Laboratory</strong></p>
-                        <p>Investigation of the roles of sensory neurons, interneurons, and descending neurons in triggering similar grooming behavior in Drosophila Melanogaster.</p>
+                <div class="section">
+                    <h2><span class="icon">🎓</span>Formation</h2>
+                    <div class="education-item">
+                        <h3>Master en Robotique</h3>
+                        <p><strong>École Polytechnique Fédérale de Lausanne (EPFL)</strong></p>
+                        <p>Septembre 2022 - Présent</p>
                     </div>
-                    <div class="project-card">
-                        <h3>🚶 Gait Analysis Algorithm</h3>
-                        <p><strong>Fall 2023 • REHAssist Laboratory</strong></p>
-                        <p>Design of a gait phases identification algorithm using IMUs for application in rehabilitation technologies.</p>
+                    <div class="education-item">
+                        <h3>Bachelor en Microtechnique</h3>
+                        <p><strong>École Polytechnique Fédérale de Lausanne (EPFL)</strong></p>
+                        <p>Septembre 2018 - Juin 2022</p>
                     </div>
-                    <div class="project-card">
-                        <h3>🐕 Legged Robot Control</h3>
-                        <p><strong>Fall 2023 • Course Project</strong></p>
-                        <p>Implementation of gait patterns using CPGs for a dog-like simulated robot and design of a Markov Decision Process with deep reinforcement learning to teach target following.</p>
-                    </div>
-                    <div class="project-card">
-                        <h3>🐟 Zebrafish Simulation</h3>
-                        <p><strong>Summer 2023 • BioRob Laboratory</strong></p>
-                        <p>Optimization of parameters for zebrafish simulation to match realistic swimming gait and investigate proprioceptive sensory feedback roles.</p>
-                    </div>
-                    <div class="project-card">
-                        <h3>🕹️ Haptic Control Interface</h3>
-                        <p><strong>Spring 2023 • Course Project</strong></p>
-                        <p>Design of a control algorithm for haptic paddle control using muscle contractions detected by electromyography (EMG).</p>
-                    </div>
-                    <div class="project-card">
-                        <h3>🦎 Salamander Robot Control</h3>
-                        <p><strong>Spring 2023 • Course Project</strong></p>
-                        <p>Implementation of CPG-based controller for salamander-like robot using Python and MuJoCo for swimming and walking behaviors in open and closed loop scenarios.</p>
+                    <div class="education-item">
+                        <h3>Programme d'échange (Erasmus)</h3>
+                        <p><strong>Université de Linköping, Faculté des Sciences et de l'Ingénierie</strong></p>
+                        <p>Août 2021 - Juin 2022</p>
                     </div>
                 </div>
-            </div>
 
-            <div class="section">
-                <h2><span class="icon">💼</span>Experience</h2>
-                <div class="experience-item">
-                    <h3>Engineering Team Intern</h3>
-                    <p><strong>Logitech</strong> • Fall 2024 - Present</p>
+                <div class="section">
+                    <h2><span class="icon">🔬</span>Projets de Recherche</h2>
+                    <div class="project-grid">
+                        <div class="project-card">
+                            <h3>🧠 Recherche en Neurosciences</h3>
+                            <p><strong>Été 2024 • Laboratoire de Neuro-ingénierie</strong></p>
+                            <p>Investigation des rôles des neurones sensoriels, interneurones, et neurones descendants dans le déclenchement de comportements de toilettage similaires chez Drosophila Melanogaster.</p>
+                        </div>
+                        <div class="project-card">
+                            <h3>🚶 Algorithme d'Analyse de Marche</h3>
+                            <p><strong>Automne 2023 • Laboratoire REHAssist</strong></p>
+                            <p>Conception d'un algorithme d'identification des phases de marche utilisant des IMUs pour application dans les technologies de réhabilitation.</p>
+                        </div>
+                        <div class="project-card">
+                            <h3>🐕 Contrôle de Robot Quadrupède</h3>
+                            <p><strong>Automne 2023 • Projet de cours</strong></p>
+                            <p>Implémentation de modèles de marche utilisant des CPGs pour un robot canin simulé et conception d'un processus de décision de Markov avec apprentissage par renforcement profond pour l'apprentissage du suivi de cibles.</p>
+                        </div>
+                        <div class="project-card">
+                            <h3>🐟 Simulation de Poisson-zèbre</h3>
+                            <p><strong>Été 2023 • Laboratoire BioRob</strong></p>
+                            <p>Optimisation des paramètres pour une simulation de poisson-zèbre afin de reproduire une nage réaliste et investiguer le rôle du retour sensoriel proprioceptif.</p>
+                        </div>
+                        <div class="project-card">
+                            <h3>🕹️ Interface de Contrôle Haptique</h3>
+                            <p><strong>Printemps 2023 • Projet de cours</strong></p>
+                            <p>Conception d'un algorithme de contrôle pour le contrôle d'une palette haptique utilisant les contractions musculaires détectées par électromyographie (EMG).</p>
+                        </div>
+                        <div class="project-card">
+                            <h3>🦎 Contrôle de Robot Salamandre</h3>
+                            <p><strong>Printemps 2023 • Projet de cours</strong></p>
+                            <p>Implémentation d'un contrôleur basé sur CPG pour un robot salamandre utilisant Python et MuJoCo pour les comportements de nage et de marche en boucle ouverte et fermée.</p>
+                        </div>
+                    </div>
                 </div>
-                <div class="experience-item">
-                    <h3>Teaching Assistant</h3>
-                    <p><strong>EPFL</strong></p>
-                    <ul style="margin-top: 10px; padding-left: 20px;">
-                        <li>Electronics II (for MT) • Spring 2024</li>
-                        <li>Electrical Systems & Electronics I (for SV) • Fall 2022</li>
-                        <li>Analysis A (for MAN) • Since Spring 2023</li>
-                        <li>Linear Algebra (for MAN and MT) • Since Spring 2021</li>
-                    </ul>
-                </div>
-                <div class="experience-item">
-                    <h3>Data Entry Assistant</h3>
-                    <p><strong>Teaching Support Center (CAPE), EPFL</strong> • Fall 2023 - Present</p>
-                </div>
-                <div class="experience-item">
-                    <h3>Community Manager</h3>
-                    <p><strong>Brass Band</strong> • Spring 2023 - Present</p>
-                </div>
-            </div>
 
-            <div class="section">
-                <h2><span class="icon">💻</span>Technical Skills</h2>
-                <div class="skills-grid">
-                    <div class="skill-category">
-                        <h3>Programming Languages</h3>
-                        <div class="skill-item">
-                            <span>Python</span>
-                            <span class="skill-level">Advanced</span>
-                        </div>
-                        <div class="skill-item">
-                            <span>C/C++</span>
-                            <span class="skill-level">Advanced</span>
-                        </div>
-                        <div class="skill-item">
-                            <span>Matlab</span>
-                            <span class="skill-level">Advanced</span>
-                        </div>
+                <div class="section">
+                    <h2><span class="icon">💼</span>Expérience</h2>
+                    <div class="experience-item">
+                        <h3>Stagiaire Équipe d'Ingénierie</h3>
+                        <p><strong>Logitech</strong> • Automne 2024 - Présent</p>
                     </div>
-                    <div class="skill-category">
-                        <h3>Design & CAD Software</h3>
-                        <div class="skill-item">
-                            <span>Fusion360</span>
-                            <span class="skill-level">Advanced</span>
+                    <div class="experience-item">
+                        <h3>Assistante d'Enseignement</h3>
+                        <p><strong>EPFL</strong></p>
+                        <ul style="margin-top: 10px; padding-left: 20px;">
+                            <li>Électronique II (pour MT) • Printemps 2024</li>
+                            <li>Systèmes Électriques & Électronique I (pour SV) • Automne 2022</li>
+                            <li>Analyse A (pour MAN) • Depuis Printemps 2023</li>
+                            <li>Algèbre Linéaire (pour MAN et MT) • Depuis Printemps 2021</li>
+                        </ul>
+                    </div>
+                    <div class="experience-item">
+                        <h3>Assistante Saisie de Données</h3>
+                        <p><strong>Centre d'Appui à l'Enseignement (CAPE), EPFL</strong> • Automne 2023 - Présent</p>
+                    </div>
+                    <div class="experience-item">
+                        <h3>Community Manager</h3>
+                        <p><strong>Fanfare</strong> • Printemps 2023 - Présent</p>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <h2><span class="icon">💻</span>Compétences Techniques</h2>
+                    <div class="skills-grid">
+                        <div class="skill-category">
+                            <h3>Langages de Programmation</h3>
+                            <div class="skill-item">
+                                <span>Python</span>
+                                <span class="skill-level">Avancé</span>
+                            </div>
+                            <div class="skill-item">
+                                <span>C/C++</span>
+                                <span class="skill-level">Avancé</span>
+                            </div>
+                            <div class="skill-item">
+                                <span>Matlab</span>
+                                <span class="skill-level">Avancé</span>
+                            </div>
                         </div>
-                        <div class="skill-item">
-                            <span>CATIA</span>
-                            <span class="skill-level">Intermediate</span>
-                        </div>
-                        <div class="skill-item">
-                            <span>Blender</span>
-                            <span class="skill-level">Intermediate</span>
+                        <div class="skill-category">
+                            <h3>Logiciels de Conception & CAO</h3>
+                            <div class="skill-item">
+                                <span>Fusion360</span>
+                                <span class="skill-level">Avancé</span>
+                            </div>
+                            <div class="skill-item">
+                                <span>CATIA</span>
+                                <span class="skill-level">Intermédiaire</span>
+                            </div>
+                            <div class="skill-item">
+                                <span>Blender</span>
+                                <span class="skill-level">Intermédiaire</span>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
 
-            <div class="section">
-                <h2><span class="icon">🌐</span>Languages & Interests</h2>
-                <div class="languages-interests">
-                    <div>
-                        <h3 style="color: #667eea; margin-bottom: 15px;">Languages</h3>
-                        <div class="skill-item">
-                            <span>🇫🇷 French</span>
-                            <span class="skill-level">Native</span>
+                <div class="section">
+                    <h2><span class="icon">🌐</span>Langues & Centres d'Intérêt</h2>
+                    <div class="languages-interests">
+                        <div>
+                            <h3 style="color: #667eea; margin-bottom: 15px;">Langues</h3>
+                            <div class="skill-item">
+                                <span>🇫🇷 Français</span>
+                                <span class="skill-level">Natif</span>
+                            </div>
+                            <div class="skill-item">
+                                <span>🇬🇧 Anglais</span>
+                                <span class="skill-level">C1</span>
+                            </div>
+                            <div class="skill-item">
+                                <span>🇩🇪 Allemand</span>
+                                <span class="skill-level">Académique</span>
+                            </div>
                         </div>
-                        <div class="skill-item">
-                            <span>🇬🇧 English</span>
-                            <span class="skill-level">C1</span>
-                        </div>
-                        <div class="skill-item">
-                            <span>🇩🇪 German</span>
-                            <span class="skill-level">Academic</span>
-                        </div>
-                    </div>
-                    <div>
-                        <h3 style="color: #764ba2; margin-bottom: 15px;">Interests</h3>
-                        <div class="skill-item">
-                            <span>🎺 Classical Music</span>
-                            <p style="font-size: 0.9rem; color: #666; margin-left: 0; margin-top: 5px;">
-                                Sib cornet player in brass band since 2009
-                            </p>
-                        </div>
-                        <div class="skill-item">
-                            <span>🎨 Drawing & Illustration</span>
-                        </div>
-                        <div class="skill-item">
-                            <span>🎮 Video Games</span>
+                        <div>
+                            <h3 style="color: #764ba2; margin-bottom: 15px;">Centres d'Intérêt</h3>
+                            <div class="skill-item">
+                                <span>🎺 Musique Classique</span>
+                                <p style="font-size: 0.9rem; color: #666; margin-left: 0; margin-top: 5px;">
+                                    Pratique du cornet si♭ en fanfare depuis 2009
+                                </p>
+                            </div>
+                            <div class="skill-item">
+                                <span>🎨 Dessin & Illustration</span>
+                            </div>
+                            <div class="skill-item">
+                                <span>🎮 Jeux Vidéo</span>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -465,15 +703,56 @@
         </div>
 
         <div id="art" class="tab-content">
-            <div class="empty-state">
-                <h2>🎨 Art Portfolio</h2>
-                <p>Coming Soon...</p>
-                <p style="margin-top: 20px; font-size: 1rem;">This section will showcase creative works, illustrations, and artistic projects.</p>
+            <!-- English Content -->
+            <div class="content-lang" id="art-content-en">
+                <div class="empty-state">
+                    <h2>🎨 Art Portfolio</h2>
+                    <p>Coming Soon...</p>
+                    <p style="margin-top: 20px; font-size: 1rem;">This section will showcase creative works, illustrations, and artistic projects.</p>
+                </div>
+            </div>
+            
+            <!-- French Content -->
+            <div class="content-lang" id="art-content-fr" style="display: none;">
+                <div class="empty-state">
+                    <h2>🎨 Portfolio Artistique</h2>
+                    <p>Bientôt disponible...</p>
+                    <p style="margin-top: 20px; font-size: 1rem;">Cette section présentera les œuvres créatives, illustrations et projets artistiques.</p>
+                </div>
             </div>
         </div>
     </div>
 
     <script>
+        function toggleLanguage() {
+            const slider = document.getElementById('toggle-slider');
+            const enLabel = document.getElementById('lang-en');
+            const frLabel = document.getElementById('lang-fr');
+            const enContents = document.querySelectorAll('#content-en, #art-content-en');
+            const frContents = document.querySelectorAll('#content-fr, #art-content-fr');
+            
+            // Toggle slider position and labels
+            if (slider.classList.contains('french')) {
+                // Switch to English
+                slider.classList.remove('french');
+                enLabel.classList.add('active');
+                frLabel.classList.remove('active');
+                
+                // Show English content, hide French
+                enContents.forEach(content => content.style.display = 'block');
+                frContents.forEach(content => content.style.display = 'none');
+            } else {
+                // Switch to French
+                slider.classList.add('french');
+                frLabel.classList.add('active');
+                enLabel.classList.remove('active');
+                
+                // Show French content, hide English
+                frContents.forEach(content => content.style.display = 'block');
+                enContents.forEach(content => content.style.display = 'none');
+            }
+        }
+
         function switchTab(tabName) {
             // Hide all tab contents
             const tabs = document.querySelectorAll('.tab-content');
