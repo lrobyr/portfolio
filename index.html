@@ -254,64 +254,191 @@
             opacity: 0.8;
         }
 
-        .language-toggle-container {
+        .language-button-container {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+        }
+
+        .language-btn {
+            background: rgba(255, 255, 255, 0.95);
+            border: 2px solid rgba(102, 126, 234, 0.3);
+            border-radius: 25px;
+            padding: 10px 20px;
+            font-size: 1rem;
+            font-weight: 600;
+            color: #667eea;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .language-btn:hover {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.3);
+        }
+
+        /* New Art Portfolio Styles */
+        .art-category {
+            margin-bottom: 50px;
+        }
+
+        .art-category h3 {
+            font-size: 1.8rem;
+            color: #667eea;
+            margin-bottom: 30px;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        .art-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            perspective: 1000px;
+        }
+
+        .art-card {
+            height: 500px;
+            position: relative;
+            transform-style: preserve-3d;
+            transition: transform 0.6s ease;
+            cursor: pointer;
+        }
+
+        .art-card.flipped {
+            transform: rotateY(180deg);
+        }
+
+        .art-card-face {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            overflow: hidden;
+        }
+
+        .art-card-front {
+            background: white;
+        }
+
+        .art-card-back {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            transform: rotateY(180deg);
+            padding: 30px;
             display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .art-card-header {
+            text-align: center;
+            padding: 20px 20px 10px;
+            background: white;
+            border-bottom: 1px solid #eee;
+        }
+
+        .art-card-title {
+            font-size: 1.4rem;
+            color: #333;
+            margin: 0 0 8px 0;
+            font-weight: 600;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .art-card-title:hover {
+            color: #667eea;
+        }
+
+        .art-card-date {
+            font-size: 0.9rem;
+            color: #666;
+            margin: 0;
+        }
+
+        .art-card-image {
+            flex: 1;
+            background: #f8f9fa;
+            display: flex;
+            align-items: center;
             justify-content: center;
+            overflow: hidden;
+        }
+
+        .art-card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .art-card:hover .art-card-image img {
+            transform: scale(1.05);
+        }
+
+        .art-card-labels {
+            padding: 15px 20px;
+            background: white;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            justify-content: center;
+        }
+
+        .art-label {
+            display: inline-block;
+            padding: 6px 12px;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        .art-back-header {
+            text-align: center;
             margin-bottom: 20px;
         }
 
-        .language-toggle {
+        .art-back-title {
+            font-size: 1.4rem;
+            margin: 0 0 8px 0;
+            font-weight: 600;
+        }
+
+        .art-back-date {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin: 0;
+        }
+
+        .art-description {
+            flex: 1;
             display: flex;
             align-items: center;
-            gap: 15px;
-            background: rgba(255, 255, 255, 0.2);
-            backdrop-filter: blur(10px);
-            border-radius: 50px;
-            padding: 10px 20px;
+            justify-content: center;
+            text-align: center;
+            font-size: 1.1rem;
+            line-height: 1.6;
+            padding: 20px 0;
         }
 
-        .lang-label {
-            font-size: 1rem;
-            font-weight: 600;
-            color: rgba(255, 255, 255, 0.7);
-            transition: all 0.3s ease;
-            cursor: pointer;
+        .flip-instruction {
+            text-align: center;
+            font-size: 0.9rem;
+            opacity: 0.8;
+            margin-top: 10px;
         }
 
-        .lang-label.active {
-            color: white;
-            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-        }
-
-        .toggle-switch {
-            width: 60px;
-            height: 30px;
-            background: rgba(255, 255, 255, 0.2);
-            border-radius: 15px;
-            position: relative;
-            cursor: pointer;
-            transition: background 0.3s ease;
-        }
-
-        .toggle-switch:hover {
-            background: rgba(255, 255, 255, 0.3);
-        }
-
-        .toggle-slider {
-            width: 26px;
-            height: 26px;
-            background: linear-gradient(45deg, #667eea, #764ba2);
-            border-radius: 50%;
-            position: absolute;
-            top: 2px;
-            left: 2px;
-            transition: transform 0.3s ease;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-        }
-
-        .toggle-slider.french {
-            transform: translateX(30px);
-        }
+        @media (max-width: 768px) {
             .header h1 {
                 font-size: 2rem;
             }
@@ -327,8 +454,12 @@
                 font-size: 1rem;
             }
             
-            .project-grid {
+            .project-grid, .art-grid {
                 grid-template-columns: 1fr;
+            }
+
+            .art-card {
+                height: 450px;
             }
         }
     </style>
@@ -338,7 +469,7 @@
         <div class="header">
             <div class="profile-image">LR</div>
             <h1>Laly Robyr</h1>
-            <p style="font-size: 1.2rem; color: #666; margin-bottom: 10px;">Robotics Engineer • EPFL Graduate</p>
+            <p style="font-size: 1.2rem; color: #666; margin-bottom: 10px;">Robotics Engineer • Master's Student at EPFL</p>
             <p style="color: #888;">Swiss • Born April 17, 1999</p>
             <div class="contact-info">
                 <div class="contact-item">
@@ -353,14 +484,10 @@
             </div>
         </div>
 
-        <div class="language-toggle-container">
-            <div class="language-toggle">
-                <span class="lang-label active" id="lang-en">🇬🇧 English</span>
-                <div class="toggle-switch" onclick="toggleLanguage()">
-                    <div class="toggle-slider" id="toggle-slider"></div>
-                </div>
-                <span class="lang-label" id="lang-fr">🇫🇷 Français</span>
-            </div>
+        <div class="language-button-container">
+            <button class="language-btn" onclick="toggleLanguage()" id="language-btn">
+                🇬🇧 English
+            </button>
         </div>
 
         <div class="tab-navigation">
@@ -375,7 +502,8 @@
                     <h2><span class="icon">👤</span>Profile</h2>
                     <p class="profile-text">
                         Rigorous, motivated, and autonomous engineer who learns quickly and has a strong logical mind. 
-                        Persevering and punctual while being imaginative and capable of great sensitivity. Recently graduated with a Master degree in Robotics at EPFL, with extensive experience in computational motor control, 
+                        Persevering and punctual while being imaginative and capable of great sensitivity. Currently pursuing 
+                        a Master's degree in Robotics at EPFL with extensive experience in computational motor control, 
                         neuroengineering, and rehabilitation technologies.
                     </p>
                 </div>
@@ -539,7 +667,7 @@
                 <div class="section">
                     <h2><span class="icon">👤</span>Profil</h2>
                     <p class="profile-text">
-                        Rigoureuse, motivée et autonome qui apprend rapidement et possède un fort esprit logique. 
+                        Ingénieure rigoureuse, motivée et autonome qui apprend rapidement et possède un esprit logique développé. 
                         Persévérante et ponctuelle tout en étant imaginative et capable d'une grande sensibilité. Actuellement 
                         en Master en Robotique à l'EPFL avec une expérience approfondie en contrôle moteur computationnel, 
                         neuro-ingénierie et technologies de réhabilitation.
@@ -576,22 +704,22 @@
                         <div class="project-card">
                             <h3>🚶 Algorithme d'Analyse de Marche</h3>
                             <p><strong>Automne 2023 • Laboratoire REHAssist</strong></p>
-                            <p>Conception d'un algorithme d'identification des phases de la marche utilisant des IMUs, applicable dans les technologies de réhabilitation.</p>
+                            <p>Conception d'un algorithme d'identification des phases de marche utilisant des IMUs pour application dans les technologies de réhabilitation.</p>
                         </div>
                         <div class="project-card">
                             <h3>🐕 Contrôle de Robot Quadrupède</h3>
                             <p><strong>Automne 2023 • Projet de cours</strong></p>
-                            <p>Implémentation de modèles de marche utilisant des CPGs pour une simulation de robot canin et conception d'un processus de décision de Markov avec apprentissage par renforcement profond (Deep RL) pour l'apprentissage du suivi de cibles.</p>
+                            <p>Implémentation de modèles de marche utilisant des CPGs pour un robot canin simulé et conception d'un processus de décision de Markov avec apprentissage par renforcement profond pour l'apprentissage du suivi de cibles.</p>
                         </div>
                         <div class="project-card">
                             <h3>🐟 Simulation de Poisson-zèbre</h3>
                             <p><strong>Été 2023 • Laboratoire BioRob</strong></p>
-                            <p>Optimisation des paramètres pour une simulation de poisson-zèbre afin de reproduire une nage réaliste et investigation du rôle de retour sensoriel proprioceptif.</p>
+                            <p>Optimisation des paramètres pour une simulation de poisson-zèbre afin de reproduire une nage réaliste et investiguer le rôle du retour sensoriel proprioceptif.</p>
                         </div>
                         <div class="project-card">
                             <h3>🕹️ Interface de Contrôle Haptique</h3>
                             <p><strong>Printemps 2023 • Projet de cours</strong></p>
-                            <p>Conception d'un algorithme de contrôle pour le contrôle d'un balancier haptique utilisant les contractions musculaires détectées par électromyographie (EMG).</p>
+                            <p>Conception d'un algorithme de contrôle pour le contrôle d'une palette haptique utilisant les contractions musculaires détectées par électromyographie (EMG).</p>
                         </div>
                         <div class="project-card">
                             <h3>🦎 Contrôle de Robot Salamandre</h3>
@@ -704,52 +832,491 @@
         <div id="art" class="tab-content">
             <!-- English Content -->
             <div class="content-lang" id="art-content-en">
-                <div class="empty-state">
-                    <h2>🎨 Art Portfolio</h2>
-                    <p>Coming Soon...</p>
-                    <p style="margin-top: 20px; font-size: 1rem;">This section will showcase creative works, illustrations, and artistic projects.</p>
+                <div class="section">
+                    <h2><span class="icon">🎨</span>Art Portfolio</h2>
+                    
+                    <!-- Digital Art Category -->
+                    <div class="art-category">
+                        <h3>Digital Art</h3>
+                        <div class="art-grid">
+                            <div class="art-card" onclick="flipCard(this)">
+                                <div class="art-card-face art-card-front">
+                                    <div class="art-card-header">
+                                        <h4 class="art-card-title">Abstract Composition #1</h4>
+                                        <p class="art-card-date">March 2024</p>
+                                    </div>
+                                    <div class="art-card-image">
+                                        <img src="https://via.placeholder.com/400x300/667eea/white?text=Digital+Art+1" alt="Abstract Composition #1">
+                                    </div>
+                                    <div class="art-card-labels">
+                                        <span class="art-label">Digital Painting</span>
+                                        <span class="art-label">Procreate</span>
+                                        <span class="art-label">Abstract</span>
+                                    </div>
+                                </div>
+                                <div class="art-card-face art-card-back">
+                                    <div class="art-back-header">
+                                        <h4 class="art-back-title">Abstract Composition #1</h4>
+                                        <p class="art-back-date">March 2024</p>
+                                    </div>
+                                    <div class="art-description">
+                                        <p>A vibrant digital painting exploring color relationships and geometric forms. This piece was created using Procreate on iPad, experimenting with layered transparency effects and bold color contrasts to create depth and movement within the composition.</p>
+                                    </div>
+                                    <div class="flip-instruction">
+                                        <p>Click title to flip back</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="art-card" onclick="flipCard(this)">
+                                <div class="art-card-face art-card-front">
+                                    <div class="art-card-header">
+                                        <h4 class="art-card-title">Character Design Study</h4>
+                                        <p class="art-card-date">January 2024</p>
+                                    </div>
+                                    <div class="art-card-image">
+                                        <img src="https://via.placeholder.com/400x300/764ba2/white?text=Character+Design" alt="Character Design Study">
+                                    </div>
+                                    <div class="art-card-labels">
+                                        <span class="art-label">Character Design</span>
+                                        <span class="art-label">Illustration</span>
+                                        <span class="art-label">Fantasy</span>
+                                    </div>
+                                </div>
+                                <div class="art-card-face art-card-back">
+                                    <div class="art-back-header">
+                                        <h4 class="art-back-title">Character Design Study</h4>
+                                        <p class="art-back-date">January 2024</p>
+                                    </div>
+                                    <div class="art-description">
+                                        <p>Original character illustration with focus on lighting and texture details. This fantasy character was designed to explore different approaches to digital lighting techniques and fabric rendering, combining realistic anatomy with stylized proportions.</p>
+                                    </div>
+                                    <div class="flip-instruction">
+                                        <p>Click title to flip back</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="art-card" onclick="flipCard(this)">
+                                <div class="art-card-face art-card-front">
+                                    <div class="art-card-header">
+                                        <h4 class="art-card-title">Swiss Landscape Study</h4>
+                                        <p class="art-card-date">December 2023</p>
+                                    </div>
+                                    <div class="art-card-image">
+                                        <img src="https://via.placeholder.com/400x300/9f7aea/white?text=Landscape+Study" alt="Swiss Landscape Study">
+                                    </div>
+                                    <div class="art-card-labels">
+                                        <span class="art-label">Landscape</span>
+                                        <span class="art-label">Photoshop</span>
+                                        <span class="art-label">Nature</span>
+                                    </div>
+                                </div>
+                                <div class="art-card-face art-card-back">
+                                    <div class="art-back-header">
+                                        <h4 class="art-back-title">Swiss Landscape Study</h4>
+                                        <p class="art-back-date">December 2023</p>
+                                    </div>
+                                    <div class="art-description">
+                                        <p>Digital landscape painting inspired by Swiss mountain scenery, created in Photoshop. This piece focuses on atmospheric perspective and the interplay of light and shadow across mountain ranges, capturing the serene beauty of the Alps.</p>
+                                    </div>
+                                    <div class="flip-instruction">
+                                        <p>Click title to flip back</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Traditional Art Category -->
+                    <div class="art-category">
+                        <h3>Traditional Art</h3>
+                        <div class="art-grid">
+                            <div class="art-card" onclick="flipCard(this)">
+                                <div class="art-card-face art-card-front">
+                                    <div class="art-card-header">
+                                        <h4 class="art-card-title">Watercolor Portrait</h4>
+                                        <p class="art-card-date">November 2023</p>
+                                    </div>
+                                    <div class="art-card-image">
+                                        <img src="https://via.placeholder.com/400x300/48bb78/white?text=Watercolor+Portrait" alt="Watercolor Portrait">
+                                    </div>
+                                    <div class="art-card-labels">
+                                        <span class="art-label">Watercolor</span>
+                                        <span class="art-label">Portrait</span>
+                                        <span class="art-label">Traditional</span>
+                                    </div>
+                                </div>
+                                <div class="art-card-face art-card-back">
+                                    <div class="art-back-header">
+                                        <h4 class="art-back-title">Watercolor Portrait</h4>
+                                        <p class="art-back-date">November 2023</p>
+                                    </div>
+                                    <div class="art-description">
+                                        <p>Traditional watercolor portrait study focusing on color temperature and soft transitions. This piece explores the delicate balance between warm and cool tones in portraiture, using wet-on-wet techniques to achieve natural skin tones.</p>
+                                    </div>
+                                    <div class="flip-instruction">
+                                        <p>Click title to flip back</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="art-card" onclick="flipCard(this)">
+                                <div class="art-card-face art-card-front">
+                                    <div class="art-card-header">
+                                        <h4 class="art-card-title">Still Life Study</h4>
+                                        <p class="art-card-date">October 2023</p>
+                                    </div>
+                                    <div class="art-card-image">
+                                        <img src="https://via.placeholder.com/400x300/f39c12/white?text=Still+Life+Study" alt="Still Life Study">
+                                    </div>
+                                    <div class="art-card-labels">
+                                        <span class="art-label">Graphite</span>
+                                        <span class="art-label">Still Life</span>
+                                        <span class="art-label">Realism</span>
+                                    </div>
+                                </div>
+                                <div class="art-card-face art-card-back">
+                                    <div class="art-back-header">
+                                        <h4 class="art-back-title">Still Life Study</h4>
+                                        <p class="art-back-date">October 2023</p>
+                                    </div>
+                                    <div class="art-description">
+                                        <p>Detailed graphite drawing exploring light, shadow, and texture in still life composition. This study emphasizes the technical precision required in traditional drawing, focusing on accurate proportions and realistic material representation.</p>
+                                    </div>
+                                    <div class="flip-instruction">
+                                        <p>Click title to flip back</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Illustrations Category -->
+                    <div class="art-category">
+                        <h3>Concept Art & Illustrations</h3>
+                        <div class="art-grid">
+                            <div class="art-card" onclick="flipCard(this)">
+                                <div class="art-card-face art-card-front">
+                                    <div class="art-card-header">
+                                        <h4 class="art-card-title">Sci-Fi Environment</h4>
+                                        <p class="art-card-date">February 2024</p>
+                                    </div>
+                                    <div class="art-card-image">
+                                        <img src="https://via.placeholder.com/400x300/e74c3c/white?text=Sci-Fi+Environment" alt="Sci-Fi Environment">
+                                    </div>
+                                    <div class="art-card-labels">
+                                        <span class="art-label">Concept Art</span>
+                                        <span class="art-label">Sci-Fi</span>
+                                        <span class="art-label">Environment</span>
+                                    </div>
+                                </div>
+                                <div class="art-card-face art-card-back">
+                                    <div class="art-back-header">
+                                        <h4 class="art-back-title">Sci-Fi Environment</h4>
+                                        <p class="art-back-date">February 2024</p>
+                                    </div>
+                                    <div class="art-description">
+                                        <p>Futuristic environment concept combining architectural precision with imaginative design. This piece merges my engineering background with artistic vision to create believable sci-fi spaces, focusing on structural logic and atmospheric mood.</p>
+                                    </div>
+                                    <div class="flip-instruction">
+                                        <p>Click title to flip back</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="art-card" onclick="flipCard(this)">
+                                <div class="art-card-face art-card-front">
+                                    <div class="art-card-header">
+                                        <h4 class="art-card-title">Technical Illustration</h4>
+                                        <p class="art-card-date">September 2023</p>
+                                    </div>
+                                    <div class="art-card-image">
+                                        <img src="https://via.placeholder.com/400x300/3498db/white?text=Technical+Illustration" alt="Technical Illustration">
+                                    </div>
+                                    <div class="art-card-labels">
+                                        <span class="art-label">Technical</span>
+                                        <span class="art-label">Educational</span>
+                                        <span class="art-label">Precision</span>
+                                    </div>
+                                </div>
+                                <div class="art-card-face art-card-back">
+                                    <div class="art-back-header">
+                                        <h4 class="art-back-title">Technical Illustration</h4>
+                                        <p class="art-back-date">September 2023</p>
+                                    </div>
+                                    <div class="art-description">
+                                        <p>Scientific diagram for educational materials, combining artistic skills with engineering precision. This illustration demonstrates the intersection of technical accuracy and visual communication, making complex concepts accessible through clear design.</p>
+                                    </div>
+                                    <div class="flip-instruction">
+                                        <p>Click title to flip back</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
             
             <!-- French Content -->
             <div class="content-lang" id="art-content-fr" style="display: none;">
-                <div class="empty-state">
-                    <h2>🎨 Portfolio Artistique</h2>
-                    <p>Bientôt disponible...</p>
-                    <p style="margin-top: 20px; font-size: 1rem;">Cette section présentera les œuvres créatives, illustrations et projets artistiques.</p>
+                <div class="section">
+                    <h2><span class="icon">🎨</span>Portfolio Artistique</h2>
+                    
+                    <!-- Digital Art Category -->
+                    <div class="art-category">
+                        <h3>Art Numérique</h3>
+                        <div class="art-grid">
+                            <div class="art-card" onclick="flipCard(this)">
+                                <div class="art-card-face art-card-front">
+                                    <div class="art-card-header">
+                                        <h4 class="art-card-title">Composition Abstraite #1</h4>
+                                        <p class="art-card-date">Mars 2024</p>
+                                    </div>
+                                    <div class="art-card-image">
+                                        <img src="https://via.placeholder.com/400x300/667eea/white?text=Art+Numerique+1" alt="Composition Abstraite #1">
+                                    </div>
+                                    <div class="art-card-labels">
+                                        <span class="art-label">Peinture Numérique</span>
+                                        <span class="art-label">Procreate</span>
+                                        <span class="art-label">Abstrait</span>
+                                    </div>
+                                </div>
+                                <div class="art-card-face art-card-back">
+                                    <div class="art-back-header">
+                                        <h4 class="art-back-title">Composition Abstraite #1</h4>
+                                        <p class="art-back-date">Mars 2024</p>
+                                    </div>
+                                    <div class="art-description">
+                                        <p>Peinture numérique vibrante explorant les relations chromatiques et les formes géométriques. Cette œuvre a été créée avec Procreate sur iPad, expérimentant avec des effets de transparence superposés et des contrastes colorés audacieux pour créer profondeur et mouvement.</p>
+                                    </div>
+                                    <div class="flip-instruction">
+                                        <p>Cliquez sur le titre pour retourner</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="art-card" onclick="flipCard(this)">
+                                <div class="art-card-face art-card-front">
+                                    <div class="art-card-header">
+                                        <h4 class="art-card-title">Étude de Personnage</h4>
+                                        <p class="art-card-date">Janvier 2024</p>
+                                    </div>
+                                    <div class="art-card-image">
+                                        <img src="https://via.placeholder.com/400x300/764ba2/white?text=Design+Personnage" alt="Étude de Personnage">
+                                    </div>
+                                    <div class="art-card-labels">
+                                        <span class="art-label">Design Personnage</span>
+                                        <span class="art-label">Illustration</span>
+                                        <span class="art-label">Fantaisie</span>
+                                    </div>
+                                </div>
+                                <div class="art-card-face art-card-back">
+                                    <div class="art-back-header">
+                                        <h4 class="art-back-title">Étude de Personnage</h4>
+                                        <p class="art-back-date">Janvier 2024</p>
+                                    </div>
+                                    <div class="art-description">
+                                        <p>Illustration originale de personnage avec focus sur l'éclairage et les détails de texture. Ce personnage fantastique a été conçu pour explorer différentes approches des techniques d'éclairage numérique et du rendu de tissu, combinant anatomie réaliste et proportions stylisées.</p>
+                                    </div>
+                                    <div class="flip-instruction">
+                                        <p>Cliquez sur le titre pour retourner</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="art-card" onclick="flipCard(this)">
+                                <div class="art-card-face art-card-front">
+                                    <div class="art-card-header">
+                                        <h4 class="art-card-title">Paysage Suisse</h4>
+                                        <p class="art-card-date">Décembre 2023</p>
+                                    </div>
+                                    <div class="art-card-image">
+                                        <img src="https://via.placeholder.com/400x300/9f7aea/white?text=Paysage+Suisse" alt="Paysage Suisse">
+                                    </div>
+                                    <div class="art-card-labels">
+                                        <span class="art-label">Paysage</span>
+                                        <span class="art-label">Photoshop</span>
+                                        <span class="art-label">Nature</span>
+                                    </div>
+                                </div>
+                                <div class="art-card-face art-card-back">
+                                    <div class="art-back-header">
+                                        <h4 class="art-back-title">Paysage Suisse</h4>
+                                        <p class="art-back-date">Décembre 2023</p>
+                                    </div>
+                                    <div class="art-description">
+                                        <p>Peinture numérique de paysage inspirée par les montagnes suisses, créée avec Photoshop. Cette œuvre se concentre sur la perspective atmosphérique et l'interaction entre lumière et ombre à travers les chaînes de montagnes, capturant la beauté sereine des Alpes.</p>
+                                    </div>
+                                    <div class="flip-instruction">
+                                        <p>Cliquez sur le titre pour retourner</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Traditional Art Category -->
+                    <div class="art-category">
+                        <h3>Art Traditionnel</h3>
+                        <div class="art-grid">
+                            <div class="art-card" onclick="flipCard(this)">
+                                <div class="art-card-face art-card-front">
+                                    <div class="art-card-header">
+                                        <h4 class="art-card-title">Portrait Aquarelle</h4>
+                                        <p class="art-card-date">Novembre 2023</p>
+                                    </div>
+                                    <div class="art-card-image">
+                                        <img src="https://via.placeholder.com/400x300/48bb78/white?text=Portrait+Aquarelle" alt="Portrait Aquarelle">
+                                    </div>
+                                    <div class="art-card-labels">
+                                        <span class="art-label">Aquarelle</span>
+                                        <span class="art-label">Portrait</span>
+                                        <span class="art-label">Traditionnel</span>
+                                    </div>
+                                </div>
+                                <div class="art-card-face art-card-back">
+                                    <div class="art-back-header">
+                                        <h4 class="art-back-title">Portrait Aquarelle</h4>
+                                        <p class="art-back-date">Novembre 2023</p>
+                                    </div>
+                                    <div class="art-description">
+                                        <p>Étude de portrait traditionnelle à l'aquarelle focalisée sur la température des couleurs et les transitions douces. Cette œuvre explore l'équilibre délicat entre tons chauds et froids en portraiture, utilisant des techniques mouillé-sur-mouillé pour obtenir des tons naturels de peau.</p>
+                                    </div>
+                                    <div class="flip-instruction">
+                                        <p>Cliquez sur le titre pour retourner</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="art-card" onclick="flipCard(this)">
+                                <div class="art-card-face art-card-front">
+                                    <div class="art-card-header">
+                                        <h4 class="art-card-title">Nature Morte</h4>
+                                        <p class="art-card-date">Octobre 2023</p>
+                                    </div>
+                                    <div class="art-card-image">
+                                        <img src="https://via.placeholder.com/400x300/f39c12/white?text=Nature+Morte" alt="Nature Morte">
+                                    </div>
+                                    <div class="art-card-labels">
+                                        <span class="art-label">Graphite</span>
+                                        <span class="art-label">Nature Morte</span>
+                                        <span class="art-label">Réalisme</span>
+                                    </div>
+                                </div>
+                                <div class="art-card-face art-card-back">
+                                    <div class="art-back-header">
+                                        <h4 class="art-back-title">Nature Morte</h4>
+                                        <p class="art-back-date">Octobre 2023</p>
+                                    </div>
+                                    <div class="art-description">
+                                        <p>Dessin détaillé au graphite explorant lumière, ombre et texture dans une composition de nature morte. Cette étude met l'accent sur la précision technique requise en dessin traditionnel, se concentrant sur des proportions précises et une représentation matérielle réaliste.</p>
+                                    </div>
+                                    <div class="flip-instruction">
+                                        <p>Cliquez sur le titre pour retourner</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Illustrations Category -->
+                    <div class="art-category">
+                        <h3>Art Conceptuel & Illustrations</h3>
+                        <div class="art-grid">
+                            <div class="art-card" onclick="flipCard(this)">
+                                <div class="art-card-face art-card-front">
+                                    <div class="art-card-header">
+                                        <h4 class="art-card-title">Environnement Sci-Fi</h4>
+                                        <p class="art-card-date">Février 2024</p>
+                                    </div>
+                                    <div class="art-card-image">
+                                        <img src="https://via.placeholder.com/400x300/e74c3c/white?text=Environnement+Sci-Fi" alt="Environnement Sci-Fi">
+                                    </div>
+                                    <div class="art-card-labels">
+                                        <span class="art-label">Art Conceptuel</span>
+                                        <span class="art-label">Sci-Fi</span>
+                                        <span class="art-label">Environnement</span>
+                                    </div>
+                                </div>
+                                <div class="art-card-face art-card-back">
+                                    <div class="art-back-header">
+                                        <h4 class="art-back-title">Environnement Sci-Fi</h4>
+                                        <p class="art-back-date">Février 2024</p>
+                                    </div>
+                                    <div class="art-description">
+                                        <p>Concept d'environnement futuriste combinant précision architecturale et design imaginatif. Cette œuvre fusionne mon expérience en ingénierie avec une vision artistique pour créer des espaces sci-fi crédibles, se concentrant sur la logique structurelle et l'ambiance atmosphérique.</p>
+                                    </div>
+                                    <div class="flip-instruction">
+                                        <p>Cliquez sur le titre pour retourner</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="art-card" onclick="flipCard(this)">
+                                <div class="art-card-face art-card-front">
+                                    <div class="art-card-header">
+                                        <h4 class="art-card-title">Illustration Technique</h4>
+                                        <p class="art-card-date">Septembre 2023</p>
+                                    </div>
+                                    <div class="art-card-image">
+                                        <img src="https://via.placeholder.com/400x300/3498db/white?text=Illustration+Technique" alt="Illustration Technique">
+                                    </div>
+                                    <div class="art-card-labels">
+                                        <span class="art-label">Technique</span>
+                                        <span class="art-label">Éducatif</span>
+                                        <span class="art-label">Précision</span>
+                                    </div>
+                                </div>
+                                <div class="art-card-face art-card-back">
+                                    <div class="art-back-header">
+                                        <h4 class="art-back-title">Illustration Technique</h4>
+                                        <p class="art-back-date">Septembre 2023</p>
+                                    </div>
+                                    <div class="art-description">
+                                        <p>Diagramme scientifique pour matériel éducatif, combinant compétences artistiques et précision d'ingénierie. Cette illustration démontre l'intersection entre précision technique et communication visuelle, rendant les concepts complexes accessibles grâce à un design clair.</p>
+                                    </div>
+                                    <div class="flip-instruction">
+                                        <p>Cliquez sur le titre pour retourner</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 
     <script>
+        let currentLanguage = 'en';
+
         function toggleLanguage() {
-            const slider = document.getElementById('toggle-slider');
-            const enLabel = document.getElementById('lang-en');
-            const frLabel = document.getElementById('lang-fr');
+            const langBtn = document.getElementById('language-btn');
             const enContents = document.querySelectorAll('#content-en, #art-content-en');
             const frContents = document.querySelectorAll('#content-fr, #art-content-fr');
             
-            // Toggle slider position and labels
-            if (slider.classList.contains('french')) {
-                // Switch to English
-                slider.classList.remove('french');
-                enLabel.classList.add('active');
-                frLabel.classList.remove('active');
-                
-                // Show English content, hide French
-                enContents.forEach(content => content.style.display = 'block');
-                frContents.forEach(content => content.style.display = 'none');
-            } else {
+            if (currentLanguage === 'en') {
                 // Switch to French
-                slider.classList.add('french');
-                frLabel.classList.add('active');
-                enLabel.classList.remove('active');
+                currentLanguage = 'fr';
+                langBtn.textContent = '🇫🇷 Français';
                 
                 // Show French content, hide English
                 frContents.forEach(content => content.style.display = 'block');
                 enContents.forEach(content => content.style.display = 'none');
+            } else {
+                // Switch to English
+                currentLanguage = 'en';
+                langBtn.textContent = '🇬🇧 English';
+                
+                // Show English content, hide French
+                enContents.forEach(content => content.style.display = 'block');
+                frContents.forEach(content => content.style.display = 'none');
             }
+        }
+
+        function flipCard(card) {
+            card.classList.toggle('flipped');
         }
 
         function switchTab(tabName) {
@@ -778,6 +1345,65 @@
                 
                 card.addEventListener('mouseleave', function() {
                     this.style.transform = 'translateY(0) scale(1)';
+                });
+            });
+
+            // Add intersection observer for animations
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+
+            // Observe art cards for scroll animations
+            const allArtCards = document.querySelectorAll('.art-card');
+            allArtCards.forEach(card => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(30px)';
+                card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                observer.observe(card);
+            });
+
+            // Add keyboard support for art cards
+            allArtCards.forEach(card => {
+                card.setAttribute('tabindex', '0');
+                card.addEventListener('keypress', function(e) {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        flipCard(this);
+                    }
+                });
+            });
+
+            // Add click event to titles specifically for better UX
+            const artTitles = document.querySelectorAll('.art-card-title, .art-back-title');
+            artTitles.forEach(title => {
+                title.style.cursor = 'pointer';
+                title.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    const card = this.closest('.art-card');
+                    flipCard(card);
+                });
+            });
+
+            // Add visual feedback for clickable titles
+            artTitles.forEach(title => {
+                title.addEventListener('mouseenter', function() {
+                    this.style.transform = 'scale(1.05)';
+                    this.style.textDecoration = 'underline';
+                });
+                
+                title.addEventListener('mouseleave', function() {
+                    this.style.transform = 'scale(1)';
+                    this.style.textDecoration = 'none';
                 });
             });
         });
