@@ -78,8 +78,8 @@
     .art-header{padding:14px 18px;border-bottom:1px solid #eee}
     .art-title{margin:0;font-size:1.1rem;font-weight:800}
     .art-date{margin:2px 0 0;color:#666;font-size:.9rem}
-    .figure{display:grid;place-items:center;background:#f6f7fb}
-    .figure img{width:100%;height:100%;object-fit:cover;display:block;aspect-ratio:4/3}
+    .figure{display:flex;align-items:center;justify-content:center;background:transparent;overflow:hidden}
+    .figure img{max-width:100%;max-height:100%;width:auto;height:auto;object-fit:contain;object-position:center;display:block;border:none}
     .labels{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;padding:12px 14px;background:#fff}
     .label{padding:6px 10px;border-radius:999px;background:linear-gradient(to right,var(--accent1),var(--accent2));color:#0B3142;font-size:.78rem;font-weight:600}
 
@@ -133,7 +133,7 @@
             <div class="card">
               <h3 data-i18n-en="Master's in Robotics" data-i18n-fr="Master en Robotique">Master's in Robotics</h3>
               <p><strong>EPFL</strong></p>
-              <p data-i18n-en="2022 – 2025" data-i18n-fr="2022 – 2025">2022 – 2025</p>
+              <p data-i18n-en="September 2022 – Present" data-i18n-fr="Septembre 2022 – Présent">September 2022 – Present</p>
             </div>
             <div class="card">
               <h3 data-i18n-en="Bachelor's in Microengineering" data-i18n-fr="Bachelor en Microtechnique">Bachelor's in Microengineering</h3>
@@ -163,7 +163,7 @@
         <section class="section glass">
           <h2><span class="badge" aria-hidden="true">💼</span><span data-i18n-en="Experience" data-i18n-fr="Expérience">Experience</span></h2>
           <div class="grid">
-            <div class="card"><h3>Engineering Intern • Logitech</h3><p>Fall 2024 – March 2025</p></div>
+            <div class="card"><h3>Engineering Intern • Logitech</h3><p>Fall 2024 – Present</p></div>
             <div class="card"><h3>Teaching Assistant • EPFL</h3><p>Linear Algebra, Analysis A, Electronics I/II</p></div>
             <div class="card"><h3>Data Entry • CAPE, EPFL</h3><p>Fall 2023 – Present</p></div>
             <div class="card"><h3>Community Manager • Brass Band</h3><p>Spring 2023 – Present</p></div>
@@ -285,7 +285,7 @@
                     </header>
                     <figure class="figure">
                       <img loading="lazy" decoding="async" alt="Digital landscape of Swiss Alps"
-                           src="https://via.placeholder.com/960x720/9f7aea/ffffff?text=Landscape+Study" />
+                           src="https://raw.githubusercontent.com/lrobyr/portfolio/5bd5b7d8793bef06266f53e8fe3d5331eef8e525/Fortune.png" />
                     </figure>
                     <div class="labels">
                       <span class="label">Landscape</span>
