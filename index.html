@@ -1,1495 +1,434 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Laly Robyr - Portfolio</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Laly Robyr – Portfolio</title>
+  <meta name="description" content="Art & engineering portfolio of Laly Robyr: digital paintings, traditional works, concept art, and robotics projects." />
+  <meta property="og:title" content="Laly Robyr – Portfolio" />
+  <meta property="og:description" content="Art & engineering portfolio of Laly Robyr." />
+  <meta property="og:type" content="website" />
+  <style>
+    :root{
+      --bg1:#18787f;--bg2:#081e29;--accent1:#18787f66;--accent2:#18787f66;--accent3:#D6D3F0;
+      --glass:rgb(240, 252, 248);--ink: rgb(15 82 87 / 61%);--muted:#666;--ring:rgba(15,82,87,.35);
+      --card:rgba(255,255,255,.95);--shadow:0 20px 40px rgba(0,0,0,.1);
+    }
+    *,*::before,*::after{box-sizing:border-box}
+    html,body{height:100%}
+    body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,Noto Sans,Helvetica,Arial,sans-serif;line-height:1.5;color:var(--ink);
+      background:linear-gradient(to right,var(--bg1) 0%,var(--bg2) 100%)}
+    a{color:inherit}
+    .container{max-width:1200px;margin-inline:auto;padding:24px}
 
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-            color: #333;
-        }
+    /* Glass blocks */
+    .glass{background:var(--glass);backdrop-filter:blur(10px);border-radius:20px;box-shadow:var(--shadow)}
 
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-        }
+    header.header{display:grid;place-items:center;text-align:center;padding:40px;gap:12px;margin-bottom:12px}
+    .profile-image{width:150px;height:150px;border-radius:999px;display:grid;place-items:center;font-size:48px;font-weight:700;color:#fff;background:linear-gradient(to right,var(--bg1),var(--bg2))}
+    .title{font-size:clamp(1.75rem,4vw,3rem);margin:0;background:linear-gradient(to right,var(--bg1),var(--bg2));-webkit-background-clip:text;background-clip:text;color:transparent}
+    .subtitle{color:#444;font-size:1.05rem}
+    .meta{color:#777;font-size:.95rem}
+    .contact{display:flex;flex-wrap:wrap;gap:16px;justify-content:center;color:#444}
 
-        .header {
-            text-align: center;
-            margin-bottom: 40px;
-            background: rgba(255, 255, 255, 0.95) !important;
-            backdrop-filter: blur(10px);
-            border-radius: 20px;
-            padding: 40px;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-            color: #333 !important;
-        }
+    /* Top controls */
+    .controls{position:sticky;top:16px;z-index:10;display:flex;justify-content:flex-end;margin-block:12px}.btn{appearance:none;border:2px solid var(--ring);background:var(--glass);padding:.55rem 1rem;border-radius:999px;font-weight:600;cursor:pointer;box-shadow:0 4px 14px rgba(0,0,0,.08);transition:transform .15s ease,background .2s ease,color .2s ease}
+    .btn{appearance:none;border:2px solid var(--ring);background:var(--glass);padding:.55rem 1rem;border-radius:999px;font-weight:600;cursor:pointer;box-shadow:0 4px 14px rgba(0,0,0,.08);transition:transform .15s ease,background .2s ease,color .2s ease}
+    .btn:hover{transform:translateY(-1px);background:linear-gradient(to right,var(--bg1),var(--bg2));color:#fff}
 
-        .profile-image {
-            width: 150px;
-            height: 150px;
-            border-radius: 50%;
-            background: linear-gradient(45deg, #667eea, #764ba2);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 20px;
-            font-size: 48px;
-            color: white;
-            font-weight: bold;
-        }
+    /* Tabs */
+    nav[role="tablist"]{display:flex;gap:8px;justify-content:center;margin:12px auto 24px;padding:8px;border-radius:999px;background:rgba(255,255,255,.25);backdrop-filter:blur(8px)}
+    .tab{border:0;background:transparent;padding:12px 28px;border-radius:999px;font-weight:700;color:#fff;cursor:pointer}
+    .tab[aria-selected="true"]{background:#081e299c;box-shadow:0 10px 20px rgba(15,82,87,.3)}
+    .tabpanel{display:none;animation:fade .35s ease}
+    .tabpanel[data-active="true"]{display:block}
+    @keyframes fade{from{opacity:0;translate:0 8px}to{opacity:1;translate:0 0}}
 
-        .header h1 {
-            font-size: 3rem;
-            background: linear-gradient(45deg, #667eea, #764ba2);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin-bottom: 10px;
-        }
+    /* Per‑panel text color */
+    #panel-eng{color:#0B1E29}
+    #panel-art{color:var(--ink)}
 
-        .contact-info {
-            display: flex;
-            justify-content: center;
-            gap: 30px;
-            margin-top: 20px;
-            flex-wrap: wrap;
-        }
+    /* Sections */
+    section.section{padding:28px;margin:0 0 24px}
+    .section h2{display:flex;align-items:center;gap:10px;margin:0 0 18px;font-size:1.6rem}
+    .badge{width:48px;height:48px;border-radius:999px;display:grid;place-items:center;background:linear-gradient(to right,var(--bg1),var(--bg2));color:#fff;font-size:1.3rem;line-height:1}
 
-        .contact-item {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            font-size: 0.9rem;
-            color: #666;
-        }
+    .grid{display:grid;gap:22px}
+    .grid.projects{grid-template-columns:repeat(auto-fit,minmax(320px,1fr))}
 
-        .tab-navigation {
-            display: flex;
-            justify-content: center;
-            margin-bottom: 30px;
-            background: rgba(255, 255, 255, 0.2);
-            backdrop-filter: blur(10px);
-            border-radius: 50px;
-            padding: 8px;
-        }
+    .card{border-radius:16px;border:1px solid rgba(15,82,87,.2);background:linear-gradient(to right,rgba(156,146,163,.08),rgba(198,185,205,.08));padding:20px;transition:transform .2s ease,box-shadow .2s ease}
+    .card:hover{transform:translateY(-4px);box-shadow:0 14px 28px rgba(15,82,87,.25)}
 
-        .tab-btn {
-            background: transparent;
-            border: none;
-            padding: 15px 40px;
-            border-radius: 40px;
-            cursor: pointer;
-            font-size: 1.1rem;
-            font-weight: 600;
-            color: white;
-            transition: all 0.3s ease;
-        }
+    /* Skills */
+    .skills{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:22px}
+    .skill-row{display:flex;justify-content:space-between;align-items:center;margin:.35rem 0}
+    .pill{padding:4px 10px;border-radius:999px;background:linear-gradient(to right,var(--accent1),var(--accent2));color:#0B3142;font-size:.8rem;font-weight:700}
 
-        .tab-btn.active {
-            background: linear-gradient(45deg, #667eea, #764ba2);
-            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
-        }
+    /* Art */
+    .art-category{margin:8px 0 36px}
+    .art-category h3{text-align:center;color:#334;letter-spacing:.2px;margin:0 0 16px}
+    .art-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px}
 
-        .tab-content {
-            display: none;
-            animation: fadeIn 0.5s ease;
-        }
+    .art-card{position:relative;perspective:1000px;height:480px}
+    .art-inner{position:relative;width:100%;height:100%;transform-style:preserve-3d;transition:transform .6s ease}
+    .art-card[data-flipped="true"] .art-inner{transform:rotateY(180deg)}
+    .face{position:absolute;inset:0;border-radius:16px;overflow:hidden;backface-visibility:hidden;box-shadow:0 10px 26px rgba(0,0,0,.15)}
+    .front{background:#fff;display:grid;grid-template-rows:auto 1fr auto}
+    .back{background:linear-gradient(to right,var(--bg1),var(--bg2));color:#fff;padding:22px;transform:rotateY(180deg);display:grid;grid-template-rows:auto 1fr auto}
+    .art-header{padding:14px 18px;border-bottom:1px solid #eee}
+    .art-title{margin:0;font-size:1.1rem;font-weight:800}
+    .art-date{margin:2px 0 0;color:#666;font-size:.9rem}
+    .figure{display:grid;place-items:center;background:#f6f7fb}
+    .figure img{width:100%;height:100%;object-fit:cover;display:block;aspect-ratio:4/3}
+    .labels{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;padding:12px 14px;background:#fff}
+    .label{padding:6px 10px;border-radius:999px;background:linear-gradient(to right,var(--accent1),var(--accent2));color:#0B3142;font-size:.78rem;font-weight:600}
 
-        .tab-content.active {
-            display: block;
-        }
+    /* Top-right + flip button */
+    .flip-btn{position:absolute;top:10px;right:10px;border:none;background:#18787fbd;color:#fff;width:32px;height:32px;border-radius:50%;font-size:1.2rem;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .3s ease,color .3s ease;z-index:2}
+    .art-card[data-flipped="true"] .flip-btn{background:#fff;color:var(--bg2);border:1px solid var(--bg2)}
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
+    .hint{opacity:.85;font-size:.9rem;text-align:center}
 
-        .section {
-            background: rgba(255, 255, 255, 0.95) !important;
-            backdrop-filter: blur(10px);
-            border-radius: 20px;
-            padding: 30px;
-            margin-bottom: 30px;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-            color: #333 !important;
-        }
+    .lang-hide{display:none}
 
-        .section h2 {
-            font-size: 2rem;
-            margin-bottom: 25px;
-            color: #333;
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-
-        .icon {
-            width: 40px;
-            height: 40px;
-            background: linear-gradient(45deg, #667eea, #764ba2);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 18px;
-        }
-
-        .profile-text {
-            font-size: 1.1rem;
-            line-height: 1.8;
-            color: #555;
-        }
-
-        .education-item {
-            margin-bottom: 25px;
-            padding: 20px;
-            border-left: 4px solid #667eea;
-            background: rgba(102, 126, 234, 0.05);
-            border-radius: 0 15px 15px 0;
-        }
-
-        .education-item h3 {
-            color: #667eea;
-            font-size: 1.3rem;
-            margin-bottom: 5px;
-        }
-
-        .project-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-            gap: 25px;
-        }
-
-        .project-card {
-            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.1));
-            border-radius: 15px;
-            padding: 25px;
-            border: 1px solid rgba(102, 126, 234, 0.2);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .project-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(102, 126, 234, 0.2);
-        }
-
-        .project-card h3 {
-            color: #667eea;
-            margin-bottom: 15px;
-            font-size: 1.2rem;
-        }
-
-        .experience-item {
-            margin-bottom: 20px;
-            padding: 20px;
-            background: rgba(118, 75, 162, 0.05);
-            border-radius: 15px;
-            border-left: 4px solid #764ba2;
-        }
-
-        .experience-item h3 {
-            color: #764ba2;
-            margin-bottom: 5px;
-        }
-
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
-        }
-
-        .skill-category h3 {
-            color: #667eea;
-            margin-bottom: 15px;
-            font-size: 1.3rem;
-        }
-
-        .skill-item {
-            margin-bottom: 12px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .skill-level {
-            display: inline-block;
-            padding: 4px 12px;
-            background: linear-gradient(45deg, #667eea, #764ba2);
-            color: white;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: 600;
-        }
-
-        .languages-interests {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-        }
-
-        .empty-state {
-            text-align: center;
-            padding: 100px 20px;
-            color: rgba(255, 255, 255, 0.8);
-        }
-
-        .empty-state h2 {
-            font-size: 2.5rem;
-            margin-bottom: 20px;
-        }
-
-        .empty-state p {
-            font-size: 1.2rem;
-            opacity: 0.8;
-        }
-
-        .language-button-container {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            z-index: 1000;
-        }
-
-        .language-btn {
-            background: rgba(255, 255, 255, 0.95);
-            border: 2px solid rgba(102, 126, 234, 0.3);
-            border-radius: 25px;
-            padding: 10px 20px;
-            font-size: 1rem;
-            font-weight: 600;
-            color: #667eea;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            backdrop-filter: blur(10px);
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-        }
-
-        .language-btn:hover {
-            background: linear-gradient(45deg, #667eea, #764ba2);
-            color: white;
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.3);
-        }
-
-        /* New Art Portfolio Styles */
-        .art-category {
-            margin-bottom: 50px;
-        }
-
-        .art-category h3 {
-            font-size: 1.8rem;
-            color: #667eea;
-            margin-bottom: 30px;
-            text-align: center;
-            font-weight: 600;
-        }
-
-        .art-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 30px;
-            perspective: 1000px;
-        }
-
-        .art-card {
-            height: 500px;
-            position: relative;
-            transform-style: preserve-3d;
-            transition: transform 0.6s ease;
-            cursor: pointer;
-        }
-
-        .art-card.flipped {
-            transform: rotateY(180deg);
-        }
-
-        .art-card-face {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            backface-visibility: hidden;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
-            overflow: hidden;
-        }
-
-        .art-card-front {
-            background: white;
-        }
-
-        .art-card-back {
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            color: white;
-            transform: rotateY(180deg);
-            padding: 30px;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
-
-        .art-card-header {
-            text-align: center;
-            padding: 20px 20px 10px;
-            background: white;
-            border-bottom: 1px solid #eee;
-        }
-
-        .art-card-title {
-            font-size: 1.4rem;
-            color: #333;
-            margin: 0 0 8px 0;
-            font-weight: 600;
-            cursor: pointer;
-            transition: color 0.3s ease;
-        }
-
-        .art-card-title:hover {
-            color: #667eea;
-        }
-
-        .art-card-date {
-            font-size: 0.9rem;
-            color: #666;
-            margin: 0;
-        }
-
-        .art-card-image {
-            flex: 1;
-            background: #f8f9fa;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-        }
-
-        .art-card-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.3s ease;
-        }
-
-        .art-card:hover .art-card-image img {
-            transform: scale(1.05);
-        }
-
-        .art-card-labels {
-            padding: 15px 20px;
-            background: white;
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            justify-content: center;
-        }
-
-        .art-label {
-            display: inline-block;
-            padding: 6px 12px;
-            background: linear-gradient(45deg, #667eea, #764ba2);
-            color: white;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: 500;
-        }
-
-        .art-back-header {
-            text-align: center;
-            margin-bottom: 20px;
-        }
-
-        .art-back-title {
-            font-size: 1.4rem;
-            margin: 0 0 8px 0;
-            font-weight: 600;
-        }
-
-        .art-back-date {
-            font-size: 0.9rem;
-            opacity: 0.9;
-            margin: 0;
-        }
-
-        .art-description {
-            flex: 1;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            font-size: 1.1rem;
-            line-height: 1.6;
-            padding: 20px 0;
-        }
-
-        .flip-instruction {
-            text-align: center;
-            font-size: 0.9rem;
-            opacity: 0.8;
-            margin-top: 10px;
-        }
-
-        @media (max-width: 768px) {
-            .header h1 {
-                font-size: 2rem;
-            }
-            
-            .contact-info {
-                flex-direction: column;
-                align-items: center;
-                gap: 15px;
-            }
-            
-            .tab-btn {
-                padding: 12px 25px;
-                font-size: 1rem;
-            }
-            
-            .project-grid, .art-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .art-card {
-                height: 450px;
-            }
-        }
-    </style>
+    @media (max-width:768px){
+      .art-card{height:420px}
+    }
+  </style>
 </head>
 <body>
-    <div class="container">
-        <div class="header">
-            <div class="profile-image">LR</div>
-            <h1>Laly Robyr</h1>
-            <p style="font-size: 1.2rem; color: #666; margin-bottom: 10px;">Robotics Engineer • Master's Student at EPFL</p>
-            <p style="color: #888;">Swiss • Born April 17, 1999</p>
-            <div class="contact-info">
-                <div class="contact-item">
-                    <span>📍</span> Chemin de la Chiésaz 10, 1024 Ecublens VD
-                </div>
-                <div class="contact-item">
-                    <span>📞</span> +41 79 954 73 80
-                </div>
-                <div class="contact-item">
-                    <span>📧</span> lrobyr@gmail.com
-                </div>
-            </div>
-        </div>
+  <div class="container">
+    <header class="header glass" aria-labelledby="site-title">
+      <div class="profile-image" aria-hidden="true">LR</div>
+      <h1 id="site-title" class="title">Laly Robyr</h1>
+      <p class="subtitle" data-i18n-en="Robotics Engineer • Master's Student at EPFL" data-i18n-fr="Ingénieure en Robotique • Master à l'EPFL">Robotics Engineer • Master's Student at EPFL</p>
+      <p class="meta" data-i18n-en="Swiss • Born April 17, 1999" data-i18n-fr="Suisse • Née le 17 avril 1999">Swiss • Born April 17, 1999</p>
+      <div class="contact" aria-label="contact">
+        <span>📍 Chemin de la Chiésaz 10, 1024 Ecublens VD</span>
+        <span>📞 +41 79 954 73 80</span>
+        <span>📧 <a href="mailto:lrobyr@gmail.com">lrobyr@gmail.com</a></span>
+      </div>
+    </header>
 
-        <div class="language-button-container">
-            <button class="language-btn" onclick="toggleLanguage()" id="language-btn">
-                🇬🇧 English
-            </button>
-        </div>
-
-        <div class="tab-navigation">
-            <button class="tab-btn active" onclick="switchTab('engineering')">Engineering Portfolio</button>
-            <button class="tab-btn" onclick="switchTab('art')">Art Portfolio</button>
-        </div>
-
-        <div id="engineering" class="tab-content active">
-            <!-- English Content -->
-            <div class="content-lang" id="content-en">
-                <div class="section">
-                    <h2><span class="icon">👤</span>Profile</h2>
-                    <p class="profile-text">
-                        Rigorous, motivated, and autonomous engineer who learns quickly and has a strong logical mind. 
-                        Persevering and punctual while being imaginative and capable of great sensitivity. Currently pursuing 
-                        a Master's degree in Robotics at EPFL with extensive experience in computational motor control, 
-                        neuroengineering, and rehabilitation technologies.
-                    </p>
-                </div>
-
-                <div class="section">
-                    <h2><span class="icon">🎓</span>Education</h2>
-                    <div class="education-item">
-                        <h3>Master's in Robotics</h3>
-                        <p><strong>École Polytechnique Fédérale de Lausanne (EPFL)</strong></p>
-                        <p>September 2022 - Present</p>
-                    </div>
-                    <div class="education-item">
-                        <h3>Bachelor's in Microengineering</h3>
-                        <p><strong>École Polytechnique Fédérale de Lausanne (EPFL)</strong></p>
-                        <p>September 2018 - June 2022</p>
-                    </div>
-                    <div class="education-item">
-                        <h3>Exchange Program (Erasmus)</h3>
-                        <p><strong>Linköping University, Faculty of Science and Engineering</strong></p>
-                        <p>August 2021 - June 2022</p>
-                    </div>
-                </div>
-
-                <div class="section">
-                    <h2><span class="icon">🔬</span>Research Projects</h2>
-                    <div class="project-grid">
-                        <div class="project-card">
-                            <h3>🧠 Neuroscience Research</h3>
-                            <p><strong>Summer 2024 • Neuroengineering Laboratory</strong></p>
-                            <p>Investigation of the roles of sensory neurons, interneurons, and descending neurons in triggering similar grooming behavior in Drosophila Melanogaster.</p>
-                        </div>
-                        <div class="project-card">
-                            <h3>🚶 Gait Analysis Algorithm</h3>
-                            <p><strong>Fall 2023 • REHAssist Laboratory</strong></p>
-                            <p>Design of a gait phases identification algorithm using IMUs for application in rehabilitation technologies.</p>
-                        </div>
-                        <div class="project-card">
-                            <h3>🐕 Legged Robot Control</h3>
-                            <p><strong>Fall 2023 • Course Project</strong></p>
-                            <p>Implementation of gait patterns using CPGs for a dog-like simulated robot and design of a Markov Decision Process with deep reinforcement learning to teach target following.</p>
-                        </div>
-                        <div class="project-card">
-                            <h3>🐟 Zebrafish Simulation</h3>
-                            <p><strong>Summer 2023 • BioRob Laboratory</strong></p>
-                            <p>Optimization of parameters for zebrafish simulation to match realistic swimming gait and investigate proprioceptive sensory feedback roles.</p>
-                        </div>
-                        <div class="project-card">
-                            <h3>🕹️ Haptic Control Interface</h3>
-                            <p><strong>Spring 2023 • Course Project</strong></p>
-                            <p>Design of a control algorithm for haptic paddle control using muscle contractions detected by electromyography (EMG).</p>
-                        </div>
-                        <div class="project-card">
-                            <h3>🦎 Salamander Robot Control</h3>
-                            <p><strong>Spring 2023 • Course Project</strong></p>
-                            <p>Implementation of CPG-based controller for salamander-like robot using Python and MuJoCo for swimming and walking behaviors in open and closed loop scenarios.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="section">
-                    <h2><span class="icon">💼</span>Experience</h2>
-                    <div class="experience-item">
-                        <h3>Engineering Team Intern</h3>
-                        <p><strong>Logitech</strong> • Fall 2024 - Present</p>
-                    </div>
-                    <div class="experience-item">
-                        <h3>Teaching Assistant</h3>
-                        <p><strong>EPFL</strong></p>
-                        <ul style="margin-top: 10px; padding-left: 20px;">
-                            <li>Electronics II (for MT) • Spring 2024</li>
-                            <li>Electrical Systems & Electronics I (for SV) • Fall 2022</li>
-                            <li>Analysis A (for MAN) • Since Spring 2023</li>
-                            <li>Linear Algebra (for MAN and MT) • Since Spring 2021</li>
-                        </ul>
-                    </div>
-                    <div class="experience-item">
-                        <h3>Data Entry Assistant</h3>
-                        <p><strong>Teaching Support Center (CAPE), EPFL</strong> • Fall 2023 - Present</p>
-                    </div>
-                    <div class="experience-item">
-                        <h3>Community Manager</h3>
-                        <p><strong>Brass Band</strong> • Spring 2023 - Present</p>
-                    </div>
-                </div>
-
-                <div class="section">
-                    <h2><span class="icon">💻</span>Technical Skills</h2>
-                    <div class="skills-grid">
-                        <div class="skill-category">
-                            <h3>Programming Languages</h3>
-                            <div class="skill-item">
-                                <span>Python</span>
-                                <span class="skill-level">Advanced</span>
-                            </div>
-                            <div class="skill-item">
-                                <span>C/C++</span>
-                                <span class="skill-level">Advanced</span>
-                            </div>
-                            <div class="skill-item">
-                                <span>Matlab</span>
-                                <span class="skill-level">Advanced</span>
-                            </div>
-                        </div>
-                        <div class="skill-category">
-                            <h3>Design & CAD Software</h3>
-                            <div class="skill-item">
-                                <span>Fusion360</span>
-                                <span class="skill-level">Advanced</span>
-                            </div>
-                            <div class="skill-item">
-                                <span>CATIA</span>
-                                <span class="skill-level">Intermediate</span>
-                            </div>
-                            <div class="skill-item">
-                                <span>Blender</span>
-                                <span class="skill-level">Intermediate</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="section">
-                    <h2><span class="icon">🌐</span>Languages & Interests</h2>
-                    <div class="languages-interests">
-                        <div>
-                            <h3 style="color: #667eea; margin-bottom: 15px;">Languages</h3>
-                            <div class="skill-item">
-                                <span>🇫🇷 French</span>
-                                <span class="skill-level">Native</span>
-                            </div>
-                            <div class="skill-item">
-                                <span>🇬🇧 English</span>
-                                <span class="skill-level">C1</span>
-                            </div>
-                            <div class="skill-item">
-                                <span>🇩🇪 German</span>
-                                <span class="skill-level">Academic</span>
-                            </div>
-                        </div>
-                        <div>
-                            <h3 style="color: #764ba2; margin-bottom: 15px;">Interests</h3>
-                            <div class="skill-item">
-                                <span>🎺 Classical Music</span>
-                                <p style="font-size: 0.9rem; color: #666; margin-left: 0; margin-top: 5px;">
-                                    Sib cornet player in brass band since 2009
-                                </p>
-                            </div>
-                            <div class="skill-item">
-                                <span>🎨 Drawing & Illustration</span>
-                            </div>
-                            <div class="skill-item">
-                                <span>🎮 Video Games</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- French Content -->
-            <div class="content-lang" id="content-fr" style="display: none;">
-                <div class="section">
-                    <h2><span class="icon">👤</span>Profil</h2>
-                    <p class="profile-text">
-                        Ingénieure rigoureuse, motivée et autonome qui apprend rapidement et possède un esprit logique développé. 
-                        Persévérante et ponctuelle tout en étant imaginative et capable d'une grande sensibilité. Actuellement 
-                        en Master en Robotique à l'EPFL avec une expérience approfondie en contrôle moteur computationnel, 
-                        neuro-ingénierie et technologies de réhabilitation.
-                    </p>
-                </div>
-
-                <div class="section">
-                    <h2><span class="icon">🎓</span>Formation</h2>
-                    <div class="education-item">
-                        <h3>Master en Robotique</h3>
-                        <p><strong>École Polytechnique Fédérale de Lausanne (EPFL)</strong></p>
-                        <p>Septembre 2022 - Présent</p>
-                    </div>
-                    <div class="education-item">
-                        <h3>Bachelor en Microtechnique</h3>
-                        <p><strong>École Polytechnique Fédérale de Lausanne (EPFL)</strong></p>
-                        <p>Septembre 2018 - Juin 2022</p>
-                    </div>
-                    <div class="education-item">
-                        <h3>Programme d'échange (Erasmus)</h3>
-                        <p><strong>Université de Linköping, Faculté des Sciences et de l'Ingénierie</strong></p>
-                        <p>Août 2021 - Juin 2022</p>
-                    </div>
-                </div>
-
-                <div class="section">
-                    <h2><span class="icon">🔬</span>Projets de Recherche</h2>
-                    <div class="project-grid">
-                        <div class="project-card">
-                            <h3>🧠 Recherche en Neurosciences</h3>
-                            <p><strong>Été 2024 • Laboratoire de Neuro-ingénierie</strong></p>
-                            <p>Investigation des rôles des neurones sensoriels, interneurones, et neurones descendants dans le déclenchement de comportements de toilettage similaires chez Drosophila Melanogaster.</p>
-                        </div>
-                        <div class="project-card">
-                            <h3>🚶 Algorithme d'Analyse de Marche</h3>
-                            <p><strong>Automne 2023 • Laboratoire REHAssist</strong></p>
-                            <p>Conception d'un algorithme d'identification des phases de marche utilisant des IMUs pour application dans les technologies de réhabilitation.</p>
-                        </div>
-                        <div class="project-card">
-                            <h3>🐕 Contrôle de Robot Quadrupède</h3>
-                            <p><strong>Automne 2023 • Projet de cours</strong></p>
-                            <p>Implémentation de modèles de marche utilisant des CPGs pour un robot canin simulé et conception d'un processus de décision de Markov avec apprentissage par renforcement profond pour l'apprentissage du suivi de cibles.</p>
-                        </div>
-                        <div class="project-card">
-                            <h3>🐟 Simulation de Poisson-zèbre</h3>
-                            <p><strong>Été 2023 • Laboratoire BioRob</strong></p>
-                            <p>Optimisation des paramètres pour une simulation de poisson-zèbre afin de reproduire une nage réaliste et investiguer le rôle du retour sensoriel proprioceptif.</p>
-                        </div>
-                        <div class="project-card">
-                            <h3>🕹️ Interface de Contrôle Haptique</h3>
-                            <p><strong>Printemps 2023 • Projet de cours</strong></p>
-                            <p>Conception d'un algorithme de contrôle pour le contrôle d'une palette haptique utilisant les contractions musculaires détectées par électromyographie (EMG).</p>
-                        </div>
-                        <div class="project-card">
-                            <h3>🦎 Contrôle de Robot Salamandre</h3>
-                            <p><strong>Printemps 2023 • Projet de cours</strong></p>
-                            <p>Implémentation d'un contrôleur basé sur CPG pour un robot salamandre utilisant Python et MuJoCo pour les comportements de nage et de marche en boucle ouverte et fermée.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="section">
-                    <h2><span class="icon">💼</span>Expérience</h2>
-                    <div class="experience-item">
-                        <h3>Stagiaire Équipe d'Ingénierie</h3>
-                        <p><strong>Logitech</strong> • Automne 2024 - Présent</p>
-                    </div>
-                    <div class="experience-item">
-                        <h3>Assistante d'Enseignement</h3>
-                        <p><strong>EPFL</strong></p>
-                        <ul style="margin-top: 10px; padding-left: 20px;">
-                            <li>Électronique II (pour MT) • Printemps 2024</li>
-                            <li>Systèmes Électriques & Électronique I (pour SV) • Automne 2022</li>
-                            <li>Analyse A (pour MAN) • Depuis Printemps 2023</li>
-                            <li>Algèbre Linéaire (pour MAN et MT) • Depuis Printemps 2021</li>
-                        </ul>
-                    </div>
-                    <div class="experience-item">
-                        <h3>Assistante Saisie de Données</h3>
-                        <p><strong>Centre d'Appui à l'Enseignement (CAPE), EPFL</strong> • Automne 2023 - Présent</p>
-                    </div>
-                    <div class="experience-item">
-                        <h3>Community Manager</h3>
-                        <p><strong>Fanfare</strong> • Printemps 2023 - Présent</p>
-                    </div>
-                </div>
-
-                <div class="section">
-                    <h2><span class="icon">💻</span>Compétences Techniques</h2>
-                    <div class="skills-grid">
-                        <div class="skill-category">
-                            <h3>Langages de Programmation</h3>
-                            <div class="skill-item">
-                                <span>Python</span>
-                                <span class="skill-level">Avancé</span>
-                            </div>
-                            <div class="skill-item">
-                                <span>C/C++</span>
-                                <span class="skill-level">Avancé</span>
-                            </div>
-                            <div class="skill-item">
-                                <span>Matlab</span>
-                                <span class="skill-level">Avancé</span>
-                            </div>
-                        </div>
-                        <div class="skill-category">
-                            <h3>Logiciels de Conception & CAO</h3>
-                            <div class="skill-item">
-                                <span>Fusion360</span>
-                                <span class="skill-level">Avancé</span>
-                            </div>
-                            <div class="skill-item">
-                                <span>CATIA</span>
-                                <span class="skill-level">Intermédiaire</span>
-                            </div>
-                            <div class="skill-item">
-                                <span>Blender</span>
-                                <span class="skill-level">Intermédiaire</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="section">
-                    <h2><span class="icon">🌐</span>Langues & Centres d'Intérêt</h2>
-                    <div class="languages-interests">
-                        <div>
-                            <h3 style="color: #667eea; margin-bottom: 15px;">Langues</h3>
-                            <div class="skill-item">
-                                <span>🇫🇷 Français</span>
-                                <span class="skill-level">Natif</span>
-                            </div>
-                            <div class="skill-item">
-                                <span>🇬🇧 Anglais</span>
-                                <span class="skill-level">C1</span>
-                            </div>
-                            <div class="skill-item">
-                                <span>🇩🇪 Allemand</span>
-                                <span class="skill-level">Académique</span>
-                            </div>
-                        </div>
-                        <div>
-                            <h3 style="color: #764ba2; margin-bottom: 15px;">Centres d'Intérêt</h3>
-                            <div class="skill-item">
-                                <span>🎺 Musique Classique</span>
-                                <p style="font-size: 0.9rem; color: #666; margin-left: 0; margin-top: 5px;">
-                                    Pratique du cornet si♭ en fanfare depuis 2009
-                                </p>
-                            </div>
-                            <div class="skill-item">
-                                <span>🎨 Dessin & Illustration</span>
-                            </div>
-                            <div class="skill-item">
-                                <span>🎮 Jeux Vidéo</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div id="art" class="tab-content">
-            <!-- English Content -->
-            <div class="content-lang" id="art-content-en">
-                <div class="section">
-                    <h2><span class="icon">🎨</span>Art Portfolio</h2>
-                    
-                    <!-- Digital Art Category -->
-                    <div class="art-category">
-                        <h3>Digital Art</h3>
-                        <div class="art-grid">
-                            <div class="art-card">
-                                <div class="art-card-face art-card-front">
-                                    <div class="art-card-header">
-                                        <h4 class="art-card-title">Abstract Composition #1</h4>
-                                        <p class="art-card-date">March 2024</p>
-                                    </div>
-                                    <div class="art-card-image">
-                                        <img src="https://via.placeholder.com/400x300/667eea/white?text=Digital+Art+1" alt="Abstract Composition #1">
-                                    </div>
-                                    <div class="art-card-labels">
-                                        <span class="art-label">Digital Painting</span>
-                                        <span class="art-label">Procreate</span>
-                                        <span class="art-label">Abstract</span>
-                                    </div>
-                                </div>
-                                <div class="art-card-face art-card-back">
-                                    <div class="art-back-header">
-                                        <h4 class="art-back-title">Abstract Composition #1</h4>
-                                        <p class="art-back-date">March 2024</p>
-                                    </div>
-                                    <div class="art-description">
-                                        <p>A vibrant digital painting exploring color relationships and geometric forms. This piece was created using Procreate on iPad, experimenting with layered transparency effects and bold color contrasts to create depth and movement within the composition.</p>
-                                    </div>
-                                    <div class="flip-instruction">
-                                        <p>Click title to flip back</p>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="art-card">
-                                <div class="art-card-face art-card-front">
-                                    <div class="art-card-header">
-                                        <h4 class="art-card-title">Crowley Portrait</h4>
-                                        <p class="art-card-date">March 2024</p>
-                                    </div>
-                                    <div class="art-card-image">
-                                        <img src="https://raw.githubusercontent.com/lrobyr/portfolio/f5dc5e42807f0660302da8797b28f68a6f276e37/Crowley_signed.png" alt="Crowley Portrait">
-                                    </div>
-                                    <div class="art-card-labels">
-                                        <span class="art-label">Digital Painting</span>
-                                        <span class="art-label">Portrait</span>
-                                        <span class="art-label">Character Art</span>
-                                    </div>
-                                </div>
-                                <div class="art-card-face art-card-back">
-                                    <div class="art-back-header">
-                                        <h4 class="art-back-title">Crowley Portrait</h4>
-                                        <p class="art-back-date">March 2024</p>
-                                    </div>
-                                    <div class="art-description">
-                                        <p>A detailed digital portrait showcasing advanced character illustration techniques. This piece demonstrates mastery of digital painting fundamentals including lighting, color theory, and facial anatomy. Created with careful attention to expression and personality, blending realistic rendering with stylized artistic choices.</p>
-                                    </div>
-                                    <div class="flip-instruction">
-                                        <p>Click title to flip back</p>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="art-card" onclick="flipCard(this)">
-                                <div class="art-card-face art-card-front">
-                                    <div class="art-card-header">
-                                        <h4 class="art-card-title">Swiss Landscape Study</h4>
-                                        <p class="art-card-date">December 2023</p>
-                                    </div>
-                                    <div class="art-card-image">
-                                        <img src="https://via.placeholder.com/400x300/9f7aea/white?text=Landscape+Study" alt="Swiss Landscape Study">
-                                    </div>
-                                    <div class="art-card-labels">
-                                        <span class="art-label">Landscape</span>
-                                        <span class="art-label">Photoshop</span>
-                                        <span class="art-label">Nature</span>
-                                    </div>
-                                </div>
-                                <div class="art-card-face art-card-back">
-                                    <div class="art-back-header">
-                                        <h4 class="art-back-title">Swiss Landscape Study</h4>
-                                        <p class="art-back-date">December 2023</p>
-                                    </div>
-                                    <div class="art-description">
-                                        <p>Digital landscape painting inspired by Swiss mountain scenery, created in Photoshop. This piece focuses on atmospheric perspective and the interplay of light and shadow across mountain ranges, capturing the serene beauty of the Alps.</p>
-                                    </div>
-                                    <div class="flip-instruction">
-                                        <p>Click title to flip back</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Traditional Art Category -->
-                    <div class="art-category">
-                        <h3>Traditional Art</h3>
-                        <div class="art-grid">
-                            <div class="art-card" onclick="flipCard(this)">
-                                <div class="art-card-face art-card-front">
-                                    <div class="art-card-header">
-                                        <h4 class="art-card-title">Watercolor Portrait</h4>
-                                        <p class="art-card-date">November 2023</p>
-                                    </div>
-                                    <div class="art-card-image">
-                                        <img src="https://via.placeholder.com/400x300/48bb78/white?text=Watercolor+Portrait" alt="Watercolor Portrait">
-                                    </div>
-                                    <div class="art-card-labels">
-                                        <span class="art-label">Watercolor</span>
-                                        <span class="art-label">Portrait</span>
-                                        <span class="art-label">Traditional</span>
-                                    </div>
-                                </div>
-                                <div class="art-card-face art-card-back">
-                                    <div class="art-back-header">
-                                        <h4 class="art-back-title">Watercolor Portrait</h4>
-                                        <p class="art-back-date">November 2023</p>
-                                    </div>
-                                    <div class="art-description">
-                                        <p>Traditional watercolor portrait study focusing on color temperature and soft transitions. This piece explores the delicate balance between warm and cool tones in portraiture, using wet-on-wet techniques to achieve natural skin tones.</p>
-                                    </div>
-                                    <div class="flip-instruction">
-                                        <p>Click title to flip back</p>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="art-card" onclick="flipCard(this)">
-                                <div class="art-card-face art-card-front">
-                                    <div class="art-card-header">
-                                        <h4 class="art-card-title">Still Life Study</h4>
-                                        <p class="art-card-date">October 2023</p>
-                                    </div>
-                                    <div class="art-card-image">
-                                        <img src="https://via.placeholder.com/400x300/f39c12/white?text=Still+Life+Study" alt="Still Life Study">
-                                    </div>
-                                    <div class="art-card-labels">
-                                        <span class="art-label">Graphite</span>
-                                        <span class="art-label">Still Life</span>
-                                        <span class="art-label">Realism</span>
-                                    </div>
-                                </div>
-                                <div class="art-card-face art-card-back">
-                                    <div class="art-back-header">
-                                        <h4 class="art-back-title">Still Life Study</h4>
-                                        <p class="art-back-date">October 2023</p>
-                                    </div>
-                                    <div class="art-description">
-                                        <p>Detailed graphite drawing exploring light, shadow, and texture in still life composition. This study emphasizes the technical precision required in traditional drawing, focusing on accurate proportions and realistic material representation.</p>
-                                    </div>
-                                    <div class="flip-instruction">
-                                        <p>Click title to flip back</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Illustrations Category -->
-                    <div class="art-category">
-                        <h3>Concept Art & Illustrations</h3>
-                        <div class="art-grid">
-                            <div class="art-card" onclick="flipCard(this)">
-                                <div class="art-card-face art-card-front">
-                                    <div class="art-card-header">
-                                        <h4 class="art-card-title">Sci-Fi Environment</h4>
-                                        <p class="art-card-date">February 2024</p>
-                                    </div>
-                                    <div class="art-card-image">
-                                        <img src="https://via.placeholder.com/400x300/e74c3c/white?text=Sci-Fi+Environment" alt="Sci-Fi Environment">
-                                    </div>
-                                    <div class="art-card-labels">
-                                        <span class="art-label">Concept Art</span>
-                                        <span class="art-label">Sci-Fi</span>
-                                        <span class="art-label">Environment</span>
-                                    </div>
-                                </div>
-                                <div class="art-card-face art-card-back">
-                                    <div class="art-back-header">
-                                        <h4 class="art-back-title">Sci-Fi Environment</h4>
-                                        <p class="art-back-date">February 2024</p>
-                                    </div>
-                                    <div class="art-description">
-                                        <p>Futuristic environment concept combining architectural precision with imaginative design. This piece merges my engineering background with artistic vision to create believable sci-fi spaces, focusing on structural logic and atmospheric mood.</p>
-                                    </div>
-                                    <div class="flip-instruction">
-                                        <p>Click title to flip back</p>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="art-card" onclick="flipCard(this)">
-                                <div class="art-card-face art-card-front">
-                                    <div class="art-card-header">
-                                        <h4 class="art-card-title">Technical Illustration</h4>
-                                        <p class="art-card-date">September 2023</p>
-                                    </div>
-                                    <div class="art-card-image">
-                                        <img src="https://via.placeholder.com/400x300/3498db/white?text=Technical+Illustration" alt="Technical Illustration">
-                                    </div>
-                                    <div class="art-card-labels">
-                                        <span class="art-label">Technical</span>
-                                        <span class="art-label">Educational</span>
-                                        <span class="art-label">Precision</span>
-                                    </div>
-                                </div>
-                                <div class="art-card-face art-card-back">
-                                    <div class="art-back-header">
-                                        <h4 class="art-back-title">Technical Illustration</h4>
-                                        <p class="art-back-date">September 2023</p>
-                                    </div>
-                                    <div class="art-description">
-                                        <p>Scientific diagram for educational materials, combining artistic skills with engineering precision. This illustration demonstrates the intersection of technical accuracy and visual communication, making complex concepts accessible through clear design.</p>
-                                    </div>
-                                    <div class="flip-instruction">
-                                        <p>Click title to flip back</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- French Content -->
-            <div class="content-lang" id="art-content-fr" style="display: none;">
-                <div class="section">
-                    <h2><span class="icon">🎨</span>Portfolio Artistique</h2>
-                    
-                    <!-- Digital Art Category -->
-                    <div class="art-category">
-                        <h3>Art Numérique</h3>
-                        <div class="art-grid">
-                            <div class="art-card" onclick="flipCard(this)">
-                                <div class="art-card-face art-card-front">
-                                    <div class="art-card-header">
-                                        <h4 class="art-card-title">Composition Abstraite #1</h4>
-                                        <p class="art-card-date">Mars 2024</p>
-                                    </div>
-                                    <div class="art-card-image">
-                                        <img src="https://via.placeholder.com/400x300/667eea/white?text=Art+Numerique+1" alt="Composition Abstraite #1">
-                                    </div>
-                                    <div class="art-card-labels">
-                                        <span class="art-label">Peinture Numérique</span>
-                                        <span class="art-label">Procreate</span>
-                                        <span class="art-label">Abstrait</span>
-                                    </div>
-                                </div>
-                                <div class="art-card-face art-card-back">
-                                    <div class="art-back-header">
-                                        <h4 class="art-back-title">Composition Abstraite #1</h4>
-                                        <p class="art-back-date">Mars 2024</p>
-                                    </div>
-                                    <div class="art-description">
-                                        <p>Peinture numérique vibrante explorant les relations chromatiques et les formes géométriques. Cette œuvre a été créée avec Procreate sur iPad, expérimentant avec des effets de transparence superposés et des contrastes colorés audacieux pour créer profondeur et mouvement.</p>
-                                    </div>
-                                    <div class="flip-instruction">
-                                        <p>Cliquez sur le titre pour retourner</p>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="art-card" onclick="flipCard(this)">
-                                <div class="art-card-face art-card-front">
-                                    <div class="art-card-header">
-                                        <h4 class="art-card-title">Étude de Personnage</h4>
-                                        <p class="art-card-date">Janvier 2024</p>
-                                    </div>
-                                    <div class="art-card-image">
-                                        <img src="https://via.placeholder.com/400x300/764ba2/white?text=Design+Personnage" alt="Étude de Personnage">
-                                    </div>
-                                    <div class="art-card-labels">
-                                        <span class="art-label">Design Personnage</span>
-                                        <span class="art-label">Illustration</span>
-                                        <span class="art-label">Fantaisie</span>
-                                    </div>
-                                </div>
-                                <div class="art-card-face art-card-back">
-                                    <div class="art-back-header">
-                                        <h4 class="art-back-title">Étude de Personnage</h4>
-                                        <p class="art-back-date">Janvier 2024</p>
-                                    </div>
-                                    <div class="art-description">
-                                        <p>Illustration originale de personnage avec focus sur l'éclairage et les détails de texture. Ce personnage fantastique a été conçu pour explorer différentes approches des techniques d'éclairage numérique et du rendu de tissu, combinant anatomie réaliste et proportions stylisées.</p>
-                                    </div>
-                                    <div class="flip-instruction">
-                                        <p>Cliquez sur le titre pour retourner</p>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="art-card" onclick="flipCard(this)">
-                                <div class="art-card-face art-card-front">
-                                    <div class="art-card-header">
-                                        <h4 class="art-card-title">Paysage Suisse</h4>
-                                        <p class="art-card-date">Décembre 2023</p>
-                                    </div>
-                                    <div class="art-card-image">
-                                        <img src="https://via.placeholder.com/400x300/9f7aea/white?text=Paysage+Suisse" alt="Paysage Suisse">
-                                    </div>
-                                    <div class="art-card-labels">
-                                        <span class="art-label">Paysage</span>
-                                        <span class="art-label">Photoshop</span>
-                                        <span class="art-label">Nature</span>
-                                    </div>
-                                </div>
-                                <div class="art-card-face art-card-back">
-                                    <div class="art-back-header">
-                                        <h4 class="art-back-title">Paysage Suisse</h4>
-                                        <p class="art-back-date">Décembre 2023</p>
-                                    </div>
-                                    <div class="art-description">
-                                        <p>Peinture numérique de paysage inspirée par les montagnes suisses, créée avec Photoshop. Cette œuvre se concentre sur la perspective atmosphérique et l'interaction entre lumière et ombre à travers les chaînes de montagnes, capturant la beauté sereine des Alpes.</p>
-                                    </div>
-                                    <div class="flip-instruction">
-                                        <p>Cliquez sur le titre pour retourner</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Traditional Art Category -->
-                    <div class="art-category">
-                        <h3>Art Traditionnel</h3>
-                        <div class="art-grid">
-                            <div class="art-card" onclick="flipCard(this)">
-                                <div class="art-card-face art-card-front">
-                                    <div class="art-card-header">
-                                        <h4 class="art-card-title">Portrait Aquarelle</h4>
-                                        <p class="art-card-date">Novembre 2023</p>
-                                    </div>
-                                    <div class="art-card-image">
-                                        <img src="https://via.placeholder.com/400x300/48bb78/white?text=Portrait+Aquarelle" alt="Portrait Aquarelle">
-                                    </div>
-                                    <div class="art-card-labels">
-                                        <span class="art-label">Aquarelle</span>
-                                        <span class="art-label">Portrait</span>
-                                        <span class="art-label">Traditionnel</span>
-                                    </div>
-                                </div>
-                                <div class="art-card-face art-card-back">
-                                    <div class="art-back-header">
-                                        <h4 class="art-back-title">Portrait Aquarelle</h4>
-                                        <p class="art-back-date">Novembre 2023</p>
-                                    </div>
-                                    <div class="art-description">
-                                        <p>Étude de portrait traditionnelle à l'aquarelle focalisée sur la température des couleurs et les transitions douces. Cette œuvre explore l'équilibre délicat entre tons chauds et froids en portraiture, utilisant des techniques mouillé-sur-mouillé pour obtenir des tons naturels de peau.</p>
-                                    </div>
-                                    <div class="flip-instruction">
-                                        <p>Cliquez sur le titre pour retourner</p>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="art-card" onclick="flipCard(this)">
-                                <div class="art-card-face art-card-front">
-                                    <div class="art-card-header">
-                                        <h4 class="art-card-title">Nature Morte</h4>
-                                        <p class="art-card-date">Octobre 2023</p>
-                                    </div>
-                                    <div class="art-card-image">
-                                        <img src="https://via.placeholder.com/400x300/f39c12/white?text=Nature+Morte" alt="Nature Morte">
-                                    </div>
-                                    <div class="art-card-labels">
-                                        <span class="art-label">Graphite</span>
-                                        <span class="art-label">Nature Morte</span>
-                                        <span class="art-label">Réalisme</span>
-                                    </div>
-                                </div>
-                                <div class="art-card-face art-card-back">
-                                    <div class="art-back-header">
-                                        <h4 class="art-back-title">Nature Morte</h4>
-                                        <p class="art-back-date">Octobre 2023</p>
-                                    </div>
-                                    <div class="art-description">
-                                        <p>Dessin détaillé au graphite explorant lumière, ombre et texture dans une composition de nature morte. Cette étude met l'accent sur la précision technique requise en dessin traditionnel, se concentrant sur des proportions précises et une représentation matérielle réaliste.</p>
-                                    </div>
-                                    <div class="flip-instruction">
-                                        <p>Cliquez sur le titre pour retourner</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Illustrations Category -->
-                    <div class="art-category">
-                        <h3>Art Conceptuel & Illustrations</h3>
-                        <div class="art-grid">
-                            <div class="art-card" onclick="flipCard(this)">
-                                <div class="art-card-face art-card-front">
-                                    <div class="art-card-header">
-                                        <h4 class="art-card-title">Environnement Sci-Fi</h4>
-                                        <p class="art-card-date">Février 2024</p>
-                                    </div>
-                                    <div class="art-card-image">
-                                        <img src="https://via.placeholder.com/400x300/e74c3c/white?text=Environnement+Sci-Fi" alt="Environnement Sci-Fi">
-                                    </div>
-                                    <div class="art-card-labels">
-                                        <span class="art-label">Art Conceptuel</span>
-                                        <span class="art-label">Sci-Fi</span>
-                                        <span class="art-label">Environnement</span>
-                                    </div>
-                                </div>
-                                <div class="art-card-face art-card-back">
-                                    <div class="art-back-header">
-                                        <h4 class="art-back-title">Environnement Sci-Fi</h4>
-                                        <p class="art-back-date">Février 2024</p>
-                                    </div>
-                                    <div class="art-description">
-                                        <p>Concept d'environnement futuriste combinant précision architecturale et design imaginatif. Cette œuvre fusionne mon expérience en ingénierie avec une vision artistique pour créer des espaces sci-fi crédibles, se concentrant sur la logique structurelle et l'ambiance atmosphérique.</p>
-                                    </div>
-                                    <div class="flip-instruction">
-                                        <p>Cliquez sur le titre pour retourner</p>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="art-card" onclick="flipCard(this)">
-                                <div class="art-card-face art-card-front">
-                                    <div class="art-card-header">
-                                        <h4 class="art-card-title">Illustration Technique</h4>
-                                        <p class="art-card-date">Septembre 2023</p>
-                                    </div>
-                                    <div class="art-card-image">
-                                        <img src="https://via.placeholder.com/400x300/3498db/white?text=Illustration+Technique" alt="Illustration Technique">
-                                    </div>
-                                    <div class="art-card-labels">
-                                        <span class="art-label">Technique</span>
-                                        <span class="art-label">Éducatif</span>
-                                        <span class="art-label">Précision</span>
-                                    </div>
-                                </div>
-                                <div class="art-card-face art-card-back">
-                                    <div class="art-back-header">
-                                        <h4 class="art-back-title">Illustration Technique</h4>
-                                        <p class="art-back-date">Septembre 2023</p>
-                                    </div>
-                                    <div class="art-description">
-                                        <p>Diagramme scientifique pour matériel éducatif, combinant compétences artistiques et précision d'ingénierie. Cette illustration démontre l'intersection entre précision technique et communication visuelle, rendant les concepts complexes accessibles grâce à un design clair.</p>
-                                    </div>
-                                    <div class="flip-instruction">
-                                        <p>Cliquez sur le titre pour retourner</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+    <div class="controls">
+      <button id="lang-toggle" class="btn" type="button" aria-pressed="false">🇬🇧 English</button>
     </div>
 
-    <script>
-        let currentLanguage = 'en';
+    <nav role="tablist" aria-label="Sections">
+      <button class="tab" role="tab" id="tab-eng" aria-controls="panel-eng" aria-selected="true">Engineering Portfolio</button>
+      <button class="tab" role="tab" id="tab-art" aria-controls="panel-art" aria-selected="false">Art Portfolio</button>
+    </nav>
 
-        function toggleLanguage() {
-            const langBtn = document.getElementById('language-btn');
-            const enContents = document.querySelectorAll('#content-en, #art-content-en');
-            const frContents = document.querySelectorAll('#content-fr, #art-content-fr');
-            
-            if (currentLanguage === 'en') {
-                // Switch to French
-                currentLanguage = 'fr';
-                langBtn.textContent = '🇫🇷 Français';
-                
-                // Show French content, hide English
-                frContents.forEach(content => content.style.display = 'block');
-                enContents.forEach(content => content.style.display = 'none');
-            } else {
-                // Switch to English
-                currentLanguage = 'en';
-                langBtn.textContent = '🇬🇧 English';
-                
-                // Show English content, hide French
-                enContents.forEach(content => content.style.display = 'block');
-                frContents.forEach(content => content.style.display = 'none');
-            }
-        }
+    <main>
+      <!-- Engineering Panel -->
+      <div id="panel-eng" class="tabpanel" role="tabpanel" aria-labelledby="tab-eng" data-active="true">
+        <section class="section glass">
+          <h2><span class="badge" aria-hidden="true">👤</span><span data-i18n-en="Profile" data-i18n-fr="Profil">Profile</span></h2>
+          <p class="lead" data-i18n-en="Rigorous, motivated, and autonomous engineer who learns quickly and has a strong logical mind. Persevering and punctual while being imaginative and capable of great sensitivity. Currently pursuing a Master's degree in Robotics at EPFL with experience in computational motor control, neuroengineering, and rehabilitation technologies." data-i18n-fr="Ingénieure rigoureuse, motivée et autonome qui apprend rapidement et possède un esprit logique développé. Persévérante et ponctuelle tout en étant imaginative et capable d'une grande sensibilité. Actuellement en Master en Robotique à l'EPFL avec expérience en contrôle moteur computationnel, neuro‑ingénierie et technologies de réhabilitation.">Rigorous, motivated, and autonomous engineer…</p>
+        </section>
 
-        function flipCard(card) {
-            console.log('Flipping card:', card); // Debug log
-            card.classList.toggle('flipped');
-        }
+        <section class="section glass">
+          <h2><span class="badge" aria-hidden="true">🎓</span><span data-i18n-en="Education" data-i18n-fr="Formation">Education</span></h2>
+          <div class="grid">
+            <div class="card">
+              <h3 data-i18n-en="Master's in Robotics" data-i18n-fr="Master en Robotique">Master's in Robotics</h3>
+              <p><strong>EPFL</strong></p>
+              <p data-i18n-en="2022 – 2025" data-i18n-fr="2022 – 2025">2022 – 2025</p>
+            </div>
+            <div class="card">
+              <h3 data-i18n-en="Bachelor's in Microengineering" data-i18n-fr="Bachelor en Microtechnique">Bachelor's in Microengineering</h3>
+              <p><strong>EPFL</strong></p>
+              <p>2018 – 2022</p>
+            </div>
+            <div class="card">
+              <h3 data-i18n-en="Exchange Program (Erasmus)" data-i18n-fr="Programme d'échange (Erasmus)">Exchange Program (Erasmus)</h3>
+              <p><strong>Linköping University</strong></p>
+              <p>2021 – 2022</p>
+            </div>
+          </div>
+        </section>
 
-        function switchTab(tabName) {
-            // Hide all tab contents
-            const tabs = document.querySelectorAll('.tab-content');
-            tabs.forEach(tab => tab.classList.remove('active'));
-            
-            // Remove active class from all buttons
-            const buttons = document.querySelectorAll('.tab-btn');
-            buttons.forEach(btn => btn.classList.remove('active'));
-            
-            // Show selected tab
-            document.getElementById(tabName).classList.add('active');
-            
-            // Add active class to clicked button
-            event.target.classList.add('active');
-        }
+        <section class="section glass">
+          <h2><span class="badge" aria-hidden="true">🔬</span><span data-i18n-en="Research Projects" data-i18n-fr="Projets de Recherche">Research Projects</span></h2>
+          <div class="grid projects">
+            <article class="card"><h3>🧠 Neuroscience Research</h3><p><strong>Summer 2024 • Neuroengineering Lab</strong></p><p>Roles of sensory, interneurons, and descending neurons in D. melanogaster grooming.</p></article>
+            <article class="card"><h3>🚶 Gait Analysis Algorithm</h3><p><strong>Fall 2023 • REHAssist</strong></p><p>IMU‑based gait phase identification for rehab tech.</p></article>
+            <article class="card"><h3>🐕 Legged Robot Control</h3><p><strong>Fall 2023 • Course Project</strong></p><p>CPG gaits and DRL target following for a dog‑like sim.</p></article>
+            <article class="card"><h3>🐟 Zebrafish Simulation</h3><p><strong>Summer 2023 • BioRob</strong></p><p>Parameter optimization for realistic swimming and proprioceptive roles.</p></article>
+            <article class="card"><h3>🕹️ Haptic Control Interface</h3><p><strong>Spring 2023</strong></p><p>EMG‑driven paddle control algorithm.</p></article>
+            <article class="card"><h3>🦎 Salamander Robot Control</h3><p><strong>Spring 2023</strong></p><p>CPG controller in Python/MuJoCo for swim & walk.</p></article>
+          </div>
+        </section>
 
-        // Wait for DOM to be fully loaded
-        document.addEventListener('DOMContentLoaded', function() {
-            console.log('DOM loaded, setting up event listeners'); // Debug log
-            
-            // Add smooth hover effects to project cards
-            const cards = document.querySelectorAll('.project-card');
-            cards.forEach(card => {
-                card.addEventListener('mouseenter', function() {
-                    this.style.transform = 'translateY(-8px) scale(1.02)';
-                });
-                
-                card.addEventListener('mouseleave', function() {
-                    this.style.transform = 'translateY(0) scale(1)';
-                });
-            });
+        <section class="section glass">
+          <h2><span class="badge" aria-hidden="true">💼</span><span data-i18n-en="Experience" data-i18n-fr="Expérience">Experience</span></h2>
+          <div class="grid">
+            <div class="card"><h3>Engineering Intern • Logitech</h3><p>Fall 2024 – March 2025</p></div>
+            <div class="card"><h3>Teaching Assistant • EPFL</h3><p>Linear Algebra, Analysis A, Electronics I/II</p></div>
+            <div class="card"><h3>Data Entry • CAPE, EPFL</h3><p>Fall 2023 – Present</p></div>
+            <div class="card"><h3>Community Manager • Brass Band</h3><p>Spring 2023 – Present</p></div>
+          </div>
+        </section>
 
-            // Handle art card title clicks - SIMPLE APPROACH
-            const allTitles = document.querySelectorAll('.art-card-title, .art-back-title');
-            console.log('Found titles:', allTitles.length); // Debug log
-            
-            allTitles.forEach((title, index) => {
-                console.log('Setting up title', index, title.textContent); // Debug log
-                
-                title.addEventListener('click', function(e) {
-                    console.log('Title clicked!', this.textContent); // Debug log
-                    e.preventDefault();
-                    e.stopPropagation();
-                    
-                    const artCard = this.closest('.art-card');
-                    console.log('Found art card:', artCard); // Debug log
-                    
-                    if (artCard) {
-                        flipCard(artCard);
-                    }
-                });
-            });
+        <section class="section glass">
+          <h2><span class="badge" aria-hidden="true">💻</span><span data-i18n-en="Technical Skills" data-i18n-fr="Compétences Techniques">Technical Skills</span></h2>
+          <div class="skills">
+            <div>
+              <h3 data-i18n-en="Programming Languages" data-i18n-fr="Langages de Programmation">Programming Languages</h3>
+              <div class="skill-row"><span>Python</span><span class="pill" data-i18n-en="Advanced" data-i18n-fr="Avancé">Advanced</span></div>
+              <div class="skill-row"><span>C/C++</span><span class="pill">Advanced</span></div>
+              <div class="skill-row"><span>Matlab</span><span class="pill">Advanced</span></div>
+            </div>
+            <div>
+              <h3 data-i18n-en="Design & CAD" data-i18n-fr="Conception & CAO">Design & CAD</h3>
+              <div class="skill-row"><span>Fusion 360</span><span class="pill">Advanced</span></div>
+              <div class="skill-row"><span>CATIA</span><span class="pill" data-i18n-en="Intermediate" data-i18n-fr="Intermédiaire">Intermediate</span></div>
+              <div class="skill-row"><span>Blender</span><span class="pill">Intermediate</span></div>
+            </div>
+          </div>
+        </section>
 
-            // Handle art card clicks (fallback)
-            const allArtCards = document.querySelectorAll('.art-card');
-            console.log('Found art cards:', allArtCards.length); // Debug log
-            
-            allArtCards.forEach((card, index) => {
-                console.log('Setting up card', index); // Debug log
-                
-                card.addEventListener('click', function(e) {
-                    // Don't flip if clicking on title (title has its own handler)
-                    if (!e.target.classList.contains('art-card-title') && 
-                        !e.target.classList.contains('art-back-title')) {
-                        console.log('Card body clicked'); // Debug log
-                        flipCard(this);
-                    }
-                });
-                
-                // Keyboard support
-                card.setAttribute('tabindex', '0');
-                card.addEventListener('keypress', function(e) {
-                    if (e.key === 'Enter' || e.key === ' ') {
-                        e.preventDefault();
-                        flipCard(this);
-                    }
-                });
-            });
+        <section class="section glass">
+          <h2><span class="badge" aria-hidden="true">🌐</span><span data-i18n-en="Languages & Interests" data-i18n-fr="Langues & Centres d'intérêt">Languages & Interests</span></h2>
+          <div class="skills">
+            <div>
+              <h3>Languages</h3>
+              <div class="skill-row"><span>🇫🇷 French</span><span class="pill">Native</span></div>
+              <div class="skill-row"><span>🇬🇧 English</span><span class="pill">C1</span></div>
+              <div class="skill-row"><span>🇩🇪 German</span><span class="pill">Academic</span></div>
+            </div>
+            <div>
+              <h3>Interests</h3>
+              <div class="skill-row"><span>🎺 Classical Music</span><span class="pill">Cornet since 2009</span></div>
+              <div class="skill-row"><span>🎨 Drawing & Illustration</span></div>
+              <div class="skill-row"><span>🎮 Video Games</span></div>
+            </div>
+          </div>
+        </section>
+      </div>
 
-            // Add intersection observer for animations
-            const observerOptions = {
-                threshold: 0.1,
-                rootMargin: '0px 0px -50px 0px'
-            };
+      <!-- Art Panel -->
+      <div id="panel-art" class="tabpanel" role="tabpanel" aria-labelledby="tab-art" data-active="false">
+        <section class="section glass">
+          <h2><span class="badge" aria-hidden="true">🎨</span>Art Portfolio</h2>
 
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.style.opacity = '1';
-                        entry.target.style.transform = 'translateY(0)';
-                    }
-                });
-            }, observerOptions);
+          <div class="art-category">
+            <h3>Digital Art</h3>
+            <div class="art-grid">
+              <!-- Card 1 -->
+              <article class="art-card" aria-label="Abstract Composition #1">
+                <div class="art-inner">
+                  <div class="face front">
+                    <header class="art-header">
+                      <h4 class="art-title">Abstract Composition #1</h4>
+                      <p class="art-date">March 2024</p>
+                    </header>
+                    <figure class="figure">
+                      <img loading="lazy" decoding="async" alt="Abstract geometric digital painting"
+                           src="https://via.placeholder.com/800x600/667eea/ffffff?text=Digital+Art+1" />
+                    </figure>
+                    <div class="labels">
+                      <span class="label">Digital Painting</span>
+                      <span class="label">Procreate</span>
+                      <span class="label">Abstract</span>
+                    </div>
+                  </div>
+                  <div class="face back">
+                    <header>
+                      <h4 class="art-title">Abstract Composition #1</h4>
+                      <p class="art-date">March 2024</p>
+                    </header>
+                    <p>Layered transparencies and bold complementary contrasts explore depth and motion.</p>
+                    <p class="hint">Press + to view front.</p>
+                  </div>
+                </div>
+                <button class="flip-btn" type="button" aria-pressed="false" aria-label="more informations" title="more informations">+</button>
+              </article>
 
-            // Handle image loading and aspect ratio detection
-            const artImages = document.querySelectorAll('.art-card-image img');
-            console.log('Found art images:', artImages.length); // Debug log
-            
-            artImages.forEach((img, index) => {
-                const container = img.parentElement;
-                
-                // Add loading state
-                container.classList.add('loading');
-                
-                // Handle image load
-                img.addEventListener('load', function() {
-                    console.log('Image loaded:', index, this.naturalWidth, 'x', this.naturalHeight); // Debug log
-                    
-                    // Remove loading state
-                    container.classList.remove('loading');
-                    
-                    // Detect aspect ratio and apply appropriate styling
-                    const aspectRatio = this.naturalWidth / this.naturalHeight;
-                    
-                    // Remove any existing mode classes
-                    container.classList.remove('portrait-mode', 'landscape-mode', 'square-mode');
-                    
-                    if (aspectRatio < 0.8) {
-                        // Portrait orientation
-                        container.classList.add('portrait-mode');
-                        console.log('Applied portrait-mode to image', index);
-                    } else if (aspectRatio > 1.3) {
-                        // Landscape orientation
-                        container.classList.add('landscape-mode');
-                        console.log('Applied landscape-mode to image', index);
-                    } else {
-                        // Square or near-square
-                        container.classList.add('square-mode');
-                        console.log('Applied square-mode to image', index);
-                    }
-                });
-                
-                // Handle image error
-                img.addEventListener('error', function() {
-                    console.error('Image failed to load:', this.src);
-                    container.classList.remove('loading');
-                    
-                    // Create fallback content
-                    const fallback = document.createElement('div');
-                    fallback.style.cssText = `
-                        display: flex;
-                        flex-direction: column;
-                        align-items: center;
-                        justify-content: center;
-                        height: 100%;
-                        color: #666;
-                        font-size: 0.9rem;
-                        text-align: center;
-                        padding: 20px;
-                    `;
-                    fallback.innerHTML = `
-                        <div style="font-size: 2rem; margin-bottom: 10px;">🖼️</div>
-                        <div>Image not available</div>
-                    `;
-                    
-                    this.style.display = 'none';
-                    container.appendChild(fallback);
-                });
-                
-                // Observe art cards for scroll animations
-            allArtCards.forEach(card => {
-                card.style.opacity = '0';
-                card.style.transform = 'translateY(30px)';
-                card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-                observer.observe(card);
-            });
-            
-            console.log('All event listeners and image handlers set up successfully');
+              <!-- Card 2 -->
+              <article class="art-card" aria-label="Crowley Portrait">
+                <div class="art-inner">
+                  <div class="face front">
+                    <header class="art-header">
+                      <h4 class="art-title">Crowley Portrait</h4>
+                      <p class="art-date">March 2024</p>
+                    </header>
+                    <figure class="figure">
+                      <img loading="lazy" decoding="async" alt="Digital portrait titled Crowley"
+                           src="https://raw.githubusercontent.com/lrobyr/portfolio/f5dc5e42807f0660302da8797b28f68a6f276e37/Crowley_signed.png" />
+                    </figure>
+                    <div class="labels">
+                      <span class="label">Digital Painting</span>
+                      <span class="label">Portrait</span>
+                      <span class="label">Character Art</span>
+                    </div>
+                  </div>
+                  <div class="face back">
+                    <header>
+                      <h4 class="art-title">Crowley Portrait</h4>
+                      <p class="art-date">March 2024</p>
+                    </header>
+                    <p>Lighting, hue shifts, and edge control to balance realism with stylization.</p>
+                    <p class="hint">Press + to view front.</p>
+                  </div>
+                </div>
+                <button class="flip-btn" type="button" aria-pressed="false" aria-label="more informations" title="more informations">+</button>
+              </article>
+
+              <!-- Card 3 -->
+              <article class="art-card" aria-label="Swiss Landscape Study">
+                <div class="art-inner">
+                  <div class="face front">
+                    <header class="art-header">
+                      <h4 class="art-title">Swiss Landscape Study</h4>
+                      <p class="art-date">December 2023</p>
+                    </header>
+                    <figure class="figure">
+                      <img loading="lazy" decoding="async" alt="Digital landscape of Swiss Alps"
+                           src="https://via.placeholder.com/960x720/9f7aea/ffffff?text=Landscape+Study" />
+                    </figure>
+                    <div class="labels">
+                      <span class="label">Landscape</span>
+                      <span class="label">Photoshop</span>
+                      <span class="label">Nature</span>
+                    </div>
+                  </div>
+                  <div class="face back">
+                    <header>
+                      <h4 class="art-title">Swiss Landscape Study</h4>
+                      <p class="art-date">December 2023</p>
+                    </header>
+                    <p>Atmospheric perspective and light falloff across alpine ridges.</p>
+                    <p class="hint">Press + to view front.</p>
+                  </div>
+                </div>
+                <button class="flip-btn" type="button" aria-pressed="false" aria-label="more informations" title="more informations">+</button>
+              </article>
+            </div>
+          </div>
+
+          <div class="art-category">
+            <h3>Traditional Art</h3>
+            <div class="art-grid">
+              <article class="art-card" aria-label="Watercolor Portrait">
+                <div class="art-inner">
+                  <div class="face front">
+                    <header class="art-header"><h4 class="art-title">Watercolor Portrait</h4><p class="art-date">November 2023</p></header>
+                    <figure class="figure"><img loading="lazy" decoding="async" alt="Watercolor portrait"
+                      src="https://via.placeholder.com/900x675/48bb78/ffffff?text=Watercolor+Portrait"/></figure>
+                    <div class="labels"><span class="label">Watercolor</span><span class="label">Portrait</span><span class="label">Traditional</span></div>
+                  </div>
+                  <div class="face back"><header><h4 class="art-title">Watercolor Portrait</h4><p class="art-date">November 2023</p></header>
+                    <p>Warm/cool skin tones using wet‑on‑wet transitions.</p><p class="hint">Press + to view front.</p></div>
+                </div>
+                <button class="flip-btn" type="button" aria-pressed="false" aria-label="more informations" title="more informations">+</button>
+              </article>
+
+              <article class="art-card" aria-label="Still Life Study">
+                <div class="art-inner">
+                  <div class="face front">
+                    <header class="art-header"><h4 class="art-title">Still Life Study</h4><p class="art-date">October 2023</p></header>
+                    <figure class="figure"><img loading="lazy" decoding="async" alt="Graphite still life"
+                      src="https://via.placeholder.com/900x675/f39c12/ffffff?text=Still+Life+Study"/></figure>
+                    <div class="labels"><span class="label">Graphite</span><span class="label">Still Life</span><span class="label">Realism</span></div>
+                  </div>
+                  <div class="face back"><header><h4 class="art-title">Still Life Study</h4><p class="art-date">October 2023</p></header>
+                    <p>Proportions, value grouping, and material rendering.</p><p class="hint">Press + to view front.</p></div>
+                </div>
+                <button class="flip-btn" type="button" aria-pressed="false" aria-label="more informations" title="more informations">+</button>
+              </article>
+            </div>
+          </div>
+
+          <div class="art-category">
+            <h3>Concept Art & Illustrations</h3>
+            <div class="art-grid">
+              <article class="art-card" aria-label="Sci‑Fi Environment">
+                <div class="art-inner">
+                  <div class="face front">
+                    <header class="art-header"><h4 class="art-title">Sci‑Fi Environment</h4><p class="art-date">February 2024</p></header>
+                    <figure class="figure"><img loading="lazy" decoding="async" alt="Futuristic environment concept"
+                      src="https://via.placeholder.com/900x675/e74c3c/ffffff?text=Sci‑Fi+Environment"/></figure>
+                    <div class="labels"><span class="label">Concept Art</span><span class="label">Sci‑Fi</span><span class="label">Environment</span></div>
+                  </div>
+                  <div class="face back"><header><h4 class="art-title">Sci‑Fi Environment</h4><p class="art-date">February 2024</p></header>
+                    <p>Architectural logic + cinematic mood, bridging engineering and design.</p><p class="hint">Press + to view front.</p></div>
+                </div>
+                <button class="flip-btn" type="button" aria-pressed="false" aria-label="more informations" title="more informations">+</button>
+              </article>
+
+              <article class="art-card" aria-label="Technical Illustration">
+                <div class="art-inner">
+                  <div class="face front">
+                    <header class="art-header"><h4 class="art-title">Technical Illustration</h4><p class="art-date">September 2023</p></header>
+                    <figure class="figure"><img loading="lazy" decoding="async" alt="Technical educational diagram"
+                      src="https://via.placeholder.com/900x675/3498db/ffffff?text=Technical+Illustration"/></figure>
+                    <div class="labels"><span class="label">Technical</span><span class="label">Educational</span><span class="label">Precision</span></div>
+                  </div>
+                  <div class="face back"><header><h4 class="art-title">Technical Illustration</h4><p class="art-date">September 2023</p></header>
+                    <p>Visual communication of complex mechanisms with clean labeling.</p><p class="hint">Press + to view front.</p></div>
+                </div>
+                <button class="flip-btn" type="button" aria-pressed="false" aria-label="more informations" title="more informations">+</button>
+              </article>
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+  </div>
+
+  <script>
+    // Language toggle using data-i18n attributes
+    (function(){
+      const btn = document.getElementById('lang-toggle');
+      let lang = 'en';
+      function applyLang(){
+        document.querySelectorAll('[data-i18n-en]').forEach(el=>{
+          const text = el.getAttribute(`data-i18n-${lang}`);
+          if(text) el.textContent = text;
         });
+        btn.textContent = lang==='en' ? '🇬🇧 English' : '🇫🇷 Français';
+        btn.setAttribute('aria-pressed', lang==='fr');
+      }
+      btn.addEventListener('click',()=>{ lang = (lang==='en'?'fr':'en'); applyLang(); });
+      applyLang();
+    })();
+
+    // Accessible tabs
+    (function(){
+      const tabs = Array.from(document.querySelectorAll('[role="tab"]'));
+      function activate(id){
+        tabs.forEach(t=>{
+          const on = t.id === id;
+          t.setAttribute('aria-selected', on);
+          document.getElementById(t.getAttribute('aria-controls')).dataset.active = on;
         });
-    </script>
+      }
+      tabs.forEach(t=>{
+        t.addEventListener('click',()=>activate(t.id));
+        t.addEventListener('keydown',e=>{
+          const i = tabs.indexOf(t);
+          if(e.key==='ArrowRight') tabs[(i+1)%tabs.length].focus();
+          if(e.key==='ArrowLeft') tabs[(i-1+tabs.length)%tabs.length].focus();
+        });
+      });
+    })();
+
+    // Flip cards (event delegation for +/× button)
+(function(){
+  document.addEventListener('click', (e)=>{
+    if(e.target.classList.contains('flip-btn')){
+      const btn = e.target;
+      const card = btn.closest('.art-card');
+      const flipped = card.getAttribute('data-flipped') === 'true';
+      const next = !flipped;
+      card.setAttribute('data-flipped', String(next));
+      btn.setAttribute('aria-pressed', String(next));
+      // swap symbol
+      btn.textContent = next ? '×' : '+';
+    }
+  });
+})();
+  </script>
 </body>
 </html>
