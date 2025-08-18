@@ -839,14 +839,14 @@
                     <div class="art-category">
                         <h3>Digital Art</h3>
                         <div class="art-grid">
-                            <div class="art-card" onclick="flipCard(this)">
+                            <div class="art-card">
                                 <div class="art-card-face art-card-front">
                                     <div class="art-card-header">
                                         <h4 class="art-card-title">Abstract Composition #1</h4>
                                         <p class="art-card-date">March 2024</p>
                                     </div>
                                     <div class="art-card-image">
-                                        <img src="https://raw.githubusercontent.com/lrobyr/portfolio/f5dc5e42807f0660302da8797b28f68a6f276e37/Crowley_signed.png" alt="Abstract Composition #1">
+                                        <img src="https://via.placeholder.com/400x300/667eea/white?text=Digital+Art+1" alt="Abstract Composition #1">
                                     </div>
                                     <div class="art-card-labels">
                                         <span class="art-label">Digital Painting</span>
@@ -868,28 +868,28 @@
                                 </div>
                             </div>
 
-                            <div class="art-card" onclick="flipCard(this)">
+                            <div class="art-card">
                                 <div class="art-card-face art-card-front">
                                     <div class="art-card-header">
-                                        <h4 class="art-card-title">Character Design Study</h4>
-                                        <p class="art-card-date">January 2024</p>
+                                        <h4 class="art-card-title">Crowley Portrait</h4>
+                                        <p class="art-card-date">March 2024</p>
                                     </div>
                                     <div class="art-card-image">
-                                        <img src="https://via.placeholder.com/400x300/764ba2/white?text=Character+Design" alt="Character Design Study">
+                                        <img src="https://raw.githubusercontent.com/lrobyr/portfolio/f5dc5e42807f0660302da8797b28f68a6f276e37/Crowley_signed.png" alt="Crowley Portrait">
                                     </div>
                                     <div class="art-card-labels">
-                                        <span class="art-label">Character Design</span>
-                                        <span class="art-label">Illustration</span>
-                                        <span class="art-label">Fantasy</span>
+                                        <span class="art-label">Digital Painting</span>
+                                        <span class="art-label">Portrait</span>
+                                        <span class="art-label">Character Art</span>
                                     </div>
                                 </div>
                                 <div class="art-card-face art-card-back">
                                     <div class="art-back-header">
-                                        <h4 class="art-back-title">Character Design Study</h4>
-                                        <p class="art-back-date">January 2024</p>
+                                        <h4 class="art-back-title">Crowley Portrait</h4>
+                                        <p class="art-back-date">March 2024</p>
                                     </div>
                                     <div class="art-description">
-                                        <p>Original character illustration with focus on lighting and texture details. This fantasy character was designed to explore different approaches to digital lighting techniques and fabric rendering, combining realistic anatomy with stylized proportions.</p>
+                                        <p>A detailed digital portrait showcasing advanced character illustration techniques. This piece demonstrates mastery of digital painting fundamentals including lighting, color theory, and facial anatomy. Created with careful attention to expression and personality, blending realistic rendering with stylized artistic choices.</p>
                                     </div>
                                     <div class="flip-instruction">
                                         <p>Click title to flip back</p>
@@ -1316,6 +1316,7 @@
         }
 
         function flipCard(card) {
+            console.log('Flipping card:', card); // Debug log
             card.classList.toggle('flipped');
         }
 
@@ -1335,8 +1336,11 @@
             event.target.classList.add('active');
         }
 
-        // Add smooth hover effects to project cards
+        // Wait for DOM to be fully loaded
         document.addEventListener('DOMContentLoaded', function() {
+            console.log('DOM loaded, setting up event listeners'); // Debug log
+            
+            // Add smooth hover effects to project cards
             const cards = document.querySelectorAll('.project-card');
             cards.forEach(card => {
                 card.addEventListener('mouseenter', function() {
@@ -1345,6 +1349,53 @@
                 
                 card.addEventListener('mouseleave', function() {
                     this.style.transform = 'translateY(0) scale(1)';
+                });
+            });
+
+            // Handle art card title clicks - SIMPLE APPROACH
+            const allTitles = document.querySelectorAll('.art-card-title, .art-back-title');
+            console.log('Found titles:', allTitles.length); // Debug log
+            
+            allTitles.forEach((title, index) => {
+                console.log('Setting up title', index, title.textContent); // Debug log
+                
+                title.addEventListener('click', function(e) {
+                    console.log('Title clicked!', this.textContent); // Debug log
+                    e.preventDefault();
+                    e.stopPropagation();
+                    
+                    const artCard = this.closest('.art-card');
+                    console.log('Found art card:', artCard); // Debug log
+                    
+                    if (artCard) {
+                        flipCard(artCard);
+                    }
+                });
+            });
+
+            // Handle art card clicks (fallback)
+            const allArtCards = document.querySelectorAll('.art-card');
+            console.log('Found art cards:', allArtCards.length); // Debug log
+            
+            allArtCards.forEach((card, index) => {
+                console.log('Setting up card', index); // Debug log
+                
+                card.addEventListener('click', function(e) {
+                    // Don't flip if clicking on title (title has its own handler)
+                    if (!e.target.classList.contains('art-card-title') && 
+                        !e.target.classList.contains('art-back-title')) {
+                        console.log('Card body clicked'); // Debug log
+                        flipCard(this);
+                    }
+                });
+                
+                // Keyboard support
+                card.setAttribute('tabindex', '0');
+                card.addEventListener('keypress', function(e) {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        flipCard(this);
+                    }
                 });
             });
 
@@ -1364,47 +1415,11 @@
             }, observerOptions);
 
             // Observe art cards for scroll animations
-            const allArtCards = document.querySelectorAll('.art-card');
             allArtCards.forEach(card => {
                 card.style.opacity = '0';
                 card.style.transform = 'translateY(30px)';
                 card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
                 observer.observe(card);
-            });
-
-            // Add keyboard support for art cards
-            allArtCards.forEach(card => {
-                card.setAttribute('tabindex', '0');
-                card.addEventListener('keypress', function(e) {
-                    if (e.key === 'Enter' || e.key === ' ') {
-                        e.preventDefault();
-                        flipCard(this);
-                    }
-                });
-            });
-
-            // Add click event to titles specifically for better UX
-            const artTitles = document.querySelectorAll('.art-card-title, .art-back-title');
-            artTitles.forEach(title => {
-                title.style.cursor = 'pointer';
-                title.addEventListener('click', function(e) {
-                    e.stopPropagation();
-                    const card = this.closest('.art-card');
-                    flipCard(card);
-                });
-            });
-
-            // Add visual feedback for clickable titles
-            artTitles.forEach(title => {
-                title.addEventListener('mouseenter', function() {
-                    this.style.transform = 'scale(1.05)';
-                    this.style.textDecoration = 'underline';
-                });
-                
-                title.addEventListener('mouseleave', function() {
-                    this.style.transform = 'scale(1)';
-                    this.style.textDecoration = 'none';
-                });
             });
         });
     </script>
