@@ -209,15 +209,15 @@
           <div class="skills">
             <div>
               <h3 data-i18n-en="Programming Languages" data-i18n-fr="Langages de Programmation">Programming Languages</h3>
-              <div class="skill-row"><span>Python</span><span class="pill" data-i18n-en="Advanced" data-i18n-fr="Avancé">Advanced</span></div>
-              <div class="skill-row"><span>C/C++</span><span class="pill" data-i18n-en="Advanced" data-i18n-fr="Avancé">Advanced</span></div>
-              <div class="skill-row"><span>Matlab</span><span class="pill" data-i18n-en="Advanced" data-i18n-fr="Avancé">Advanced</span></div>
+              <div class="skill-row"><span>Python</span><span class="pill" data-i18n-en="Intermediate" data-i18n-fr="Intermédiaire">Advanced</span></div>
+              <div class="skill-row"><span>C/C++</span><span class="pill" data-i18n-en="Intermediate" data-i18n-fr="Intermédiaire">Advanced</span></div>
+              <div class="skill-row"><span>Matlab</span><span class="pill" data-i18n-en="Intermediate" data-i18n-fr="Intermédiaire">Advanced</span></div>
             </div>
             <div>
               <h3 data-i18n-en="Design & CAD" data-i18n-fr="Conception & CAO">Design & CAD</h3>
-              <div class="skill-row"><span>Fusion 360</span><span class="pill" data-i18n-en="Advanced" data-i18n-fr="Avancé">Advanced</span></div>
+              <div class="skill-row"><span>Fusion 360</span><span class="pill" data-i18n-en="Intermediate" data-i18n-fr="Intermédiaire">Advanced</span></div>
               <div class="skill-row"><span>CATIA</span><span class="pill" data-i18n-en="Intermediate" data-i18n-fr="Intermédiaire">Intermediate</span></div>
-              <div class="skill-row"><span>Blender</span><span class="pill" data-i18n-en="Intermediate" data-i18n-fr="Intermédiaire">Intermediate</span></div>
+              <div class="skill-row"><span>Blender</span><span class="pill" data-i18n-en="Beginner" data-i18n-fr="Débutant">Intermediate</span></div>
             </div>
           </div>
         </section>
@@ -235,7 +235,7 @@
                 <span class="pill">C1</span></div>
               <div class="skill-row">
                 <span><span data-i18n-en="🇩🇪 German" data-i18n-fr="🇩🇪 Allemand"> 🇩🇪 German</span></span>
-                <span class="pill" data-i18n-en="Academic" data-i18n-fr="Niveau académique">Academic</span></div>
+                <span class="pill" data-i18n-en="Academic" data-i18n-fr="Académique">Academic</span></div>
             </div>
             <div>
               <h3>Interests</h3>
@@ -304,6 +304,7 @@
                     <figure class="figure">
                       <img loading="lazy" decoding="async" alt="Digital portrait titled Crowley"
                            src="https://raw.githubusercontent.com/lrobyr/portfolio/f5dc5e42807f0660302da8797b28f68a6f276e37/Crowley_signed.png" />
+
                     </figure>
                     <div class="labels">
                       <span class="label">Digital Painting</span>
@@ -316,7 +317,7 @@
                       <h4 class="art-title" data-i18n-en="Crowley Portrait" data-i18n-fr="Portrait de Crowley" >Crowley Portrait</h4>
                       <p class="art-date" data-i18n-en="Fall 2024" data-i18n-fr="Automne 2024">Fall 2024</p>
                     </header>
-                    <p  data-i18n-en="Black & white portrait of the character 'Crowley' from the 'Good Omens' show, played by David Tennant. Illustraiont made with digital tablet with Photoshop" 
+                    <p  data-i18n-en="Black & white portrait of the character 'Crowley' from the 'Good Omens' show, played by David Tennant. Illustration made with digital tablet with Photoshop" 
                         data-i18n-fr="Portrait en noir et blanc du personnage 'Crowley' de la série 'Good Omens'. Dessin digital réalisé à l'aide d'une tablette graphique et du logiciel Photoshop" >Lighting, hue shifts, and edge control to balance realism with stylization.</p>
                     <p class="hint">Press x to view front.</p>
                   </div>
@@ -463,6 +464,31 @@
         });
       });
     })();
+
+(function () {
+  function extractDriveId(input) {
+    if (!input) return null;
+    const s = input.trim();
+    // /file/d/<ID>/... or /uc?id=<ID> or open?id=<ID>
+    const m1 = s.match(/\/d\/([a-zA-Z0-9_-]{20,})/);
+    const m2 = s.match(/[?&]id=([a-zA-Z0-9_-]{20,})/);
+    const m3 = /^[a-zA-Z0-9_-]{20,}$/.test(s) ? [null, s] : null;
+    return (m1 && m1[1]) || (m2 && m2[1]) || (m3 && m3[1]) || null;
+  }
+
+  function driveImageURL(id, useThumb=false, max=1600) {
+    // Full-res: stable and preserves original
+    if (!useThumb) return `https://drive.google.com/uc?export=view&id=${id}`;
+    // Faster proxy (may be slightly compressed). Uncomment to use:
+    // return `https://drive.google.com/thumbnail?id=${id}&sz=w${max}`;
+  }
+
+  document.querySelectorAll('img[data-drive]').forEach(img => {
+    const id = extractDriveId(img.getAttribute('data-drive'));
+    if (!id) { console.warn('Invalid Drive link/ID for', img); return; }
+    img.src = driveImageURL(id /*, true, 1600 */); // toggle thumbnail mode if you want speed over max quality
+  });
+})();
 
     // Flip cards (event delegation for +/× button)
 (function(){
