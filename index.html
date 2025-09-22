@@ -38,10 +38,11 @@
 
     /* Tabs */
     nav[role="tablist"]{display:flex;gap:8px;justify-content:center;margin:12px auto 24px;padding:8px;border-radius:999px;background:rgba(255,255,255,.25);backdrop-filter:blur(8px)}
-    .tab{border:0;background:transparent;padding:12px 28px;border-radius:999px;font-weight:700;color:#fff;cursor:pointer}
+    .tab{border:0;background:transparent;padding:12px 28px;border-radius:999px;font-weight:550;font-size:20px;color:#fff;cursor:pointer}
     .tab[aria-selected="true"]{background:#081e299c;box-shadow:0 10px 20px rgba(15,82,87,.3)}
     .tabpanel{display:none;animation:fade .35s ease}
     .tabpanel[data-active="true"]{display:block}
+    .tab:hover{transform:translateY(-4px);box-shadow:0 14px 28px rgba(15,82,87,.25)}
     @keyframes fade{from{opacity:0;translate:0 8px}to{opacity:1;translate:0 0}}
 
     /* Per‑panel text color */
@@ -77,7 +78,7 @@
     .back{background:linear-gradient(to right,var(--bg1),var(--bg2));color:#fff;padding:22px;transform:rotateY(180deg);display:grid;grid-template-rows:auto 1fr auto}
     .art-header{padding:14px 18px;border-bottom:1px solid #eee}
     .art-title{margin:0;font-size:1.1rem;font-weight:800}
-    .art-date{margin:2px 0 0;color:#666;font-size:.9rem}
+    .art-date{margin:2px 0 0;color:#010a14;font-size:.9rem}
     .figure{display:flex;align-items:center;justify-content:center;background:transparent;overflow:hidden}
     .figure img{max-width:100%;max-height:100%;width:auto;height:auto;object-fit:contain;object-position:center;display:block;border:none}
     .labels{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;padding:12px 14px;background:#fff}
@@ -111,7 +112,7 @@
     </header>
 
     <div class="controls">
-      <button id="lang-toggle" class="btn" type="button" aria-pressed="false">🇬🇧 English</button>
+      <button id="lang-toggle" class="btn" type="button" aria-pressed="false">English</button>
     </div>
 
     <nav role="tablist" aria-label="Sections">
@@ -264,30 +265,31 @@
             <h3>Digital Art</h3>
             <div class="art-grid">
               <!-- Card 1 -->
-              <article class="art-card" aria-label="Abstract Composition #1">
+              <article class="art-card" aria-label="Gemini Variation">
                 <div class="art-inner">
                   <div class="face front">
                     <header class="art-header">
-                      <h4 class="art-title">Abstract Composition #1</h4>
-                      <p class="art-date">March 2024</p>
+                      <h4 class="art-title"data-i18n-en="Gemini Variation" data-i18n-fr="Gemini Variation" >Gemini Variation</h4>
+                      <p class="art-date" data-i18n-en="Summer 2025" data-i18n-fr="Été 2025" >Summer 2025</p>
                     </header>
                     <figure class="figure">
                       <img loading="lazy" decoding="async" alt="Abstract geometric digital painting"
-                           src="https://via.placeholder.com/800x600/667eea/ffffff?text=Digital+Art+1" />
+                           src="https://raw.githubusercontent.com/lrobyr/portfolio/592d91a62ac282e6a244992f4496ae7e3b6da2c0/assets/poleDance.png" />
                     </figure>
                     <div class="labels">
-                      <span class="label">Digital Painting</span>
-                      <span class="label">Procreate</span>
-                      <span class="label">Abstract</span>
+                      <span class="label" data-i18n-en="Anatomy" data-i18n-fr="Anatomie" >Anatomy</span>
+                      <span class="label" data-i18n-en="Lightning" data-i18n-fr="Éclairage">Lightning</span>
+                      <span class="label" data-i18n-en="Realism" data-i18n-fr="Réalisme">Realism</span>
                     </div>
                   </div>
                   <div class="face back">
                     <header>
-                      <h4 class="art-title">Abstract Composition #1</h4>
-                      <p class="art-date">Fall 2024</p>
+                      <h4 class="art-title">Gemini Variation</h4>
+                      <p class="art-date" data-i18n-en="Summer 2025" data-i18n-fr="Été 2025" >Summer 2025</p>
                     </header>
-                    <p data-i18n-en="blabla" data-i18n-fr="blabla" and bold complementary contrasts explore depth and motion.></p>
-                    <p class="hint">Press x to view front.</p>
+                    <p data-i18n-en="Pole dancer illustration in a realist style, made with Procreate. The goal was to study human being anatomy and the light behavior." 
+                    data-i18n-fr="Danseuse de pole dance, dans un style réaliste, réalisée avec Procreate. Le but était d'étudier l'anatomie humaine et le comportement de la lumière." and bold complementary contrasts explore depth and motion.></p>
+                    <p class="hint" data-i18n-en="Press x to view front" data-i18n-fr="Appuyez sur x pour retourner">Press x to view front.</p>
                   </div>
                 </div>
                 <button class="flip-btn" type="button" aria-pressed="false" aria-label="More informations" title="More informations">+</button>
@@ -303,13 +305,13 @@
                     </header>
                     <figure class="figure">
                       <img loading="lazy" decoding="async" alt="Digital portrait titled Crowley"
-                           src="https://raw.githubusercontent.com/lrobyr/portfolio/f5dc5e42807f0660302da8797b28f68a6f276e37/Crowley_signed.png" />
+                           src="https://raw.githubusercontent.com/lrobyr/portfolio/592d91a62ac282e6a244992f4496ae7e3b6da2c0/assets/Crowley_signed.png" />
 
                     </figure>
                     <div class="labels">
-                      <span class="label">Digital Painting</span>
-                      <span class="label">Portrait</span>
                       <span class="label">Character Art</span>
+                      <span class="label">Portrait</span>
+                      <span class="label">Realism</span>
                     </div>
                   </div>
                   <div class="face back">
@@ -319,7 +321,7 @@
                     </header>
                     <p  data-i18n-en="Black & white portrait of the character 'Crowley' from the 'Good Omens' show, played by David Tennant. Illustration made with digital tablet with Photoshop" 
                         data-i18n-fr="Portrait en noir et blanc du personnage 'Crowley' de la série 'Good Omens'. Dessin digital réalisé à l'aide d'une tablette graphique et du logiciel Photoshop" >Lighting, hue shifts, and edge control to balance realism with stylization.</p>
-                    <p class="hint">Press x to view front.</p>
+                    <p class="hint" data-i18n-en="Press x to view front" data-i18n-fr="Appuyez sur x pour retourner">Press x to view front.</p>
                   </div>
                 </div>
                 <button class="flip-btn" type="button" aria-pressed="false" aria-label="More informations" title="More informations">+</button>
@@ -335,12 +337,11 @@
                     </header>
                     <figure class="figure">
                       <img loading="lazy" decoding="async" alt="Gold Keeper dragon"
-                           src="https://raw.githubusercontent.com/lrobyr/portfolio/5bd5b7d8793bef06266f53e8fe3d5331eef8e525/Fortune.png" />
+                           src="https://raw.githubusercontent.com/lrobyr/portfolio/592d91a62ac282e6a244992f4496ae7e3b6da2c0/assets/Fortune.png" />
                     </figure>
                     <div class="labels">
-                      <span class="label">Digital Painting</span>
-                      <span class="label">Inktober 2023</span>
                       <span class="label">Character Art</span>
+                      <span class="label">Comics-like</span>
                     </div>
                   </div>
                   <div class="face back">
@@ -348,9 +349,9 @@
                       <h4 class="art-title" data-i18n-en="Gold Keeper" data-i18n-fr="Protecteur d'or">Gold Keeper</h4>
                       <p class="art-date" data-i18n-en="October 2023" data-i18n-fr="Octobre 2023">October 2023</p>
                     </header>
-                    <p data-i18n-en="A sleepy dragon protecting its gold. Inspiration from Smog in 'the Hobbit' and the grand-mother dragon from the 'Raghnarok' comics. Illustration made with Procreate"
-                    data-i18n-fr="Dragon endormi sur son tas d'or. Inspiration de Smog du 'Hobbit' et de la grand-mère dragon de la BD 'Raghnarok'. Illustration réalisée sur Procreate" >A sleepy dragon protecting its gold. Inspiration from Smog in 'the Hobbit' and the grand-mother dragon from the 'Raghnarok' comics. Illustration made with Procreate</p>
-                    <p class="hint">Press x to view front.</p>
+                    <p data-i18n-en="A sleepy dragon protecting its gold. Inspiration from Smog in 'the Hobbit' and the grand-mother dragon from the 'Raghnarok' comics. Illustration made with Procreate for the Inktober 2023 (theme: Fortune)."
+                    data-i18n-fr="Dragon endormi sur son tas d'or. Inspiration de Smog du 'Hobbit' et de la grand-mère dragon de la BD 'Raghnarok'. Illustration réalisée sur Procreate pour le Inktober 2023 (thème: Fortune)." >A sleepy dragon protecting its gold. Inspiration from Smog in 'the Hobbit' and the grand-mother dragon from the 'Raghnarok' comics. Illustration made with Procreate</p>
+                    <p class="hint" data-i18n-en="Press x to view front" data-i18n-fr="Appuyez sur x pour retourner">Press x to view front.</p>
                   </div>
                 </div>
                 <button class="flip-btn" type="button" aria-pressed="false" aria-label="More informations" title="More informations">+</button>
@@ -358,66 +359,122 @@
             </div>
           </div>
 
+<!-- New Category : Traditional Art -->
+
           <div class="art-category">
-            <h3>Traditional Art</h3>
+            <h3 data-i18n-en="Traditional Art (Pen & Pencil)" data-i18n-fr="Art Traditionel (Crayon et papier)" >Traditional Art (Pen and Pencil) </h3>
             <div class="art-grid">
-              <article class="art-card" aria-label="Watercolor Portrait">
+              <article class="art-card" aria-label="Smoking Tent">
                 <div class="art-inner">
                   <div class="face front">
-                    <header class="art-header"><h4 class="art-title">Watercolor Portrait</h4><p class="art-date">November 2023</p></header>
-                    <figure class="figure"><img loading="lazy" decoding="async" alt="Watercolor portrait"
-                      src="https://via.placeholder.com/900x675/48bb78/ffffff?text=Watercolor+Portrait"/></figure>
-                    <div class="labels"><span class="label">Watercolor</span><span class="label">Portrait</span><span class="label">Traditional</span></div>
+                    <header class="art-header"><h4 class="art-title" data-i18n-en="Book Tent" data-i18n-fr="Tente-Livre">Book Tent</h4>
+                      <p class="art-date" data-i18n-en="March 2022" data-i18n-fr="Mars 2022">March 2022</p></header>
+                    <figure class="figure"><img loading="lazy" decoding="async" alt="The Book smoking Tents"
+                      src="https://raw.githubusercontent.com/lrobyr/portfolio/592d91a62ac282e6a244992f4496ae7e3b6da2c0/assets/Tent.png"/></figure>
+                    <div class="labels">
+                      <span class="label" data-i18n-en="Pen & Pencil" data-i18n-fr="Crayon & Stylo" >Pen & Pencil</span>
+                      <span class="label" data-i18n-en="Inking" data-i18n-fr="Encrage">Inking</span>
+                      <span class="label" data-i18n-en="Shading" data-i18n-fr="Ombrage">Shading</span></div>
                   </div>
-                  <div class="face back"><header><h4 class="art-title">Watercolor Portrait</h4><p class="art-date">November 2023</p></header>
-                    <p>Warm/cool skin tones using wet‑on‑wet transitions.</p><p class="hint">Press + to view front.</p></div>
+                  <div class="face back"><header><h4 class="art-title" data-i18n-en="Book Tent" data-i18n-fr="Tente-Livre" >Book Tent</h4>
+                    <p class="art-date" data-i18n-en="March 2022" data-i18n-fr="Mars 2022"  >March 2022</p></header>
+                    <p data-i18n-en="Black & white illustration sketched with a pencil H, inked with Indian ink pen." 
+                    data-i18n-fr="Illustration en noir et blanc. Utilisation d'un crayon H pour le brouillon et de stylo à encre de chine pour l'encrage." > Warm/cool skin tones using wet‑on‑wet transitions.</p>
+                    <p class="hint" data-i18n-en="Press x to view front" data-i18n-fr="Appuyez sur x pour retourner" >Press + to view front.</p></div>
                 </div>
                 <button class="flip-btn" type="button" aria-pressed="false" aria-label="More informations" title="More informations">+</button>
               </article>
 
-              <article class="art-card" aria-label="Still Life Study">
+              <article class="art-card" aria-label="Book Goblin">
                 <div class="art-inner">
                   <div class="face front">
-                    <header class="art-header"><h4 class="art-title">Still Life Study</h4><p class="art-date">October 2023</p></header>
-                    <figure class="figure"><img loading="lazy" decoding="async" alt="Graphite still life"
-                      src="https://via.placeholder.com/900x675/f39c12/ffffff?text=Still+Life+Study"/></figure>
-                    <div class="labels"><span class="label">Graphite</span><span class="label">Still Life</span><span class="label">Realism</span></div>
+                    <header class="art-header"><h4 class="art-title" data-i18n-en="Book Goblin" data-i18n-fr="Lutin des Livres"  >Book Goblin</h4>
+                      <p class="art-date"  data-i18n-en="May 2022" data-i18n-fr="Mai 2022" >Mai 2022</p></header>
+                    <figure class="figure"><img loading="lazy" decoding="async" alt="Book Goblin reading"
+                      src="https://raw.githubusercontent.com/lrobyr/portfolio/592d91a62ac282e6a244992f4496ae7e3b6da2c0/assets/Lutin lecteur.png"/></figure>
+                    <div class="labels">
+                      <span class="label" data-i18n-en="Pen & Pencil" data-i18n-fr="Crayon & Stylo" >Pen & Pencil</span>
+                      <span class="label" data-i18n-en="Inking" data-i18n-fr="Encrage" >Inking</span>
+                      <span class="label" data-i18n-en="Shading" data-i18n-fr="Ombrage" >Shading</span></div>
                   </div>
-                  <div class="face back"><header><h4 class="art-title">Still Life Study</h4><p class="art-date">October 2023</p></header>
-                    <p>Proportions, value grouping, and material rendering.</p><p class="hint">Press x to view front.</p></div>
+                  <div class="face back"><header><h4 class="art-title" data-i18n-en="Book Goblin" data-i18n-fr="Lutin des Livres" >Book Goblin</h4>
+                    <p class="art-date" data-i18n-en="May 2022" data-i18n-fr="Mai 2022" >Mai 2022</p></header>
+                    <p data-i18n-en="Book goblin casually reading on the old wood shelf. Sketched with a pencil H, inked using Indian ink pen."
+                    data-i18n-fr="Goblin de livres lisant tranquillement sur la vieille étagère en bois. Brouillon réalisé au crayon H, encrage à l'aide de stylo à encre de chine."
+                    >Proportions, value grouping, and material rendering.</p>
+                    <p class="hint" data-i18n-en="Press x to view front" data-i18n-fr="Appuyez sur x pour retourner" >Press + to view front.</p></div>
                 </div>
                 <button class="flip-btn" type="button" aria-pressed="false" aria-label="More informations" title="More informations">+</button>
               </article>
+
+              <article class="art-card" aria-label="Moon Rose">
+                <div class="art-inner">
+                  <div class="face front">
+                    <header class="art-header"><h4 class="art-title" data-i18n-en="Moon Rose" data-i18n-fr="Rose-lune">Moon Rose</h4>
+                      <p class="art-date" data-i18n-en="April 2022" data-i18n-fr="Avril 2022">April 2022</p></header>
+                    <figure class="figure"><img loading="lazy" decoding="async" alt="Moon Rose"
+                      src="https://raw.githubusercontent.com/lrobyr/portfolio/592d91a62ac282e6a244992f4496ae7e3b6da2c0/assets/Rose-lune.png"/></figure>
+                    <div class="labels">
+                      <span class="label" data-i18n-en="Pen & Pencil" data-i18n-fr="Crayon & Stylo" >Pen & Pencil</span>
+                      <span class="label" data-i18n-en="Contrasts" data-i18n-fr="Constrastes">Inking</span>
+                      <span class="label" data-i18n-en="Inking" data-i18n-fr="Encrage">Inking</span>
+                      </div>
+                  </div>
+                  <div class="face back"><header><h4 class="art-title" data-i18n-en="Moon Rose" data-i18n-fr="Rose-lune" >Moon Rose</h4>
+                    <p class="art-date" data-i18n-en="April 2022" data-i18n-fr="Avril 2022" >April 2022</p></header>
+                    <p data-i18n-en="Illustration of rose in a gothic style, sketched with a pencil H, inked with Indian ink pen. Inspiration from and for tattoo ideas." 
+                    data-i18n-fr="Illustration d'une rose en style gothic, au crayon H et encrage au stylo à encre de chine. Inspiration d'idées de tatouage." > Warm/cool skin tones using wet‑on‑wet transitions.</p>
+                    <p class="hint" data-i18n-en="Press x to view front" data-i18n-fr="Appuyez sur x pour retourner" >Press + to view front.</p></div>
+                </div>
+                <button class="flip-btn" type="button" aria-pressed="false" aria-label="More informations" title="More informations">+</button>
+              </article>
+
             </div>
           </div>
 
+<!-- New Category : Landscape Building -->
+
           <div class="art-category">
-            <h3>Concept Art & Illustrations</h3>
+            <h3 data-i18n-en="Landscapes & Environment" data-i18n-fr="Paysages & Environnement " >Landscapes</h3>
             <div class="art-grid">
-              <article class="art-card" aria-label="Sci‑Fi Environment">
+              <article class="art-card" aria-label="Green Forest">
                 <div class="art-inner">
                   <div class="face front">
-                    <header class="art-header"><h4 class="art-title">Sci‑Fi Environment</h4><p class="art-date">February 2024</p></header>
-                    <figure class="figure"><img loading="lazy" decoding="async" alt="Futuristic environment concept"
-                      src="https://via.placeholder.com/900x675/e74c3c/ffffff?text=Sci‑Fi+Environment"/></figure>
-                    <div class="labels"><span class="label">Concept Art</span><span class="label">Sci‑Fi</span><span class="label">Environment</span></div>
+                    <header class="art-header"><h4 class="art-title" data-i18n-en="Green Forest" data-i18n-fr="Forêt Verte" >Green Forest</h4>
+                      <p class="art-date" data-i18n-en="November 2024" data-i18n-fr="Novembre 2024" >February 2024</p></header>
+                    <figure class="figure"><img loading="lazy" decoding="async" alt="Green Forest with its king"
+                      src="https://raw.githubusercontent.com/lrobyr/portfolio/592d91a62ac282e6a244992f4496ae7e3b6da2c0/assets/Forest.png"/></figure>
+                    <div class="labels">
+                      <span class="label" data-i18n-en="Lightning" data-i18n-fr="Eclairage" >Sci‑Fi</span>
+                      <span class="label" data-i18n-en="Landscape" data-i18n-fr="Paysage" >Precision</span>
+                      <span class="label" data-i18n-en="Procreate" data-i18n-fr="Procreate" >Concept Art</span></div>
                   </div>
-                  <div class="face back"><header><h4 class="art-title">Sci‑Fi Environment</h4><p class="art-date">February 2024</p></header>
-                    <p>Architectural logic + cinematic mood, bridging engineering and design.</p><p class="hint">Press x to view front.</p></div>
+                  <div class="face back"><header><h4 class="art-title" data-i18n-en="Green Forest" data-i18n-fr="Forêt Verte" >Green Forest</h4>
+                    <p class="art-date" data-i18n-en="November 2024" data-i18n-fr="Novembre 2024" >November 2024</p></header>
+                    <p data-i18n-en="Green Forest Illustration made with Procreate. Inspired by tall trees of the numerous swedish forest." 
+                    data-i18n-fr="Illustration de forêt luxuriante réalisée avec Procreate. Inspiré par les grands arbres des nombreuses forêts de Suède." >Architectural logic + cinematic mood, bridging engineering and design.</p>
+                    <p class="hint" data-i18n-en="Press x to view front" data-i18n-fr="Appuyez sur x pour retourner" >Press + to view front.</p></div>
                 </div>
                 <button class="flip-btn" type="button" aria-pressed="false" aria-label="more informations" title="more informations">+</button>
               </article>
 
-              <article class="art-card" aria-label="Technical Illustration">
+              <article class="art-card" aria-label="Stone Bridge">
                 <div class="art-inner">
                   <div class="face front">
-                    <header class="art-header"><h4 class="art-title">Technical Illustration</h4><p class="art-date">September 2023</p></header>
-                    <figure class="figure"><img loading="lazy" decoding="async" alt="Technical educational diagram"
-                      src="https://via.placeholder.com/900x675/3498db/ffffff?text=Technical+Illustration"/></figure>
-                    <div class="labels"><span class="label">Technical</span><span class="label">Educational</span><span class="label">Precision</span></div>
+                    <header class="art-header"><h4 class="art-title" data-i18n-en="Stone Bridge" data-i18n-fr="Pont de pierre" >Stone Bridge</h4>
+                      <p class="art-date" data-i18n-en="November 2024" data-i18n-fr="Novembre 2024" >September 2023</p></header>
+                    <figure class="figure"><img loading="lazy" decoding="async" alt="Stone bridge covered with moss"
+                      src="https://raw.githubusercontent.com/lrobyr/portfolio/592d91a62ac282e6a244992f4496ae7e3b6da2c0/assets/Mossy bridge.png"/></figure>
+                    <div class="labels">
+                      <span class="label" data-i18n-en="Details" data-i18n-fr="Détails" >Technical</span>
+                      <span class="label" data-i18n-en="Landscape" data-i18n-fr="Paysage" >Educational</span>
+                      <span class="label" data-i18n-en="Procreate" data-i18n-fr="Procreate" >Precision</span></div>
                   </div>
-                  <div class="face back"><header><h4 class="art-title">Technical Illustration</h4><p class="art-date">September 2023</p></header>
-                    <p>Visual communication of complex mechanisms with clean labeling.</p><p class="hint">Press x to view front.</p></div>
+                  <div class="face back"><header><h4 class="art-title" data-i18n-en="Stone Bridge" data-i18n-fr="Pont de pierre" >Stone Bridge</h4>
+                    <p class="art-date" data-i18n-en="November 2024" data-i18n-fr="Novembre 2024" >November 2024</p></header>
+                    <p data-i18n-en="Illustration of an old stone bridge covered by moss, made with Procreate. Inspired by video tutorial from 'James Julier Art Tutorials' on YouTube." 
+                    data-i18n-fr="Illustration d'un vieux pont en pierres couvert de mousse, réalisé avec Procreate. Inspiration d'un tutoriel vidéo de 'Jame Julier Art Tutorials' sur YouTube."> Visual communication of complex mechanisms with clean labeling.</p>
+                    <p class="hint" data-i18n-en="Press x to view front" data-i18n-fr="Appuyez sur x pour retourner" >Press x to view front.</p></div>
                 </div>
                 <button class="flip-btn" type="button" aria-pressed="false" aria-label="more informations" title="more informations">+</button>
               </article>
@@ -438,7 +495,7 @@
           const text = el.getAttribute(`data-i18n-${lang}`);
           if(text) el.textContent = text;
         });
-        btn.textContent = lang==='en' ? '🇬🇧 English' : '🇫🇷 Français';
+        btn.textContent = lang==='en' ? 'English' : 'Français';
         btn.setAttribute('aria-pressed', lang==='fr');
       }
       btn.addEventListener('click',()=>{ lang = (lang==='en'?'fr':'en'); applyLang(); });
