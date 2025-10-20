@@ -109,6 +109,20 @@
     .lightbox__close:focus { outline: 2px solid #fff; outline-offset: 2px; }
 
 
+    /* Human-made notice */
+    .notice {
+      margin: 8px 0 20px;
+      padding: 10px 14px;
+      border-radius: 12px;
+      background: rgba(255,255,255,0.6);
+      border: 1px dashed var(--ring);
+      color: #0B1E29;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: .95rem;
+    }
+    .notice .emoji { font-size: 1.1rem; }
 
 
   </style>
@@ -276,7 +290,15 @@
       <div id="panel-art" class="tabpanel" role="tabpanel" aria-labelledby="tab-art" data-active="false">
         <section class="section glass">
           <h2><span class="badge" aria-hidden="true">🎨</span>Art Portfolio</h2>
-
+          <p class="notice">
+            
+            <span
+              data-i18n-en="NB: All artworks on this page are handmade by me — no AI generation."
+              data-i18n-fr="NB : Toutes les œuvres présentées ici ont été réalisées à la main — aucune image générée par IA."
+            >
+              Note All artworks on this page are handmade by me — no AI generation.
+            </span>
+          </p>
           <div class="art-category">
             <h3>Digital Art</h3>
             <div class="art-grid">
