@@ -95,6 +95,22 @@
     @media (max-width:768px){
       .art-card{height:420px}
     }
+
+    /* Hover zoom + clickable cursor on all artworks */
+    .art-card .figure img { cursor: zoom-in; transition: transform .35s ease; }
+    .art-card:hover .figure img { transform: scale(1.04); }
+
+    /* Lightbox dialog */
+    .lightbox { padding:0; border:none; background:transparent; z-index:9999; }
+    .lightbox::backdrop { background: rgba(0,0,0,.75); }
+    .lightbox__inner { position:relative; display:grid; place-items:center; width:100vw; height:100vh; padding:24px; }
+    .lightbox__img { max-width:min(96vw,1400px); max-height:90vh; border-radius:12px; display:block; }
+    .lightbox__close { position:absolute; top:12px; right:12px; width:40px; height:40px; border:0; border-radius:999px; background:#fff; color:#081e29; font-size:22px; font-weight:700; cursor:pointer; }
+    .lightbox__close:focus { outline: 2px solid #fff; outline-offset: 2px; }
+
+
+
+
   </style>
 </head>
 <body>
@@ -265,7 +281,7 @@
             <h3>Digital Art</h3>
             <div class="art-grid">
               <!-- Card 1 -->
-              <article class="art-card" aria-label="Gemini Variation">
+              <article class="art-card zoomable" aria-label="Gemini Variation">
                 <div class="art-inner">
                   <div class="face front">
                     <header class="art-header">
@@ -296,7 +312,7 @@
               </article>
 
               <!-- Card 2 -->
-              <article class="art-card" aria-label="Crowley Portrait">
+              <article class="art-card zoomable" aria-label="Crowley Portrait">
                 <div class="art-inner">
                   <div class="face front">
                     <header class="art-header">
@@ -485,6 +501,13 @@
     </main>
   </div>
 
+  <dialog id="lightbox" class="lightbox" aria-label="Image viewer">
+    <div class="lightbox__inner" role="document">
+      <img class="lightbox__img" alt="" />
+      <button class="lightbox__close" type="button" aria-label="Close">×</button>
+    </div>
+  </dialog>
+
   <script>
     // Language toggle using data-i18n attributes
     (function(){
@@ -562,6 +585,32 @@
     }
   });
 })();
+
+(function(){
+  const dlg = document.getElementById('lightbox');
+  const imgEl = dlg.querySelector('.lightbox__img');
+  const closeBtn = dlg.querySelector('.lightbox__close');
+
+  // Open for ANY image inside an art card
+  document.addEventListener('click', (e) => {
+    const img = e.target.closest('.art-card .figure img');
+    if (!img) return;
+
+    // Prefer high-res if provided
+    const full = img.dataset.fullsrc || img.currentSrc || img.src;
+    imgEl.src = full;
+    imgEl.alt = img.alt || '';
+    dlg.showModal();
+  });
+
+  // Close interactions
+  closeBtn.addEventListener('click', () => dlg.close());
+  dlg.addEventListener('click', (e) => { if (e.target === dlg) dlg.close(); });
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && dlg.open) dlg.close(); });
+})();
   </script>
+
+
+
 </body>
 </html>
