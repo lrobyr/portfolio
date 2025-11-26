@@ -1,0 +1,37 @@
+### Script to watermark original drawings
+### take Watermark.png from (previous) assets folder and add it to all drawings in the assets folder, put them in assets_web
+### open Windows PowerShell in the portfolio (where the git is) and run this script
+
+# SETTINGS
+$maxEdge    = 1600
+$wmOpacity  = 15
+$jpgQuality = 82
+
+# PATHS
+$srcDir = Join-Path $PWD "assets"
+$outDir = Join-Path $PWD "assets_web"
+$wmPath = Join-Path $srcDir "Watermark.png"
+
+if (!(Test-Path $wmPath)) { Write-Error "Watermark.png not found in assets\"; exit 1 }
+New-Item -ItemType Directory -Force $outDir | Out-Null
+
+Get-ChildItem "$srcDir\*" -File -Recurse -Include *.jpg,*.jpeg,*.png,*.webp |
+Where-Object { $_.Name -ne 'Watermark.png' } |
+ForEach-Object {
+  $in   = $_.FullName
+  $name = [IO.Path]::GetFileNameWithoutExtension($_.Name)
+  $out  = Join-Path $outDir ($name + "_web.jpg")
+
+  # compute final W,H after resize
+  $sz = magick "$in" -auto-orient -resize "$maxEdgex$maxEdge>" -format "%w %h" info:
+  if (-not $sz) { Write-Warning "Skip (no size): $($_.Name)"; return }
+  $parts = $sz -split ' '
+  $W = [int]$parts[0]; $H = [int]$parts[1]
+  Write-Host ("-> {0,-28}  final={1}x{2}px" -f $_.Name,$W,$H)
+  magick `
+    "$wmPath" -alpha on -channel A -resize "${W}x${H}^" -gravity center -extent "${W}x${H}" `
+              -evaluate multiply $($wmOpacity/100.0) -write mpr:wm +delete `
+    "$in" -auto-orient -colorspace sRGB -resize "$maxEdgex$maxEdge>" -strip -interlace Plane `
+    mpr:wm -compose over -composite `
+    -quality $jpgQuality "$out"
+}
