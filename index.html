@@ -64,6 +64,17 @@
     .skills{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:22px}
     .skill-row{display:flex;justify-content:space-between;align-items:center;margin:.35rem 0}
     .pill{padding:4px 10px;border-radius:999px;background:linear-gradient(to right,var(--accent1),var(--accent2));color:#0B3142;font-size:.8rem;font-weight:700}
+    
+    /* Make the "See Art Portfolio" pill look clickable */
+    .pill.go-art,
+    .pill[role="link"] {cursor: pointer;}
+
+    /* Optional: slight feedback on hover/focus */
+    .pill.go-art:hover,
+    .pill[role="link"]:hover,
+    .pill.go-art:focus-visible,
+    .pill[role="link"]:focus-visible {filter: brightness(0.95);outline: 2px solid var(--ring);outline-offset: 2px;}
+
 
     /* Art */
     .art-category{margin:8px 0 36px}
@@ -114,9 +125,9 @@
       margin: 8px 0 20px;
       padding: 10px 14px;
       border-radius: 12px;
-      background: rgba(255,255,255,0.6);
-      border: 1px dashed var(--ring);
-      color: #0B1E29;
+      background: rgba(15, 82, 87, .2);
+      border: 1px dashed #010a14;
+      color: #081e29;
       display: flex;
       align-items: center;
       gap: 10px;
@@ -132,7 +143,7 @@
     <header class="header glass" aria-labelledby="site-title">
       <div class="profile-image" aria-hidden="true">LR</div>
       <h1 id="site-title" class="title">Laly Robyr</h1>
-      <p class="subtitle" data-i18n-en="Robotics Engineer" data-i18n-fr="Ingénieure en Robotique">Robotics Engineer</p>
+      <p class="subtitle" data-i18n-en="Robotics Engineer with a medical orientation / 2D Artist" data-i18n-fr="Ingénieure en Robotique avec une orientation médicale / Artiste 2D">Robotics Engineer</p>
       <!--<p class="meta" data-i18n-en="Swiss • Born April 17, 1999" data-i18n-fr="Suisse • Née le 17 avril 1999">Swiss • Born April 17, 1999</p>-->
       <div class="contact" aria-label="contact">
        <!-- <span>📍 Chemin de la Chiésaz 10, 1024 Ecublens VD</span>
@@ -155,7 +166,9 @@
       <div id="panel-eng" class="tabpanel" role="tabpanel" aria-labelledby="tab-eng" data-active="true">
         <section class="section glass">
           <h2><span class="badge" aria-hidden="true">👤</span><span data-i18n-en="Profile" data-i18n-fr="Profil">Profile</span></h2>
-          <p class="lead" data-i18n-en="Rigorous, motivated, and autonomous engineer who learns quickly and has a strong logical mind. Persevering and punctual while being imaginative and capable of great sensitivity. Graduated in 2025 with a Master's degree in Robotics at EPFL with experience in computational motor control, neuroengineering, and rehabilitation technologies." data-i18n-fr="Ingénieure rigoureuse, motivée et autonome qui apprend rapidement et possède un esprit logique développé. Persévérante et ponctuelle tout en étant imaginative et capable d'une grande sensibilité. Diplômée d'un Master en Robotique à l'EPFL avec expérience en contrôle moteur computationnel, neuro‑ingénierie et technologies de réhabilitation.">Rigorous, motivated, and autonomous engineer…</p>
+          <p class="lead" 
+          data-i18n-en="Rigorous, motivated, and autonomous engineer who learns quickly and has a strong logical mind. Persevering and punctual while being imaginative, highly creative and capable of great sensitivity. Graduated in 2025 with a Master's degree in Robotics at EPFL with experience in computational motor control, neuroengineering, and rehabilitation technologies. To see more about my art, please visit the Art Portfolio tab above." 
+          data-i18n-fr="Ingénieure rigoureuse, motivée et autonome qui apprend rapidement et possède un esprit logique développé. Persévérante et ponctuelle tout en étant imaginative, très créative et capable d'une grande sensibilité. Diplômée d'un Master en Robotique à l'EPFL avec expérience en contrôle moteur computationnel, neuro‑ingénierie et technologies de réhabilitation. Pour en connaître plus sur mon art, rendez-vous sur l'onglet Art Portfolio au-dessus.">Rigorous, motivated, and autonomous engineer…</p>
         </section>
 
         <section class="section glass">
@@ -165,16 +178,22 @@
               <h3 data-i18n-en="Master's in Robotics" data-i18n-fr="Master en Robotique">Master's in Robotics</h3>
               <p><strong data-i18n-en="EPFL" data-i18n-fr="EPFL">EPFL</strong></p>
               <p data-i18n-en="2022 – 2025" data-i18n-fr="2022 – 2025">2022 – 2025</p>
+              <p><ins><strong data-i18n-en="Courswork:" data-i18n-fr="Cours :"></strong></ins></p>
+              <p data-i18n-en="Applied Machine Learning, Machine Learning Programming, Haptic Robot-Human Interfaces, Translationnal Neuroengineering, Computer Vision, Control Behavior in Animals and Robots, Evolutionary Robotics, Aerial Robotics, Computational Motor Control, Analysis and Modeling of Locomotion"></p>
             </div>
             <div class="card">
               <h3 data-i18n-en="Bachelor's in Microengineering" data-i18n-fr="Bachelor en Microtechnique">Bachelor's in Microengineering</h3>
               <p><strong>EPFL</strong></p>
               <p>2018 – 2022</p>
+           <p><ins><strong data-i18n-en="Courswork:" data-i18n-fr="Cours :"></strong></ins></p>
+              <p data-i18n-en="Analog Circuits and Systems, Numerical Analysis and Optimisation, Microcontrollers, Logical Systems, Mechanism Design, Electronics, Project Oriented Programming, Design of Experiments"></p>
             </div>
             <div class="card">
               <h3 data-i18n-en="Exchange Program (Erasmus)" data-i18n-fr="Programme d'échange (Erasmus)">Exchange Program (Erasmus)</h3>
               <p><strong>Linköping University</strong></p>
               <p>2021 – 2022</p>
+              <p><ins><strong data-i18n-en="Courswork:" data-i18n-fr="Cours :"></strong></ins></p>
+              <p data-i18n-en="Digital Circuits, Nanotechnology, Digital Signal Processing, Industrial Automation, Semiconductor Technology, Embedded Software, Mechatronics"></p>
             </div>
           </div>
         </section>
@@ -187,36 +206,57 @@
               <p><strong data-i18n-en="Fall 2024 – Sep 2025 • EPFL Neuroengineering" data-i18n-fr="Automne 2024 – Sept. 2025 • Neuro‑ingénierie EPFL">Fall 2024 – Sep 2025 • EPFL Neuroengineering</strong></p>
               <p data-i18n-en="Combined optogenetic activation of Moonwalker Descending Neurons to test whether spontaneous pupal activity reflects motor babbling and whether MDN activation recruits consistent leg‑muscle synergies." 
                data-i18n-fr="Combinaison de stimulations optogénétiques des neurones descendants Moonwalker et d’imagerie calcique pour étudier l'activité musculaire spontanée de la pupe de Drosophile. ">Combined optogenetic activation ...</p>
-            </article>
+              <p><strong> <ins data-i18n-en= "Skills & Tools: " 
+                   data-i18n-fr="Compétences & Outils :" ></ins></strong></p>
+              <p><strong data-i18n-en= "Prototyping, Computer Vision, Python, OpenCV, Machine Learning, Linux, ffmpeg, Data Analysis, Data Visualization" data-i18n-fr= "Prototypage, Vision par ordinateur, Python, OpenCV, Machine Learning, Linux, ffmpeg, Analyse de Données, Visualisation de Données"></strong></p>
+              </article>
             <article class="card">
   <h3 data-i18n-en="🧠 Neuroscience Research" data-i18n-fr="🧠 Recherche en neurosciences">🧠 Neuroscience Research</h3>
   <p><strong data-i18n-en="Summer 2024 • Neuroengineering Lab" data-i18n-fr="Été 2024 • Laboratoire de neuro‑ingénierie">Summer 2024 • Neuroengineering Lab</strong></p>
   <p data-i18n-en="Investigating roles of sensory, interneurons, and descending neurons in D. melanogaster grooming." data-i18n-fr="Etudes du rôle des neurones sensoriels, des interneurones et des neurones descendants dans le comportement de nettoyage de D. melanogaster.">Roles of sensory, interneurons, and descending neurons in D. melanogaster grooming.</p>
+  <p><strong> <ins data-i18n-en= "Skills & Tools: " 
+                   data-i18n-fr="Compétences & Outils :" ></ins></strong></p>
+  <p><strong data-i18n-en= "Experiment Design, Computer Vision, Python, OpenCV, Pipeline Conception, Linux, ffmpeg" data-i18n-fr= "Design d'Expériences, Vision par ordinateur, Python, OpenCV, Conception d'une pipeline, Linux, ffmpeg"></strong></p>
 </article>
             <article class="card">
   <h3 data-i18n-en="🚶 Gait Analysis Algorithm" data-i18n-fr="🚶 Algorithme d’analyse de la marche">🚶 Gait Analysis Algorithm</h3>
   <p><strong data-i18n-en="Fall 2023 • REHAssist" data-i18n-fr="Automne 2023 • REHAssist">Fall 2023 • REHAssist</strong></p>
   <p data-i18n-en="IMU‑based gait phase identification for rehab tech." data-i18n-fr="Identification des phases de la marche par IMU pour des technologies de rééducation.">IMU‑based gait phase identification for rehab tech.</p>
+    <p><strong> <ins data-i18n-en= "Skills & Tools: " 
+                   data-i18n-fr="Compétences & Outils :" ></ins></strong></p>
+  <p><strong data-i18n-en= "Prototyping, C++, MATLAB, Signal Processing, Electronic Circuit Design, 3D-printing, Soldering, Data Analysis, Data Visualization" data-i18n-fr= "Prototypage, C++, MATLAB, Traitement de Signaux, Design de Circuits Electriques, Impression 3D, Soudage, Analyse de Données, Visualisation de Données"></strong></p>
 </article>
             <article class="card">
   <h3 data-i18n-en="🐕 Legged Robot Control" data-i18n-fr="🐕 Contrôle de robot quadrupède">🐕 Legged Robot Control</h3>
   <p><strong data-i18n-en="Fall 2023 • Course Project" data-i18n-fr="Automne 2023 • Projet de cours">Fall 2023 • Course Project</strong></p>
   <p data-i18n-en="CPG gaits and DRL target following for a dog‑like sim." data-i18n-fr="CPG et suivi de cibles par Deep Reinforcement Learning pour une simulation de robot-chien.">CPG gaits and DRL target following for a dog‑like sim.</p>
+  <p><strong> <ins data-i18n-en= "Skills & Tools: " 
+                   data-i18n-fr="Compétences & Outils :" ></ins></strong></p>
+  <p><strong data-i18n-en= "Python, MuJoCo, Reinforcement Learning, Control" data-i18n-fr= "Python, MuJoCo, Reinforcement Learning, Contrôle"></strong></p>
 </article>
             <article class="card">
   <h3 data-i18n-en="🐟 Zebrafish Simulation" data-i18n-fr="🐟 Simulation de poisson‑zèbre">🐟 Zebrafish Simulation</h3>
   <p><strong data-i18n-en="Summer 2023 • BioRob" data-i18n-fr="Été 2023 • BioRob">Summer 2023 • BioRob</strong></p>
   <p data-i18n-en="Parameter optimization for realistic swimming and proprioceptive roles." data-i18n-fr="Optimisation de paramètres pour une nage réaliste et étude de la proprioception chez le zebrafish.">Parameter optimization for realistic swimming and proprioceptive roles.</p>
+   <p><strong> <ins data-i18n-en= "Skills & Tools: " 
+                   data-i18n-fr="Compétences & Outils :" ></ins></strong></p>
+  <p><strong data-i18n-en= "Python, Data Analysis, Data Visualization, Optimization, MuJoCo, Computational Modeling " data-i18n-fr= "Python, Analyse de Données, Visualisation de Données, Optimisation, MuJoCo, Modeling computationnel"></strong></p>
 </article>
             <article class="card">
   <h3 data-i18n-en="🕹️ Haptic Control Interface" data-i18n-fr="🕹️ Interface de contrôle haptique">🕹️ Haptic Control Interface</h3>
   <p><strong data-i18n-en="Spring 2023" data-i18n-fr="Printemps 2023">Spring 2023</strong></p>
   <p data-i18n-en="EMG‑driven paddle control algorithm." data-i18n-fr="Algorithme de commande d’un balancier haptique contrôlé par contraction musculaire par EMG.">EMG‑driven paddle control algorithm.</p>
+      <p><strong> <ins data-i18n-en= "Skills & Tools: " 
+                   data-i18n-fr="Compétences & Outils :" ></ins></strong></p>
+  <p><strong data-i18n-en= "C, MATLAB, Simulink, Control" data-i18n-fr= "C, MATLAB, Simulink, Contrôle"></strong></p>
 </article>
             <article class="card">
   <h3 data-i18n-en="🦎 Salamander Robot Control" data-i18n-fr="🦎 Contrôle de robot salamandre">🦎 Salamander Robot Control</h3>
   <p><strong data-i18n-en="Spring 2023" data-i18n-fr="Printemps 2023">Spring 2023</strong></p>
   <p data-i18n-en="CPG controller in Python/MuJoCo for swim & walk." data-i18n-fr="Contrôleur CPG sous Python/MuJoCo pour la nage et la marche d'une simulation de salamandre.">CPG controller in Python/MuJoCo for swim & walk.</p>
+  <p><strong> <ins data-i18n-en= "Skills & Tools: " 
+                   data-i18n-fr="Compétences & Outils :" ></ins></strong></p>
+  <p><strong data-i18n-en= "Python, MuJoCo, Control, Bio-simulation, Data Analysis" data-i18n-fr= "Python, MuJoCo, Contrôle, Bio-simulation, Analyse de Données"></strong></p>
 </article>
           </div>
         </section>
@@ -225,9 +265,16 @@
           <h2><span class="badge" aria-hidden="true">💼</span><span data-i18n-en="Experience" data-i18n-fr="Expérience">Experience</span></h2>
           <div class="grid">
             <div class="card"><h3><span data-i18n-en="Engineering Intern • Logitech" data-i18n-fr="Ingénieure stagiaire • Logitech">Engineering Intern • Logitech</span></h3><p> 
-              <span data-i18n-en="October 2024 - March 2025" data-i18n-fr="Octobre 2024 - Mars 2025"> Fall 2024 – March 2025</span></p></div>
+              <span data-i18n-en="October 2024 - March 2025" data-i18n-fr="Octobre 2024 - Mars 2025"> Fall 2024 – March 2025</span></p>
+              <p><strong> <ins data-i18n-en= "Skills & Tools: " 
+                   data-i18n-fr="Compétences & Outils :" ></ins></strong></p>
+              <p><strong data-i18n-en= "Prototyping, CAD Design, 3D-printing, Laser-Cutting, Machining of Mechanical Parts, Turning Workpieces" data-i18n-fr= "Prototypage, Design CAD, Impression-3D, Découpe Laser, Usinage de Pièces Mécaniques, Tournage de Pièces Mécaniques"></strong></p>
+            
+            </div>
             <div class="card"><h3><span data-i18n-en="Teaching Assistant • EPFL" data-i18n-fr="Assistante étudiante • EPFL"> Assistant • EPFL</span></h3><p>
               <span data-i18n-en="Linear Algebra, Analysis A, Electronics I/II" data-i18n-fr="Algèbre linéaire, Analyse A, Electronique I/II"> Algebra, Analysis A, Electronics I</span></p></div>
+            <div class="card"><h3><span data-i18n-en="Committee Member - Co-head of Victim Resources Unit -  Mediator • Polyquity, EPFL" data-i18n-fr="Membre du comité - co-responsable du pôle Ressources Victimes - Médiatrice • Polyquity, EPFL"> commitee • Polyquity, EPFL</span></h3><p> 
+              <span data-i18n-en="October 2024 - June 2025" data-i18n-fr="Octobre 2024 - Juin 2025"> October 2023 – June 2025</span></p></div>
             <div class="card"><h3><span data-i18n-en="Data Entry Assistant • CAPE, EPFL" data-i18n-fr="Assistante de saisie • CAPE, EPFL"> Entry • CAPE, EPFL</span></h3><p> 
               <span data-i18n-en="October 2023 - June 2025" data-i18n-fr="Octobre 2023 - Juin 2025"> October 2023 – June 2025</span></p></div>
             <div class="card"><h3><span data-i18n-en="Community Manager • Brass Band" data-i18n-fr="Community Manager • Brass Band"> Community Manager • Brass Bandy</span></h3><p>
@@ -243,11 +290,13 @@
               <div class="skill-row"><span>Python</span><span class="pill" data-i18n-en="Intermediate" data-i18n-fr="Intermédiaire">Advanced</span></div>
               <div class="skill-row"><span>C/C++</span><span class="pill" data-i18n-en="Intermediate" data-i18n-fr="Intermédiaire">Advanced</span></div>
               <div class="skill-row"><span>Matlab</span><span class="pill" data-i18n-en="Intermediate" data-i18n-fr="Intermédiaire">Advanced</span></div>
+              <div class="skill-row"><span>SQL</span><span class="pill" data-i18n-en="Intermediate" data-i18n-fr="Intermédiaire">Advanced</span></div>
             </div>
             <div>
               <h3 data-i18n-en="Design & CAD" data-i18n-fr="Conception & CAO">Design & CAD</h3>
-              <div class="skill-row"><span>Fusion 360</span><span class="pill" data-i18n-en="Intermediate" data-i18n-fr="Intermédiaire">Advanced</span></div>
+              <div class="skill-row"><span>Fusion 360</span><span class="pill" data-i18n-en="Intermediate" data-i18n-fr="Intermédiaire">Intermediate</span></div>
               <div class="skill-row"><span>CATIA</span><span class="pill" data-i18n-en="Intermediate" data-i18n-fr="Intermédiaire">Intermediate</span></div>
+              <div class="skill-row"><span>Procreate</span><span class="pill" data-i18n-en="Advanced" data-i18n-fr="Avancée">Advanced</span></div>
               <div class="skill-row"><span>Blender</span><span class="pill" data-i18n-en="Beginner" data-i18n-fr="Débutant">Intermediate</span></div>
             </div>
           </div>
@@ -274,7 +323,13 @@
                 <span><span data-i18n-en="🎺 Brass Music" data-i18n-fr="🎺 Musique de brass"> 🎺 Classical Music</span></span> 
                 <span class="pill" data-i18n-en="Cornet since 2009" data-i18n-fr="Cornet depuis 2009">Cornet since 2009</span></div>
               <div class="skill-row">
-                <span><span data-i18n-en="🎨 Drawing & Illustration" data-i18n-fr="🎨 Dessin & Illustration"> 🎨 Drawing & Illustration</span></div>
+                <span><span data-i18n-en="🎨 Drawing & Illustration" data-i18n-fr="🎨 Dessin & Illustration"> 🎨 Drawing & Illustration</span></span>
+                <span class="pill go-art"
+                      role="link"
+                      tabindex="0"
+                      href="#panel-art"
+                      data-i18n-en="See Art Portfolio"
+                      data-i18n-fr="Voir Art Portfolio">voir art portfolio</span></div>
               <div class="skill-row">
                 <span><span data-i18n-en="🎮 Video Games" data-i18n-fr="🎮 Jeux vidéo"> 🎮 Video Games</span></span>
                 <span class="pill" data-i18n-en="Streaming since 2024" data-i18n-fr="Streaming depuis 2024">Streaming</span></div>
@@ -291,13 +346,13 @@
         <section class="section glass">
           <h2><span class="badge" aria-hidden="true">🎨</span>Art Portfolio</h2>
           <p class="notice">
-            
-            <span
+            <i>
+            <span  
               data-i18n-en="NB: All artworks on this page are handmade by me — no AI generation."
               data-i18n-fr="NB : Toutes les œuvres présentées ici ont été réalisées à la main — aucune image générée par IA."
             >
               Note All artworks on this page are handmade by me — no AI generation.
-            </span>
+            </span></i>
           </p>
           <div class="art-category">
             <h3>Digital Art</h3>
@@ -312,7 +367,7 @@
                     </header>
                     <figure class="figure">
                       <img loading="lazy" decoding="async" alt="Abstract geometric digital painting"
-                           src="https://raw.githubusercontent.com/lrobyr/portfolio/592d91a62ac282e6a244992f4496ae7e3b6da2c0/assets/poleDance.png" />
+                           src="https://raw.githubusercontent.com/lrobyr/portfolio/592d91a62ac282e6a244992f4496ae7e3b6da2c0/assets_web/poleDance.png" />
                     </figure>
                     <div class="labels">
                       <span class="label" data-i18n-en="Anatomy" data-i18n-fr="Anatomie" >Anatomy</span>
@@ -343,7 +398,7 @@
                     </header>
                     <figure class="figure">
                       <img loading="lazy" decoding="async" alt="Digital portrait titled Crowley"
-                           src="https://raw.githubusercontent.com/lrobyr/portfolio/592d91a62ac282e6a244992f4496ae7e3b6da2c0/assets/Crowley_signed.png" />
+                           src="https://raw.githubusercontent.com/lrobyr/portfolio/592d91a62ac282e6a244992f4496ae7e3b6da2c0/assets_web/Crowley_signed.png" />
 
                     </figure>
                     <div class="labels">
@@ -375,7 +430,7 @@
                     </header>
                     <figure class="figure">
                       <img loading="lazy" decoding="async" alt="Gold Keeper dragon"
-                           src="https://raw.githubusercontent.com/lrobyr/portfolio/592d91a62ac282e6a244992f4496ae7e3b6da2c0/assets/Fortune.png" />
+                           src="https://raw.githubusercontent.com/lrobyr/portfolio/592d91a62ac282e6a244992f4496ae7e3b6da2c0/assets_web/Fortune.png" />
                     </figure>
                     <div class="labels">
                       <span class="label">Character Art</span>
@@ -408,7 +463,7 @@
                     <header class="art-header"><h4 class="art-title" data-i18n-en="Book Tent" data-i18n-fr="Tente-Livre">Book Tent</h4>
                       <p class="art-date" data-i18n-en="March 2022" data-i18n-fr="Mars 2022">March 2022</p></header>
                     <figure class="figure"><img loading="lazy" decoding="async" alt="The Book smoking Tents"
-                      src="https://raw.githubusercontent.com/lrobyr/portfolio/592d91a62ac282e6a244992f4496ae7e3b6da2c0/assets/Tent.png"/></figure>
+                      src="https://raw.githubusercontent.com/lrobyr/portfolio/592d91a62ac282e6a244992f4496ae7e3b6da2c0/assets_web/Tent.png"/></figure>
                     <div class="labels">
                       <span class="label" data-i18n-en="Pen & Pencil" data-i18n-fr="Crayon & Stylo" >Pen & Pencil</span>
                       <span class="label" data-i18n-en="Inking" data-i18n-fr="Encrage">Inking</span>
@@ -429,7 +484,7 @@
                     <header class="art-header"><h4 class="art-title" data-i18n-en="Book Goblin" data-i18n-fr="Lutin des Livres"  >Book Goblin</h4>
                       <p class="art-date"  data-i18n-en="May 2022" data-i18n-fr="Mai 2022" >Mai 2022</p></header>
                     <figure class="figure"><img loading="lazy" decoding="async" alt="Book Goblin reading"
-                      src="https://raw.githubusercontent.com/lrobyr/portfolio/592d91a62ac282e6a244992f4496ae7e3b6da2c0/assets/Lutin lecteur.png"/></figure>
+                      src="https://raw.githubusercontent.com/lrobyr/portfolio/592d91a62ac282e6a244992f4496ae7e3b6da2c0/assets_web/Lutin lecteur.png"/></figure>
                     <div class="labels">
                       <span class="label" data-i18n-en="Pen & Pencil" data-i18n-fr="Crayon & Stylo" >Pen & Pencil</span>
                       <span class="label" data-i18n-en="Inking" data-i18n-fr="Encrage" >Inking</span>
@@ -451,7 +506,7 @@
                     <header class="art-header"><h4 class="art-title" data-i18n-en="Moon Rose" data-i18n-fr="Rose-lune">Moon Rose</h4>
                       <p class="art-date" data-i18n-en="April 2022" data-i18n-fr="Avril 2022">April 2022</p></header>
                     <figure class="figure"><img loading="lazy" decoding="async" alt="Moon Rose"
-                      src="https://raw.githubusercontent.com/lrobyr/portfolio/592d91a62ac282e6a244992f4496ae7e3b6da2c0/assets/Rose-lune.png"/></figure>
+                      src="https://raw.githubusercontent.com/lrobyr/portfolio/592d91a62ac282e6a244992f4496ae7e3b6da2c0/assets_web/Rose-lune.png"/></figure>
                     <div class="labels">
                       <span class="label" data-i18n-en="Pen & Pencil" data-i18n-fr="Crayon & Stylo" >Pen & Pencil</span>
                       <span class="label" data-i18n-en="Contrasts" data-i18n-fr="Constrastes">Inking</span>
@@ -481,7 +536,7 @@
                     <header class="art-header"><h4 class="art-title" data-i18n-en="Green Forest" data-i18n-fr="Forêt Verte" >Green Forest</h4>
                       <p class="art-date" data-i18n-en="November 2024" data-i18n-fr="Novembre 2024" >February 2024</p></header>
                     <figure class="figure"><img loading="lazy" decoding="async" alt="Green Forest with its king"
-                      src="https://raw.githubusercontent.com/lrobyr/portfolio/592d91a62ac282e6a244992f4496ae7e3b6da2c0/assets/Forest.png"/></figure>
+                      src="https://raw.githubusercontent.com/lrobyr/portfolio/592d91a62ac282e6a244992f4496ae7e3b6da2c0/assets_web/Forest.png"/></figure>
                     <div class="labels">
                       <span class="label" data-i18n-en="Lightning" data-i18n-fr="Eclairage" >Sci‑Fi</span>
                       <span class="label" data-i18n-en="Landscape" data-i18n-fr="Paysage" >Precision</span>
@@ -502,7 +557,7 @@
                     <header class="art-header"><h4 class="art-title" data-i18n-en="Stone Bridge" data-i18n-fr="Pont de pierre" >Stone Bridge</h4>
                       <p class="art-date" data-i18n-en="November 2024" data-i18n-fr="Novembre 2024" >September 2023</p></header>
                     <figure class="figure"><img loading="lazy" decoding="async" alt="Stone bridge covered with moss"
-                      src="https://raw.githubusercontent.com/lrobyr/portfolio/592d91a62ac282e6a244992f4496ae7e3b6da2c0/assets/Mossy bridge.png"/></figure>
+                      src="https://raw.githubusercontent.com/lrobyr/portfolio/592d91a62ac282e6a244992f4496ae7e3b6da2c0/assets_web/Mossy bridge.png"/></figure>
                     <div class="labels">
                       <span class="label" data-i18n-en="Details" data-i18n-fr="Détails" >Technical</span>
                       <span class="label" data-i18n-en="Landscape" data-i18n-fr="Paysage" >Educational</span>
@@ -604,6 +659,32 @@
       btn.setAttribute('aria-pressed', String(next));
       // swap symbol
       btn.textContent = next ? '×' : '+';
+    }
+  });
+})();
+
+  // "Go to Art" button functionality - See art portfolio from skills section - pill class become clickable link 
+(function () {
+  function goToArt() {
+    const artTab = document.getElementById('tab-art');
+    const artPanel = document.getElementById('panel-art');
+    if (artTab) artTab.click();               // toggles the tab via your existing logic
+    if (artPanel) artPanel.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+  // Click + Enter/Space activation
+  document.addEventListener('click', (e) => {
+    if (e.target.classList.contains('go-art')) {
+      e.preventDefault?.();
+      goToArt();
+    }
+  });
+  document.addEventListener('keydown', (e) => {
+    const el = e.target;
+    if (el && el.classList && el.classList.contains('go-art') &&
+        (e.key === 'Enter' || e.key === ' ')) {
+      e.preventDefault();
+      goToArt();
     }
   });
 })();
